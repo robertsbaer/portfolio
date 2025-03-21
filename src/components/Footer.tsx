@@ -1,4 +1,4 @@
-import { Github, Linkedin, Twitter, Heart } from "lucide-react";
+import { Github, Linkedin, Twitter, Heart, Facebook } from "lucide-react";
 
 const Footer = () => {
   const currentYear = new Date().getFullYear();
@@ -19,6 +19,11 @@ const Footer = () => {
       href: "https://twitter.com/robertsbaer",
       label: "Twitter",
     },
+    {
+      icon: <Facebook className="w-5 h-5" />,
+      href: "https://facebook.com/dcmademedia",
+      label: "Facebook",
+    }
   ];
 
   return (

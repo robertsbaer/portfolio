@@ -107,7 +107,7 @@ const Contact = () => {
   };
 
   return (
-    <section id="contact" className="py-20 bg-gray-950 relative overflow-hidden">
+    <section id="contact" className="py-20 bg-gray-950 relative overflow-hidden" role="region" aria-label="contact">
       <div className="absolute inset-0 grid-background z-0"></div>
       
       {/* Animated background elements */}
