@@ -129,9 +129,9 @@ const Projects = () => {
                 
                 {/* Full details on hover */}
                 <div className="absolute inset-0 flex flex-col justify-center items-center p-6 bg-black/70 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                  <h3 className="text-xl font-bold mb-3 text-white drop-shadow-lg">
-                    {project.title}
-                  </h3>
+                  <h4 className="text-xl font-bold mb-3 text-white drop-shadow-lg">
+                    {project.title} Details
+                  </h4>
                   <p className="text-gray-200 text-sm mb-4 text-center drop-shadow">
                     {project.description}
                   </p>
