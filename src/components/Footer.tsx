@@ -1,7 +1,38 @@
 import { Github, Linkedin, Twitter, Heart, Facebook } from "lucide-react";
+import { useLocation, useNavigate } from "react-router-dom";
 
 const Footer = () => {
   const currentYear = new Date().getFullYear();
+  const location = useLocation();
+  const navigate = useNavigate();
+  const isHomePage = location.pathname === "/" || location.pathname === "";
+
+  const handleNavClick = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
+    e.preventDefault();
+    
+    if (href === "/blog") {
+      navigate(href);
+      return;
+    }
+    
+    if (isHomePage) {
+      // If on homepage, just scroll to the section
+      const element = document.querySelector(href);
+      if (element) {
+        element.scrollIntoView({ behavior: "smooth" });
+      }
+    } else {
+      // If on another page, navigate to homepage then to the section
+      navigate("/");
+      // Small timeout to ensure navigation completes before scrolling
+      setTimeout(() => {
+        const element = document.querySelector(href);
+        if (element) {
+          element.scrollIntoView({ behavior: "smooth" });
+        }
+      }, 100);
+    }
+  };
 
   const socialLinks = [
     {
@@ -34,6 +65,7 @@ const Footer = () => {
             <a
               href="#home"
               className="text-2xl font-bold gradient-text hover-element"
+              onClick={(e) => handleNavClick(e, "#home")}
             >
               Robert<span className="text-white">.</span>
             </a>
@@ -58,35 +90,40 @@ const Footer = () => {
           </div>
         </div>
 
-        {/* Add navigation links section with Blog link */}
-        <div className="flex justify-center mt-6 space-x-8">
+        {/* Mobile-friendly navigation links */}
+        <div className="flex flex-wrap justify-center mt-6 gap-4 md:gap-8">
           <a 
             href="#about" 
-            className="text-gray-400 hover:text-primary-500 transition-colors duration-300"
+            className="text-gray-400 hover:text-primary-500 transition-colors duration-300 px-3 py-2"
+            onClick={(e) => handleNavClick(e, "#about")}
           >
             About
           </a>
           <a 
             href="#projects" 
-            className="text-gray-400 hover:text-primary-500 transition-colors duration-300"
+            className="text-gray-400 hover:text-primary-500 transition-colors duration-300 px-3 py-2"
+            onClick={(e) => handleNavClick(e, "#projects")}
           >
             Projects
           </a>
           <a 
             href="#experience" 
-            className="text-gray-400 hover:text-primary-500 transition-colors duration-300"
+            className="text-gray-400 hover:text-primary-500 transition-colors duration-300 px-3 py-2"
+            onClick={(e) => handleNavClick(e, "#experience")}
           >
             Experience
           </a>
           <a 
             href="#contact" 
-            className="text-gray-400 hover:text-primary-500 transition-colors duration-300"
+            className="text-gray-400 hover:text-primary-500 transition-colors duration-300 px-3 py-2"
+            onClick={(e) => handleNavClick(e, "#contact")}
           >
             Contact
           </a>
           <a 
             href="/blog" 
-            className="text-gray-400 hover:text-primary-500 transition-colors duration-300"
+            className="text-gray-400 hover:text-primary-500 transition-colors duration-300 px-3 py-2"
+            onClick={(e) => handleNavClick(e, "/blog")}
             aria-label="Read our web development blog"
           >
             Blog
