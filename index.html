@@ -2,8 +2,41 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-    <link rel="canonical" href="https://dcmademedia.com">
+    <!-- Optimize favicon -->
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" media="(prefers-color-scheme: light)" />
+    <link rel="icon" type="image/svg+xml" href="/favicon-dark.svg" media="(prefers-color-scheme: dark)" />
+    
+    <!-- Optimize font loading by reducing weights -->
+    <link rel="preload" href="https://fonts.gstatic.com/s/inter/v13/UcCO3FwrK3iLTeHuS_fvQtMwCp50KnMw2boKoduKmMEVuLyfAZ9hiA.woff2" as="font" type="font/woff2" crossorigin>
+    
+    <!-- Reduce font weights to essential ones -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" media="print" onload="this.media='all'">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400&display=swap" media="print" onload="this.media='all'">
+    
+    <!-- Add image optimization hints -->
+    <meta property="og:image" content="https://dcmademedia.com/og-image.jpg" />
+    <link rel="preload" as="image" href="https://dcmademedia.com/og-image.jpg" />
+    <!-- Update canonical URL to enforce HTTPS -->
+    <link rel="canonical" href="https://dcmademedia.com/">
+    
+    <!-- Primary Meta Tags -->
+    <meta name="description" content="Washington DC-based React & React Native developer specializing in political campaigns and NGO websites. Custom web solutions for DC organizations.">
+    
+    <!-- Open Graph / Facebook - Update URLs -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://dcmademedia.com/">
+    
+    <!-- Twitter - Update URLs -->
+    <meta property="twitter:url" content="https://dcmademedia.com/">
+    
+    <!-- Update internal links to use HTTPS -->
+    <div style="display:none">
+      <!-- Internal links -->
+      <a href="https://dcmademedia.com/about/">About Robert Baer</a>
+      <a href="https://dcmademedia.com/services/">DC Web Development Services</a>
+      <a href="https://dcmademedia.com/portfolio/">React Development Portfolio</a>
+      <a href="https://dcmademedia.com/contact/">Contact DC React Developer</a>
+    </div>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>DC React Developer | Political &amp; NGO Websites | Robert Baer</title>
     
