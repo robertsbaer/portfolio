@@ -1,10 +1,14 @@
 import { useState, useEffect } from "react";
 import { Menu, X, Github, Linkedin, Twitter } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
+import { useLocation, useNavigate } from "react-router-dom";
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const location = useLocation();
+  const navigate = useNavigate();
+  const isHomePage = location.pathname === "/";
 
   useEffect(() => {
     const handleScroll = () => {
@@ -18,6 +22,33 @@ const Navbar = () => {
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
+
+  const handleNavClick = (e, href) => {
+    e.preventDefault();
+    
+    if (isHomePage) {
+      // If on homepage, just scroll to the section
+      const element = document.querySelector(href);
+      if (element) {
+        element.scrollIntoView({ behavior: "smooth" });
+      }
+    } else {
+      // If on another page, navigate to homepage then to the section
+      navigate("/");
+      // Small timeout to ensure navigation completes before scrolling
+      setTimeout(() => {
+        const element = document.querySelector(href);
+        if (element) {
+          element.scrollIntoView({ behavior: "smooth" });
+        }
+      }, 100);
+    }
+    
+    // Close mobile menu if open
+    if (isOpen) {
+      setIsOpen(false);
+    }
+  };
 
   const navLinks = [
     { name: "Home", href: "#home" },
@@ -56,8 +87,15 @@ const Navbar = () => {
       <div className="container mx-auto px-4 md:px-6">
         <div className="flex items-center justify-between">
           <a
-            href="#home"
+            href="/"
             className="text-2xl font-bold gradient-text hover-element"
+            onClick={(e) => {
+              if (location.pathname !== "/") {
+                // Only use navigate if not already on homepage
+                e.preventDefault();
+                navigate("/");
+              }
+            }}
           >
             Robert<span className="text-white">.</span>
           </a>
@@ -70,6 +108,7 @@ const Navbar = () => {
                   <a
                     href={link.href}
                     className="text-gray-300 hover:text-white hover-element relative group"
+                    onClick={(e) => handleNavClick(e, link.href)}
                   >
                     {link.name}
                     <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-primary-500 transition-all duration-300 group-hover:w-full"></span>
@@ -121,7 +160,7 @@ const Navbar = () => {
                     <a
                       href={link.href}
                       className="text-gray-300 hover:text-white block py-2 hover-element"
-                      onClick={() => setIsOpen(false)}
+                      onClick={(e) => handleNavClick(e, link.href)}
                     >
                       {link.name}
                     </a>
