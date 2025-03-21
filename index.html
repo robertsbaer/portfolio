@@ -188,7 +188,7 @@
     <script defer src="/src/main.tsx"></script>
     
     <!-- Add module type for better code splitting -->
-    <script type="module" crossorigin src="/assets/index-G4vHW9Hz.js"></script>
+    <script type="module" crossorigin src="/assets/index-fetiCEB9.js"></script>
     <link rel="stylesheet" crossorigin href="/assets/index-BWaGE5cs.css">
   </head>
   <body>
@@ -215,3 +215,26 @@
     </div>
   </body>
 </html>
+<!-- Add this script right after the opening <head> tag -->
+<head>
+  <!-- Existing head content -->
+  
+  <!-- Add this script for GitHub Pages SPA routing -->
+  <script type="text/javascript">
+    // Single Page Apps for GitHub Pages
+    // MIT License
+    // https://github.com/rafgraph/spa-github-pages
+    (function(l) {
+      if (l.search[1] === '/' ) {
+        var decoded = l.search.slice(1).split('&').map(function(s) { 
+          return s.replace(/~and~/g, '&')
+        }).join('?');
+        window.history.replaceState(null, null,
+            l.pathname.slice(0, -1) + decoded + l.hash
+        );
+      }
+    }(window.location))
+  </script>
+  
+  <!-- Rest of your head content -->
+</head>
