@@ -2,20 +2,20 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <!-- Update favicon path to ensure it's found -->
-    <link rel="icon" type="image/png" href="./dcmademedia.png" />
+    <!-- Fix favicon path to use absolute path from root -->
+    <link rel="icon" type="image/png" href="/dcmademedia.png" />
     <!-- Update canonical URL to enforce HTTPS -->
     <link rel="canonical" href="https://dcmademedia.com/">
     
     <!-- Primary Meta Tags -->
     <meta name="description" content="Washington DC-based React & React Native developer specializing in political campaigns and NGO websites. Custom web solutions for DC organizations.">
     
-    <!-- Open Graph / Facebook - Update URLs -->
+    <!-- Open Graph / Facebook - Update image paths -->
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://dcmademedia.com/">
     <meta property="og:image" content="https://dcmademedia.com/dcmademedia.png" />
     
-    <!-- Twitter - Update URLs -->
+    <!-- Twitter - Update image paths -->
     <meta property="twitter:url" content="https://dcmademedia.com/">
     <meta property="twitter:image" content="https://dcmademedia.com/dcmademedia.png" />
     
@@ -28,6 +28,7 @@
       <a href="#contact">Contact DC React Developer</a>
     </div>
     
+    <!-- Remove this duplicate section -->
     <!-- Update internal links to use HTTPS -->
       <!-- Update internal links to use anchor links instead of non-existent pages -->
       <div style="display:none">
@@ -108,7 +109,7 @@
       "@type": "ProfessionalService",
       "name": "DC React Developer | Political & NGO Websites | Robert Baer",
       "description": "Washington DC-based React & React Native developer specializing in political campaigns, NGO websites, and association platforms.",
-      "image": "https://dcmademedia.com/og-image.jpg",
+      "image": "https://dcmademedia.com/dcmademedia.png",
       "url": "https://dcmademedia.com",
       "address": {
         "@type": "PostalAddress",
@@ -199,11 +200,10 @@
   </head>
   <body>
     <div id="root"></div>
-    <!-- Remove synchronous script loading -->
-    <!-- Find this line in your index.html -->
-    <script src="/src/main.tsx"></script>
+    <!-- Remove this duplicate script tag -->
+    <!-- <script src="/src/main.tsx"></script> -->
     
-    <!-- And change it to -->
+    <!-- Keep only this one -->
     <script type="module" src="/src/main.tsx"></script>
     
     <!-- Hidden links for SEO - these will be properly integrated in your React components -->
