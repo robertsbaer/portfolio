@@ -187,7 +187,11 @@
   <body>
     <div id="root"></div>
     <!-- Remove synchronous script loading -->
-    <!-- <script type="module" src="/src/main.tsx"></script> -->
+    <!-- Find this line in your index.html -->
+    <script src="/src/main.tsx"></script>
+    
+    <!-- And change it to -->
+    <script type="module" src="/src/main.tsx"></script>
     
     <!-- Hidden links for SEO - these will be properly integrated in your React components -->
     <div style="display:none">
