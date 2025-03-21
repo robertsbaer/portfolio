@@ -34,7 +34,39 @@
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Fira+Code:wght@400;500;600&display=swap" rel="stylesheet">
+    <!-- Preload critical fonts -->
+    <link rel="preload" href="https://fonts.gstatic.com/s/inter/v13/UcCO3FwrK3iLTeHuS_fvQtMwCp50KnMw2boKoduKmMEVuLyfAZ9hiA.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="preload" href="https://fonts.gstatic.com/s/firacode/v22/uU9eCBsR6Z2vfE9aq3bL0fxyUs4tcw4W_D1sJVD7Ng.woff2" as="font" type="font/woff2" crossorigin>
+
+    <!-- Inline critical font styles -->
+    <style>
+      /* Inline critical Inter font */
+      @font-face {
+        font-family: 'Inter';
+        font-style: normal;
+        font-weight: 400;
+        font-display: swap;
+        src: url(https://fonts.gstatic.com/s/inter/v13/UcCO3FwrK3iLTeHuS_fvQtMwCp50KnMw2boKoduKmMEVuLyfAZ9hiA.woff2) format('woff2');
+      }
+      /* Inline critical Fira Code font */
+      @font-face {
+        font-family: 'Fira Code';
+        font-style: normal;
+        font-weight: 400;
+        font-display: swap;
+        src: url(https://fonts.gstatic.com/s/firacode/v22/uU9eCBsR6Z2vfE9aq3bL0fxyUs4tcw4W_D1sJVD7Ng.woff2) format('woff2');
+      }
+    </style>
+
+    <!-- Load remaining font weights asynchronously -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;500;600;700;800&display=swap" media="print" onload="this.media='all'">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@500;600&display=swap" media="print" onload="this.media='all'">
+    <noscript>
+      <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;500;600;700;800&family=Fira+Code:wght@500;600&display=swap">
+    </noscript>
+
+    <!-- Remove the original render-blocking font link -->
+    <!-- <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Fira+Code:wght@400;500;600&display=swap" rel="stylesheet"> -->
     
     <!-- Schema.org markup for Google -->
     <script type="application/ld+json">
@@ -114,11 +146,20 @@
     
     <!-- Link to sitemap for better indexing -->
     <link rel="sitemap" type="application/xml" title="Sitemap" href="/sitemap.xml">
-    <script type="module" crossorigin src="/assets/index-CXsdQ_Th.js"></script>
-    <link rel="stylesheet" crossorigin href="/assets/index-DYgeXra2.css">
+    
+    <!-- Preload critical JavaScript -->
+    <link rel="preload" href="data:application/octet-stream;base64,aW1wb3J0IHsgU3RyaWN0TW9kZSB9IGZyb20gJ3JlYWN0JzsKaW1wb3J0IHsgY3JlYXRlUm9vdCB9IGZyb20gJ3JlYWN0LWRvbS9jbGllbnQnOwppbXBvcnQgQXBwIGZyb20gJy4vQXBwLnRzeCc7CmltcG9ydCAnLi9pbmRleC5jc3MnOwoKY3JlYXRlUm9vdChkb2N1bWVudC5nZXRFbGVtZW50QnlJZCgncm9vdCcpISkucmVuZGVyKAogIDxTdHJpY3RNb2RlPgogICAgPEFwcCAvPgogIDwvU3RyaWN0TW9kZT4KKTsK" as="script">
+    
+    <!-- Defer non-critical JavaScript -->
+    <script defer src="/src/main.tsx"></script>
+    
+    <!-- Add module type for better code splitting -->
+    <script type="module" crossorigin src="/assets/index-NVzQftDz.js"></script>
   </head>
   <body>
     <div id="root"></div>
+    <!-- Remove synchronous script loading -->
+    <!-- <script type="module" src="/src/main.tsx"></script> -->
     
     <!-- Hidden links for SEO - these will be properly integrated in your React components -->
     <div style="display:none">
