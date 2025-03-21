@@ -3,7 +3,8 @@ import { useInView } from "react-intersection-observer";
 import { ExternalLink, Github } from "lucide-react";
 import crushItLogo from "../assests/crushitlogo.png";
 import poll24 from "../assests/poll24.png";
-import hotones from "../assests/hotones.jpg"; // Adjust the path as necessary
+import hotones from "../assests/hotones.jpg";
+import obamabarack from "../assests/obamabarack.png"; // Add this import
 
 const Projects = () => {
   const [ref, inView] = useInView({
@@ -12,6 +13,15 @@ const Projects = () => {
   });
 
   const projects = [
+    {
+      title: "Obama Campaign Site",
+      description:
+        "A modern React-based campaign website prototype showcasing responsive design and political campaign best practices. Built with Vite for optimal performance.",
+      image: obamabarack,
+      tags: ["React", "Vite", "Political Campaign", "Responsive Design"],
+      liveUrl: "https://robertsbaer.github.io/political-campaign/",
+      githubUrl: "https://github.com/robertsbaer/political-campaign",
+    },
     {
       title: "Hot Ones Data Viz",
       description:
@@ -27,7 +37,7 @@ const Projects = () => {
         "A React Native Expo app that challenges users with fun food challenges and lets them share their experiences.",
       image: crushItLogo,
       tags: ["React Native", "Expo", "Food Challenge"],
-      liveUrl: "https://example.com/crush-it",
+      liveUrl: "",
       githubUrl: "https://github.com/robertsbaer",
     },
     {
@@ -36,7 +46,7 @@ const Projects = () => {
         "A React Native polling app that allows users to create and participate in real-time polls with an interactive UI.",
       image: poll24,
       tags: ["React Native", "Polling", "UI/UX"],
-      liveUrl: "https://example.com/polling-app",
+      liveUrl: "",
       githubUrl: "https://github.com/robertsbaer",
     },
   ];
@@ -136,15 +146,17 @@ const Projects = () => {
                     ))}
                   </div>
                   <div className="flex space-x-4">
-                    <a
-                      href={project.liveUrl}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="text-white bg-primary-500 hover:bg-primary-600 p-2 rounded-full transition-colors duration-300"
-                      aria-label={`View live demo of ${project.title}`}
-                    >
-                      <ExternalLink className="w-5 h-5" />
-                    </a>
+                    {project.liveUrl && (
+                      <a
+                        href={project.liveUrl}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="text-white bg-primary-500 hover:bg-primary-600 p-2 rounded-full transition-colors duration-300"
+                        aria-label={`View live demo of ${project.title}`}
+                      >
+                        <ExternalLink className="w-5 h-5" />
+                      </a>
+                    )}
                     <a
                       href={project.githubUrl}
                       target="_blank"
