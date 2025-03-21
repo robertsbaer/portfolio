@@ -8,21 +8,21 @@
     <title>DC React Developer | Political &amp; NGO Websites | Robert Baer</title>
     
     <!-- Primary Meta Tags -->
-    <meta name="description" content="Washington DC-based React &amp; React Native developer specializing in political campaigns and NGO websites. Creating custom web and mobile solutions for organizations in DC.">
+    <meta name="description" content="Washington DC-based React & React Native developer specializing in political campaigns and NGO websites. Custom web solutions for DC organizations.">
     <meta name="keywords" content="DC web developer, Washington DC app developer, political website developer, NGO website development, association web developer, React developer DC, React Native developer DC, mobile app developer DC, political campaign websites, nonprofit web development">
     
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://dcmademedia.com/">
     <meta property="og:title" content="DC React Developer | Political & NGO Websites | Robert Baer" />
-    <meta property="og:description" content="Washington DC-based React & React Native developer specializing in political campaigns, NGO websites, and association platforms. Creating custom web and mobile solutions for organizations in the DC metro area." />
+    <meta property="og:description" content="Washington DC-based React & React Native developer specializing in political campaigns and NGO websites. Custom web solutions for DC organizations." />
     <meta property="og:image" content="https://dcmademedia.com/og-image.jpg" />
 
     <!-- Twitter -->
     <meta property="twitter:card" content="summary_large_image" />
     <meta property="twitter:url" content="https://dcmademedia.com/" />
     <meta property="twitter:title" content="DC React Developer | Political & NGO Websites | Robert Baer" />
-    <meta property="twitter:description" content="Washington DC-based React & React Native developer specializing in political campaigns, NGO websites, and association platforms. Creating custom web and mobile solutions for organizations in the DC metro area." />
+    <meta property="twitter:description" content="Washington DC-based React & React Native developer specializing in political campaigns and NGO websites. Custom web solutions for DC organizations." />
     <meta property="twitter:image" content="https://dcmademedia.com/og-image.jpg" />
 
     <!-- Geo Tags -->
@@ -79,42 +79,61 @@
     <link rel="author" href="https://github.com/robertsbaer" />
     <meta name="author" content="Robert Baer">
     <!-- Additional structured data for portfolio projects -->
-        <script type="application/ld+json">
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "ItemList",
+      "itemListElement": [
         {
-          "@context": "https://schema.org",
-          "@type": "ItemList",
-          "itemListElement": [
-            {
-              "@type": "SoftwareApplication",
-              "name": "Obama Campaign Site",
-              "applicationCategory": "WebApplication",
-              "operatingSystem": "Web",
-              "description": "A modern React-based campaign website prototype showcasing responsive design and political campaign best practices.",
-              "url": "https://robertsbaer.github.io/political-campaign/",
-              "author": {
-                "@type": "Person",
-                "name": "Robert Baer"
-              }
-            },
-            {
-              "@type": "SoftwareApplication",
-              "name": "Hot Ones Data Viz",
-              "applicationCategory": "WebApplication",
-              "operatingSystem": "Web",
-              "description": "A web app that visualizes data from the popular YouTube series 'Hot Ones'.",
-              "url": "https://robertsbaer.github.io/hot-ones-data/",
-              "author": {
-                "@type": "Person",
-                "name": "Robert Baer"
-              }
-            }
-          ]
+          "@type": "SoftwareApplication",
+          "name": "Obama Campaign Site",
+          "applicationCategory": "WebApplication",
+          "operatingSystem": "Web",
+          "description": "A modern React-based campaign website prototype showcasing responsive design and political campaign best practices.",
+          "url": "https://robertsbaer.github.io/political-campaign/",
+          "author": {
+            "@type": "Person",
+            "name": "Robert Baer"
+          }
+        },
+        {
+          "@type": "SoftwareApplication",
+          "name": "Hot Ones Data Viz",
+          "applicationCategory": "WebApplication",
+          "operatingSystem": "Web",
+          "description": "A web app that visualizes data from the popular YouTube series 'Hot Ones'.",
+          "url": "https://robertsbaer.github.io/hot-ones-data/",
+          "author": {
+            "@type": "Person",
+            "name": "Robert Baer"
+          }
         }
-        </script>
-        <script type="module" crossorigin src="/assets/index-CXsdQ_Th.js"></script>
-        <link rel="stylesheet" crossorigin href="/assets/index-DYgeXra2.css">
-      </head>
+      ]
+    }
+    </script>
+    
+    <!-- Link to sitemap for better indexing -->
+    <link rel="sitemap" type="application/xml" title="Sitemap" href="/sitemap.xml">
+    <script type="module" crossorigin src="/assets/index-CXsdQ_Th.js"></script>
+    <link rel="stylesheet" crossorigin href="/assets/index-DYgeXra2.css">
+  </head>
   <body>
     <div id="root"></div>
+    
+    <!-- Hidden links for SEO - these will be properly integrated in your React components -->
+    <div style="display:none">
+      <!-- Internal links -->
+      <a href="https://dcmademedia.com/about">About Robert Baer</a>
+      <a href="https://dcmademedia.com/services">DC Web Development Services</a>
+      <a href="https://dcmademedia.com/portfolio">React Development Portfolio</a>
+      <a href="https://dcmademedia.com/contact">Contact DC React Developer</a>
+      
+      <!-- External relevant links -->
+      <a href="https://reactjs.org/" rel="noopener noreferrer">React Official Documentation</a>
+      <a href="https://reactnative.dev/" rel="noopener noreferrer">React Native Documentation</a>
+      <a href="https://www.washingtondc.gov/business" rel="noopener noreferrer">Washington DC Business Resources</a>
+      <a href="https://www.nonprofitimpact.com/" rel="noopener noreferrer">Nonprofit Impact Resources</a>
+      <a href="https://www.techimpact.org/" rel="noopener noreferrer">Tech Impact for Nonprofits</a>
+    </div>
   </body>
 </html>
