@@ -58,6 +58,41 @@ const Footer = () => {
           </div>
         </div>
 
+        {/* Add navigation links section with Blog link */}
+        <div className="flex justify-center mt-6 space-x-8">
+          <a 
+            href="#about" 
+            className="text-gray-400 hover:text-primary-500 transition-colors duration-300"
+          >
+            About
+          </a>
+          <a 
+            href="#projects" 
+            className="text-gray-400 hover:text-primary-500 transition-colors duration-300"
+          >
+            Projects
+          </a>
+          <a 
+            href="#experience" 
+            className="text-gray-400 hover:text-primary-500 transition-colors duration-300"
+          >
+            Experience
+          </a>
+          <a 
+            href="#contact" 
+            className="text-gray-400 hover:text-primary-500 transition-colors duration-300"
+          >
+            Contact
+          </a>
+          <a 
+            href="/blog" 
+            className="text-gray-400 hover:text-primary-500 transition-colors duration-300"
+            aria-label="Read our web development blog"
+          >
+            Blog
+          </a>
+        </div>
+
         <div className="border-t border-gray-800 mt-8 pt-8 flex flex-col md:flex-row justify-between items-center">
           <p className="text-gray-400 text-sm mb-4 md:mb-0">
             &copy; {currentYear} Robert Baer. All rights reserved.
