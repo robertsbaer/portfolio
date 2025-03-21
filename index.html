@@ -34,7 +34,39 @@
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Fira+Code:wght@400;500;600&display=swap" rel="stylesheet">
+    <!-- Preload critical fonts -->
+    <link rel="preload" href="https://fonts.gstatic.com/s/inter/v13/UcCO3FwrK3iLTeHuS_fvQtMwCp50KnMw2boKoduKmMEVuLyfAZ9hiA.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="preload" href="https://fonts.gstatic.com/s/firacode/v22/uU9eCBsR6Z2vfE9aq3bL0fxyUs4tcw4W_D1sJVD7Ng.woff2" as="font" type="font/woff2" crossorigin>
+
+    <!-- Inline critical font styles -->
+    <style>
+      /* Inline critical Inter font */
+      @font-face {
+        font-family: 'Inter';
+        font-style: normal;
+        font-weight: 400;
+        font-display: swap;
+        src: url(https://fonts.gstatic.com/s/inter/v13/UcCO3FwrK3iLTeHuS_fvQtMwCp50KnMw2boKoduKmMEVuLyfAZ9hiA.woff2) format('woff2');
+      }
+      /* Inline critical Fira Code font */
+      @font-face {
+        font-family: 'Fira Code';
+        font-style: normal;
+        font-weight: 400;
+        font-display: swap;
+        src: url(https://fonts.gstatic.com/s/firacode/v22/uU9eCBsR6Z2vfE9aq3bL0fxyUs4tcw4W_D1sJVD7Ng.woff2) format('woff2');
+      }
+    </style>
+
+    <!-- Load remaining font weights asynchronously -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;500;600;700;800&display=swap" media="print" onload="this.media='all'">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@500;600&display=swap" media="print" onload="this.media='all'">
+    <noscript>
+      <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;500;600;700;800&family=Fira+Code:wght@500;600&display=swap">
+    </noscript>
+
+    <!-- Remove the original render-blocking font link -->
+    <!-- <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Fira+Code:wght@400;500;600&display=swap" rel="stylesheet"> -->
     
     <!-- Schema.org markup for Google -->
     <script type="application/ld+json">
@@ -114,10 +146,28 @@
     
     <!-- Link to sitemap for better indexing -->
     <link rel="sitemap" type="application/xml" title="Sitemap" href="/sitemap.xml">
+    
+    <!-- Preload critical JavaScript -->
+    <link rel="preload" href="/src/main.tsx" as="script">
+    
+    <!-- Defer non-critical JavaScript -->
+    <script defer src="/src/main.tsx"></script>
+    
+    <!-- Add module type for better code splitting -->
+    <script type="module">
+      // Dynamic import for route-based code splitting
+      import('/src/main.tsx').then(module => {
+        // Initialize app after main content is loaded
+        window.addEventListener('DOMContentLoaded', () => {
+          module.default();
+        });
+      });
+    </script>
   </head>
   <body>
     <div id="root"></div>
-    <script type="module" src="/src/main.tsx"></script>
+    <!-- Remove synchronous script loading -->
+    <!-- <script type="module" src="/src/main.tsx"></script> -->
     
     <!-- Hidden links for SEO - these will be properly integrated in your React components -->
     <div style="display:none">
