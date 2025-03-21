@@ -79,10 +79,13 @@ const About = () => {
             <motion.div variants={itemVariants}>
               <div className="relative">
                 <div className="relative z-10 overflow-hidden rounded-lg">
-                  <img
-                    src={image}
-                    alt="Robert Baer"
+                  <img 
+                    src={image} 
+                    alt="Robert Baer" 
                     className="w-full h-auto object-cover transform transition-transform duration-500 hover:scale-105"
+                    width="600"  // Add explicit width attribute
+                    height="800"  // Add explicit height attribute
+                    loading="lazy"  // Also add lazy loading for performance
                   />
                 </div>
                 <div className="absolute -bottom-4 -right-4 w-2/3 h-2/3 border-4 border-primary-500 rounded-lg -z-10"></div>

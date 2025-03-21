@@ -119,7 +119,9 @@ const Projects = () => {
                   src={project.image}
                   alt={project.title}
                   className="w-full h-80 object-cover transition-transform duration-300 group-hover:scale-105"
-                  loading="lazy" // Add lazy loading attribute
+                  loading="lazy"
+                  width="800"  // Add explicit width attribute
+                  height="600"  // Add explicit height attribute
                 />
                 {/* Project title always visible at the bottom */}
                 <div className="absolute bottom-0 left-0 right-0 p-4 bg-gradient-to-t from-black/80 to-transparent">
