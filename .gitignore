@@ -1,8 +1,5 @@
-# Optimize repo size
-node_modules/
-.DS_Store
-dist/
-build/
+# Logs
+logs
 *.log
 npm-debug.log*
 yarn-debug.log*
@@ -25,3 +22,21 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
+
+# Image optimization originals
+src/assets/originals/
+*.psd
+*.ai
+*.sketch
+
+# Build optimization
+.cache/
+stats.html
+bundle-analysis.json
+
+# Environment variables
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
