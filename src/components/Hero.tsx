@@ -12,9 +12,11 @@ const Hero = () => {
       const img = new Image();
       img.src = src;
     };
-    
-    // Add paths to critical images here
-    // Example: preloadImage('/path/to/critical/image.jpg');
+    preloadImage('./assets/crushitlogo.png');
+    preloadImage('./assets/headshot.jpeg');
+    preloadImage('./assets/hotones.jpg');
+    preloadImage('./assets/obamabarack,png');
+    preloadImage('./assets/poll24.png');
   }, []);
 
   return (
