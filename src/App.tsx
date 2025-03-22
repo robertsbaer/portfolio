@@ -1,18 +1,19 @@
 import React, { useEffect, lazy, Suspense } from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+// Fix import order - move useInView import up
 import { useInView } from 'react-intersection-observer';
 import Navbar from './components/Navbar';
 import Footer from './components/Footer';
 import Cursor from './components/Cursor';
 
-// Lazy load components with better naming for chunks
-const Hero = lazy(() => import(/* webpackChunkName: "hero" */ './components/Hero'));
-const About = lazy(() => import(/* webpackChunkName: "about" */ './components/About'));
-const Projects = lazy(() => import(/* webpackChunkName: "projects" */ './components/Projects'));
-const Experience = lazy(() => import(/* webpackChunkName: "experience" */ './components/Experience'));
-const Contact = lazy(() => import(/* webpackChunkName: "contact" */ './components/Contact'));
-const Blog = lazy(() => import(/* webpackChunkName: "blog" */ './components/Blog'));
-const BlogPost = lazy(() => import(/* webpackChunkName: "blog-post" */ './components/BlogPost'));
+// Lazy load components
+const Hero = lazy(() => import('./components/Hero'));
+const About = lazy(() => import('./components/About'));
+const Projects = lazy(() => import('./components/Projects'));
+const Experience = lazy(() => import('./components/Experience'));
+const Contact = lazy(() => import('./components/Contact'));
+const Blog = lazy(() => import('./components/Blog'));
+const BlogPost = lazy(() => import('./components/BlogPost'));
 
 // Loading component
 const Loading = () => (
