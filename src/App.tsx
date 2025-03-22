@@ -21,6 +21,29 @@ const Loading = () => (
   </div>
 );
 
+// Add missing import
+import { useInView } from 'react-intersection-observer';
+
+// Add error boundary component
+class ErrorBoundary extends React.Component<{fallback: React.ReactNode}, {hasError: boolean}> {
+  state = { hasError: false };
+
+  static getDerivedStateFromError() {
+    return { hasError: true };
+  }
+
+  componentDidCatch(error: Error, info: React.ErrorInfo) {
+    console.error("App Error:", error, info);
+  }
+
+  render() {
+    if (this.state.hasError) {
+      return this.props.fallback;
+    }
+    return this.props.children;
+  }
+}
+
 function HomePage() {
   useEffect(() => {
     // Smooth scroll for anchor links
@@ -41,9 +64,11 @@ function HomePage() {
   }, []);
 
   // Add intersection observer for Experience component
+  // Fix intersection observer usage
   const { ref, inView } = useInView({
     triggerOnce: true,
     rootMargin: '200px 0px',
+    threshold: 0.1,
   });
 
   return (
@@ -52,13 +77,18 @@ function HomePage() {
       <Cursor />
       <Navbar />
       <main>
-        <Suspense fallback={<Loading />}>
-          <Hero />
-          <About />
-          <Projects />
-          <Experience />
-          <Contact />
-        </Suspense>
+        <ErrorBoundary fallback={<div className="text-red-500 p-8">Error loading content</div>}>
+          <Suspense fallback={<Loading />}>
+            <Hero />
+            <About />
+            <Projects />
+            {/* Properly implement lazy loading for Experience */}
+            <div ref={ref} className="min-h-[100vh]">
+              {inView && <Experience />}
+            </div>
+            <Contact />
+          </Suspense>
+        </ErrorBoundary>
       </main>
       <Footer />
     </div>
@@ -68,13 +98,15 @@ function HomePage() {
 function App() {
   return (
     <Router>
-      <Suspense fallback={<Loading />}>
-        <Routes>
-          <Route path="" element={<HomePage />} />
-          <Route path="blog" element={<Blog />} />
-          <Route path="blog/:slug" element={<BlogPost />} />
-        </Routes>
-      </Suspense>
+      <ErrorBoundary fallback={<div className="text-red-500 p-8">App Error - Please refresh</div>}>
+        <Suspense fallback={<Loading />}>
+          <Routes>
+            <Route path="" element={<HomePage />} />
+            <Route path="blog" element={<Blog />} />
+            <Route path="blog/:slug" element={<BlogPost />} />
+          </Routes>
+        </Suspense>
+      </ErrorBoundary>
     </Router>
   );
 }
