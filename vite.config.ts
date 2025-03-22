@@ -7,19 +7,16 @@ import { ViteImageOptimizer } from 'vite-plugin-image-optimizer';
 export default defineConfig({
   plugins: [
     react(),
-    // Add image optimization
     ViteImageOptimizer({
+      // Image optimization options
       png: {
         quality: 80,
-        compressionLevel: 9,
       },
       jpeg: {
         quality: 80,
-        progressive: true,
       },
       jpg: {
         quality: 80,
-        progressive: true,
       },
     }),
     visualizer({
@@ -29,11 +26,40 @@ export default defineConfig({
     }),
   ],
   build: {
+    // Improve tree-shaking
+    minify: 'terser',
+    terserOptions: {
+      compress: {
+        drop_console: true,
+        drop_debugger: true,
+        pure_funcs: ['console.log', 'console.info', 'console.debug'],
+      },
+    },
     rollupOptions: {
       output: {
-        manualChunks: {
-          vendor: ['react', 'react-dom', 'react-router-dom', 'framer-motion'],
-          ui: ['lucide-react'],
+        // Better code splitting strategy
+        manualChunks: (id) => {
+          // Create separate chunks for major libraries
+          if (id.includes('node_modules/react/') || 
+              id.includes('node_modules/react-dom/')) {
+            return 'react-core';
+          }
+          
+          if (id.includes('node_modules/react-router-dom/')) {
+            return 'router';
+          }
+          
+          if (id.includes('node_modules/framer-motion/')) {
+            return 'animations';
+          }
+          
+          if (id.includes('node_modules/lucide-react/')) {
+            return 'icons';
+          }
+          
+          if (id.includes('node_modules/')) {
+            return 'vendor';
+          }
         },
         // Ensure CSS is extracted properly
         assetFileNames: (assetInfo) => {
@@ -50,22 +76,10 @@ export default defineConfig({
       },
     },
     chunkSizeWarningLimit: 1000,
-    minify: 'terser',
-    terserOptions: {
-      compress: {
-        drop_console: true,
-        drop_debugger: true,
-      },
-    },
-    // Ensure CSS is properly extracted and minified
-    cssCodeSplit: true,
-    cssMinify: true,
   },
-  // Fix imports for CSS
-  css: {
-    modules: {
-      localsConvention: 'camelCaseOnly',
-    },
-    devSourcemap: true,
+  // Optimize dependency pre-bundling
+  optimizeDeps: {
+    include: ['react', 'react-dom', 'react-router-dom', 'framer-motion', 'lucide-react'],
+    exclude: ['@emailjs/browser', 'html2canvas', 'jspdf'],
   },
 });
