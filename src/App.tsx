@@ -1,15 +1,24 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, lazy, Suspense } from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Navbar from './components/Navbar';
-import Hero from './components/Hero';
-import About from './components/About';
-import Projects from './components/Projects';
-import Experience from './components/Experience';
-import Contact from './components/Contact';
 import Footer from './components/Footer';
 import Cursor from './components/Cursor';
-import Blog from './components/Blog';
-import BlogPost from './components/BlogPost';
+
+// Lazy load components
+const Hero = lazy(() => import('./components/Hero'));
+const About = lazy(() => import('./components/About'));
+const Projects = lazy(() => import('./components/Projects'));
+const Experience = lazy(() => import('./components/Experience'));
+const Contact = lazy(() => import('./components/Contact'));
+const Blog = lazy(() => import('./components/Blog'));
+const BlogPost = lazy(() => import('./components/BlogPost'));
+
+// Loading component
+const Loading = () => (
+  <div className="flex items-center justify-center min-h-screen">
+    <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-primary-500"></div>
+  </div>
+);
 
 function HomePage() {
   useEffect(() => {
@@ -36,11 +45,13 @@ function HomePage() {
       <Cursor />
       <Navbar />
       <main>
-        <Hero />
-        <About />
-        <Projects />
-        <Experience />
-        <Contact />
+        <Suspense fallback={<Loading />}>
+          <Hero />
+          <About />
+          <Projects />
+          <Experience />
+          <Contact />
+        </Suspense>
       </main>
       <Footer />
     </div>
@@ -50,11 +61,13 @@ function HomePage() {
 function App() {
   return (
     <Router>
-      <Routes>
-        <Route path="/" element={<HomePage />} />
-        <Route path="/blog" element={<Blog />} />
-        <Route path="/blog/:slug" element={<BlogPost />} />
-      </Routes>
+      <Suspense fallback={<Loading />}>
+        <Routes>
+          <Route path="" element={<HomePage />} />
+          <Route path="blog" element={<Blog />} />
+          <Route path="blog/:slug" element={<BlogPost />} />
+        </Routes>
+      </Suspense>
     </Router>
   );
 }
