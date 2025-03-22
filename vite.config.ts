@@ -21,7 +21,7 @@ export default defineConfig({
         },
         // Ensure CSS is extracted properly
         assetFileNames: (assetInfo) => {
-          let extType = assetInfo.name.split('.').at(1);
+          let extType = assetInfo.name?.split('.')?.at(1) ?? '';
           if (/png|jpe?g|svg|gif|tiff|bmp|ico/i.test(extType)) {
             extType = 'img';
           } else if (/woff|woff2|eot|ttf|otf/i.test(extType)) {

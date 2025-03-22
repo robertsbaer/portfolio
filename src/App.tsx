@@ -23,7 +23,11 @@ const Loading = () => (
 );
 
 // Add error boundary component
-class ErrorBoundary extends React.Component<{fallback: React.ReactNode}, {hasError: boolean}> {
+// Fix the ErrorBoundary component type definition
+class ErrorBoundary extends React.Component<
+  { fallback: React.ReactNode; children?: React.ReactNode },
+  { hasError: boolean }
+> {
   state = { hasError: false };
 
   static getDerivedStateFromError() {
