@@ -1,7 +1,22 @@
 import { motion } from 'framer-motion';
 import { Code, Smartphone, ArrowDown } from 'lucide-react';
+import { useEffect } from 'react';
 
+
+// Add near the top of your Hero component
 const Hero = () => {
+  // Add this useEffect for image preloading
+  useEffect(() => {
+    // Preload hero background images if you have any
+    const preloadImage = (src) => {
+      const img = new Image();
+      img.src = src;
+    };
+    
+    // Add paths to critical images here
+    // Example: preloadImage('/path/to/critical/image.jpg');
+  }, []);
+
   return (
     <section id="home" className="relative min-h-screen flex items-center pt-20 overflow-hidden">
       <div className="absolute inset-0 grid-background z-0"></div>

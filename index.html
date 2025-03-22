@@ -182,6 +182,9 @@
     <link rel="sitemap" type="application/xml" title="Sitemap" href="/sitemap.xml">
     
     <!-- Preload critical JavaScript -->
+    <!-- Add these lines in the head section, after your existing preloads -->
+    <link rel="preload" href="/src/assests/headshot.jpeg" as="image" fetchpriority="high">
+    <!-- Preload your main JS bundle -->
     <link rel="preload" href="/src/main.tsx" as="script">
     
     <!-- Defer non-critical JavaScript -->
