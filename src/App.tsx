@@ -45,11 +45,25 @@ function HomePage() {
       <Cursor />
       <Navbar />
       <main>
+        {/* Render Hero immediately */}
         <Suspense fallback={<Loading />}>
           <Hero />
+        </Suspense>
+        
+        {/* Lazy load other sections with IntersectionObserver */}
+        <Suspense fallback={<Loading />}>
           <About />
+        </Suspense>
+        
+        <Suspense fallback={<Loading />}>
           <Projects />
+        </Suspense>
+        
+        <Suspense fallback={<Loading />}>
           <Experience />
+        </Suspense>
+        
+        <Suspense fallback={<Loading />}>
           <Contact />
         </Suspense>
       </main>
