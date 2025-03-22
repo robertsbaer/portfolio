@@ -1,5 +1,7 @@
 import React, { useEffect, lazy, Suspense } from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+// Fix import order - move useInView import up
+import { useInView } from 'react-intersection-observer';
 import Navbar from './components/Navbar';
 import Footer from './components/Footer';
 import Cursor from './components/Cursor';
@@ -8,7 +10,6 @@ import Cursor from './components/Cursor';
 const Hero = lazy(() => import('./components/Hero'));
 const About = lazy(() => import('./components/About'));
 const Projects = lazy(() => import('./components/Projects'));
-// Update Experience import to use dynamic loading
 const Experience = lazy(() => import('./components/Experience'));
 const Contact = lazy(() => import('./components/Contact'));
 const Blog = lazy(() => import('./components/Blog'));
@@ -20,9 +21,6 @@ const Loading = () => (
     <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-primary-500"></div>
   </div>
 );
-
-// Add missing import
-import { useInView } from 'react-intersection-observer';
 
 // Add error boundary component
 class ErrorBoundary extends React.Component<{fallback: React.ReactNode}, {hasError: boolean}> {

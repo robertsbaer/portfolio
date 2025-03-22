@@ -1,7 +1,6 @@
 import { defineConfig } from 'vite';
 import react from '@vitejs/plugin-react';
 import { visualizer } from 'rollup-plugin-visualizer';
-import { ViteImageOptimizer } from 'vite-plugin-image-optimizer';
 
 // https://vitejs.dev/config/
 export default defineConfig({
@@ -17,18 +16,21 @@ export default defineConfig({
     rollupOptions: {
       output: {
         manualChunks: {
-          // Split larger dependencies
-          react: ['react', 'react-dom'],
-          router: ['react-router-dom'],
-          framer: ['framer-motion'],
-          lucide: ['lucide-react'],
-          // Add separate chunk for vendor files
-          vendor: [
-            'react-intersection-observer',
-            'html2canvas',
-            'jspdf'
-          ]
+          vendor: ['react', 'react-dom', 'react-router-dom', 'framer-motion'],
+          ui: ['lucide-react'],
         },
+        // Ensure CSS is extracted properly
+        assetFileNames: (assetInfo) => {
+          let extType = assetInfo.name.split('.').at(1);
+          if (/png|jpe?g|svg|gif|tiff|bmp|ico/i.test(extType)) {
+            extType = 'img';
+          } else if (/woff|woff2|eot|ttf|otf/i.test(extType)) {
+            extType = 'fonts';
+          }
+          return `assets/${extType}/[name]-[hash][extname]`;
+        },
+        chunkFileNames: 'assets/js/[name]-[hash].js',
+        entryFileNames: 'assets/js/[name]-[hash].js',
       },
     },
     chunkSizeWarningLimit: 1000,
@@ -39,5 +41,15 @@ export default defineConfig({
         drop_debugger: true,
       },
     },
+    // Ensure CSS is properly extracted and minified
+    cssCodeSplit: true,
+    cssMinify: true,
+  },
+  // Fix imports for CSS
+  css: {
+    modules: {
+      localsConvention: 'camelCaseOnly',
+    },
+    devSourcemap: true,
   },
 });

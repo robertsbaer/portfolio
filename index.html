@@ -222,12 +222,16 @@
       <a href="https://www.techimpact.org/" rel="noopener noreferrer">Tech Impact for Nonprofits</a>
     </div>
   </body>
-</html><!-- Add this script right after the opening <head> tag -->
+</html><!-- Add this near the top of your head section -->
 <head>
-  <!-- Existing head content -->
+  <!-- Existing meta tags -->
   
-  <!-- Add this script for GitHub Pages SPA routing -->
-  <script type="text/javascript">
+  <!-- Preload main CSS -->
+  <link rel="preload" href="/src/index.css" as="style">
+  
+  <!-- Rest of your head content -->
+</head>
+<script type="text/javascript">
     // Single Page Apps for GitHub Pages
     // MIT License
     // https://github.com/rafgraph/spa-github-pages
@@ -242,6 +246,3 @@
       }
     }(window.location))
   </script>
-  
-  <!-- Rest of your head content -->
-</head>
