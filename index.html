@@ -182,13 +182,16 @@
     <link rel="sitemap" type="application/xml" title="Sitemap" href="/sitemap.xml">
     
     <!-- Preload critical JavaScript -->
+    <!-- Add these lines in the head section, after your existing preloads -->
+    <link rel="preload" href="/assets/img/headshot-Bp_Zs-kL.jpeg" as="image" fetchpriority="high">
+    <!-- Preload your main JS bundle -->
     <link rel="preload" href="data:application/octet-stream;base64,aW1wb3J0IFJlYWN0IGZyb20gJ3JlYWN0JzsKaW1wb3J0IFJlYWN0RE9NIGZyb20gJ3JlYWN0LWRvbS9jbGllbnQnOwppbXBvcnQgQXBwIGZyb20gJy4vQXBwJzsKLy8gTWFrZSBzdXJlIHRoaXMgaW1wb3J0IGlzIGF0IHRoZSB0b3AgbGV2ZWwKaW1wb3J0ICcuL2luZGV4LmNzcyc7CgpSZWFjdERPTS5jcmVhdGVSb290KGRvY3VtZW50LmdldEVsZW1lbnRCeUlkKCdyb290JykhKS5yZW5kZXIoCiAgPFJlYWN0LlN0cmljdE1vZGU+CiAgICA8QXBwIC8+CiAgPC9SZWFjdC5TdHJpY3RNb2RlPgopOwo=" as="script">
     
     <!-- Defer non-critical JavaScript -->
     <script defer src="/src/main.tsx"></script>
     
     <!-- Add module type for better code splitting -->
-    <script type="module" crossorigin src="/assets/js/index-DQ-Bb8l9.js"></script>
+    <script type="module" crossorigin src="/assets/js/index-CRKoJG6A.js"></script>
     <link rel="modulepreload" crossorigin href="/assets/js/vendor-gvHgAtcJ.js">
     <link rel="modulepreload" crossorigin href="/assets/js/ui-B719sD8e.js">
     <link rel="stylesheet" crossorigin href="/assets/css/index-DCjsl0k5.css">
