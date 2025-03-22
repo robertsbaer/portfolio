@@ -7,7 +7,8 @@
   "scripts": {
     "dev": "vite",
     "prebuild": "npm run optimize-images",
-    "build": "vite build",
+    "build": "vite build && npm run copy-favicons",
+    "copy-favicons": "cp -r public/favicons/* dist/",
     "lint": "eslint .",
     "optimize-images": "node scripts/optimize-images.js",
     "preview": "vite preview",
