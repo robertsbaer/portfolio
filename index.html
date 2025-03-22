@@ -98,6 +98,9 @@
     <noscript>
       <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;500;600;700;800&family=Fira+Code:wght@500;600&display=swap">
     </noscript>
+
+    <!-- Remove the original render-blocking font link -->
+    <!-- <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Fira+Code:wght@400;500;600&display=swap" rel="stylesheet"> -->
     
     <!-- Schema.org markup for Google -->
     <script type="application/ld+json">
@@ -178,59 +181,67 @@
     <!-- Link to sitemap for better indexing -->
     <link rel="sitemap" type="application/xml" title="Sitemap" href="/sitemap.xml">
     
-    <!-- GitHub Pages SPA routing -->
-    <script type="text/javascript">
-      // Single Page Apps for GitHub Pages
-      (function(l) {
-        if (l.search[1] === '/' ) {
-          var decoded = l.search.slice(1).split('&').map(function(s) { 
-            return s.replace(/~and~/g, '&')
-          }).join('?');
-          window.history.replaceState(null, null,
-              l.pathname.slice(0, -1) + decoded + l.hash
-          );
-        }
-      }(window.location))
-    </script>
+    <!-- Preload critical JavaScript -->
+    <link rel="preload" href="/src/main.tsx" as="script">
     
-    <!-- Preload only the critical initial JS -->
-    <link rel="modulepreload" href="/src/main.tsx">
+    <!-- Defer non-critical JavaScript -->
+    <script defer src="/src/main.tsx"></script>
     
-    <!-- Add module type with dynamic imports for better code splitting -->
+    <!-- Add module type for better code splitting -->
     <script type="module">
-      // Import only the main entry point initially
-      import('/src/main.tsx');
-      
-      // Implement intersection observer for lazy loading components
-      document.addEventListener('DOMContentLoaded', () => {
-        // Create an intersection observer for lazy loading
-        const observer = new IntersectionObserver((entries) => {
-          entries.forEach(entry => {
-            if (entry.isIntersecting) {
-              const section = entry.target.getAttribute('id');
-              // Dynamically import section-specific JS only when needed
-              if (section === 'experience') {
-                import('/assets/Experience-DM1gU0to.js').catch(console.error);
-              }
-              // Stop observing after loading
-              observer.unobserve(entry.target);
-            }
-          });
-        }, {
-          rootMargin: '200px', // Load a bit before the section comes into view
-        });
-        
-        // Observe sections for lazy loading
-        document.querySelectorAll('section[id]').forEach(section => {
-          observer.observe(section);
+      // Dynamic import for route-based code splitting
+      import('/src/main.tsx').then(module => {
+        // Initialize app after main content is loaded
+        window.addEventListener('DOMContentLoaded', () => {
+          module.default();
         });
       });
     </script>
   </head>
   <body>
     <div id="root"></div>
+    <!-- Remove this duplicate script tag -->
+    <!-- <script src="/src/main.tsx"></script> -->
     
-    <!-- Use a single script tag with type="module" -->
+    <!-- Keep only this one -->
     <script type="module" src="/src/main.tsx"></script>
+    
+    <!-- Hidden links for SEO - these will be properly integrated in your React components -->
+    <div style="display:none">
+      <!-- Internal links -->
+      <a href="#about">About Robert Baer</a>
+      <a href="#projects">React Development Portfolio</a>
+      <a href="#experience">DC Web Development Services</a>
+      <a href="#contact">Contact DC React Developer</a>
+      
+      <!-- External relevant links -->
+      <a href="https://reactjs.org/" rel="noopener noreferrer">React Official Documentation</a>
+      <a href="https://reactnative.dev/" rel="noopener noreferrer">React Native Documentation</a>
+      <a href="https://www.washingtondc.gov/business" rel="noopener noreferrer">Washington DC Business Resources</a>
+      <a href="https://www.nonprofitimpact.com/" rel="noopener noreferrer">Nonprofit Impact Resources</a>
+      <a href="https://www.techimpact.org/" rel="noopener noreferrer">Tech Impact for Nonprofits</a>
+    </div>
   </body>
-</html>
+</html><!-- Add this script right after the opening <head> tag -->
+<head>
+  <!-- Existing head content -->
+  
+  <!-- Add this script for GitHub Pages SPA routing -->
+  <script type="text/javascript">
+    // Single Page Apps for GitHub Pages
+    // MIT License
+    // https://github.com/rafgraph/spa-github-pages
+    (function(l) {
+      if (l.search[1] === '/' ) {
+        var decoded = l.search.slice(1).split('&').map(function(s) { 
+          return s.replace(/~and~/g, '&')
+        }).join('?');
+        window.history.replaceState(null, null,
+            l.pathname.slice(0, -1) + decoded + l.hash
+        );
+      }
+    }(window.location))
+  </script>
+  
+  <!-- Rest of your head content -->
+</head>

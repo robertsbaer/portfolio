@@ -1,7 +1,9 @@
 import { defineConfig } from 'vite';
 import react from '@vitejs/plugin-react';
 import { visualizer } from 'rollup-plugin-visualizer';
+import { ViteImageOptimizer } from 'vite-plugin-image-optimizer';
 
+// https://vitejs.dev/config/
 export default defineConfig({
   plugins: [
     react(),
@@ -15,19 +17,17 @@ export default defineConfig({
     rollupOptions: {
       output: {
         manualChunks: {
-          // Split vendor code
-          vendor: ['react', 'react-dom'],
+          // Split larger dependencies
+          react: ['react', 'react-dom'],
           router: ['react-router-dom'],
-          // Split animation libraries
-          animation: ['framer-motion'],
-          // Split each component into its own chunk
-          navbar: ['./src/components/Navbar.tsx'],
-          hero: ['./src/components/Hero.tsx'],
-          about: ['./src/components/About.tsx'],
-          projects: ['./src/components/Projects.tsx'],
-          experience: ['./src/components/Experience.tsx'],
-          contact: ['./src/components/Contact.tsx'],
-          blog: ['./src/components/Blog.tsx', './src/components/BlogPost.tsx'],
+          framer: ['framer-motion'],
+          lucide: ['lucide-react'],
+          // Add separate chunk for vendor files
+          vendor: [
+            'react-intersection-observer',
+            'html2canvas',
+            'jspdf'
+          ]
         },
       },
     },

@@ -8,6 +8,7 @@ import Cursor from './components/Cursor';
 const Hero = lazy(() => import('./components/Hero'));
 const About = lazy(() => import('./components/About'));
 const Projects = lazy(() => import('./components/Projects'));
+// Update Experience import to use dynamic loading
 const Experience = lazy(() => import('./components/Experience'));
 const Contact = lazy(() => import('./components/Contact'));
 const Blog = lazy(() => import('./components/Blog'));
@@ -39,31 +40,23 @@ function HomePage() {
     });
   }, []);
 
+  // Add intersection observer for Experience component
+  const { ref, inView } = useInView({
+    triggerOnce: true,
+    rootMargin: '200px 0px',
+  });
+
   return (
     <div className="relative">
       <div className="noise-overlay"></div>
       <Cursor />
       <Navbar />
       <main>
-        {/* Render Hero immediately */}
         <Suspense fallback={<Loading />}>
           <Hero />
-        </Suspense>
-        
-        {/* Lazy load other sections with IntersectionObserver */}
-        <Suspense fallback={<Loading />}>
           <About />
-        </Suspense>
-        
-        <Suspense fallback={<Loading />}>
           <Projects />
-        </Suspense>
-        
-        <Suspense fallback={<Loading />}>
           <Experience />
-        </Suspense>
-        
-        <Suspense fallback={<Loading />}>
           <Contact />
         </Suspense>
       </main>
