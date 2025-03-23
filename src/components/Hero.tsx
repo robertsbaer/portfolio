@@ -12,11 +12,13 @@ const Hero = () => {
       const img = new Image();
       img.src = src;
     };
-    preloadImage('./assets/crushitlogo.webp');
-    preloadImage('./assets/headshot.webp');
-    preloadImage('./assets/hotones.webp');
-    preloadImage('./assets/obamabarack,webp');
-    preloadImage('./assets/poll24.webp');
+    // Fix paths to use the correct structure
+    preloadImage('/src/assests/crushitlogo.webp');
+    preloadImage('/src/assests/headshot.webp');
+    preloadImage('/src/assests/hotones.webp');
+    // Fix the typo in the filename (comma instead of period)
+    preloadImage('/src/assests/obamabarack.webp');
+    preloadImage('/src/assests/poll24.webp');
   }, []);
 
   return (
