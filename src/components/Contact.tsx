@@ -1,8 +1,18 @@
-import { useState, useRef } from 'react';
-import { motion } from 'framer-motion';
+import { useState, useRef, lazy, Suspense } from 'react';
+// Import only the hooks from framer-motion, not the entire library
 import { useInView } from 'react-intersection-observer';
 import { Mail, Phone, MapPin, Send } from 'lucide-react';
 import emailjs from '@emailjs/browser';
+
+// Lazy load the motion components
+const motion = {
+  div: lazy(() => import('framer-motion').then(mod => ({ 
+    default: mod.motion.div 
+  }))),
+  a: lazy(() => import('framer-motion').then(mod => ({ 
+    default: mod.motion.a 
+  })))
+};
 
 const Contact = () => {
   const [ref, inView] = useInView({
@@ -110,19 +120,21 @@ const Contact = () => {
     <section id="contact" className="py-20 bg-gray-950 relative overflow-hidden" role="region" aria-label="contact">
       <div className="absolute inset-0 grid-background z-0"></div>
       
-      {/* Animated background elements */}
-      <motion.div 
-        className="absolute left-1/4 bottom-0 w-80 h-80 rounded-full bg-primary-500/10 blur-3xl"
-        animate={{ 
-          x: [0, 50, 0], 
-          y: [0, -30, 0],
-        }}
-        transition={{ 
-          duration: 20, 
-          repeat: Infinity,
-          repeatType: "reverse" 
-        }}
-      />
+      {/* Wrap motion components in Suspense */}
+      <Suspense fallback={<div className="w-80 h-80 rounded-full bg-primary-500/10 blur-3xl"></div>}>
+        <motion.div 
+          className="absolute left-1/4 bottom-0 w-80 h-80 rounded-full bg-primary-500/10 blur-3xl"
+          animate={{ 
+            x: [0, 50, 0], 
+            y: [0, -30, 0],
+          }}
+          transition={{ 
+            duration: 20, 
+            repeat: Infinity,
+            repeatType: "reverse" 
+          }}
+        />
+      </Suspense>
       
       <div className="container mx-auto px-4 md:px-6 relative z-10">
         <motion.div
