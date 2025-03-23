@@ -1,42 +1,48 @@
 import fs from 'fs';
 import path from 'path';
-import { fileURLToPath } from 'url';
 import { execSync } from 'child_process';
+import { fileURLToPath } from 'url';
+import sharp from 'sharp';
 
-// Get the directory name in ES modules
+// Get current directory name in ES modules
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
-// Correct the path to match your actual assets folder name
+// Directory containing images
 const imageDir = path.join(__dirname, '../src/assests');
 
-function optimizeImages(directory) {
-  if (!fs.existsSync(directory)) {
-    console.log(`Directory does not exist: ${directory}`);
-    return;
-  }
+// Get all image files
+const imageFiles = fs.readdirSync(imageDir).filter(file => {
+  const ext = path.extname(file).toLowerCase();
+  return ['.jpg', '.jpeg', '.png', '.webp'].includes(ext);
+});
 
-  const files = fs.readdirSync(directory);
+// Process each image
+imageFiles.forEach(file => {
+  const inputPath = path.join(imageDir, file);
+  const outputPath = path.join(imageDir, file);
   
-  files.forEach(file => {
-    const filePath = path.join(directory, file);
-    const stats = fs.statSync(filePath);
-    
-    if (stats.isDirectory()) {
-      optimizeImages(filePath);
-    } else if (/\.(jpg|jpeg|png)$/i.test(file)) {
-      console.log(`Optimizing ${filePath}...`);
-      try {
-        // Use sharp CLI or another image optimization tool
-        // This is a placeholder - you may need to install sharp-cli or use another tool
-        execSync(`npx sharp-cli --input ${filePath} --output ${filePath} --resize 1200 --quality 80`);
+  console.log(`Optimizing ${inputPath}...`);
+  
+  try {
+    // Use the sharp library directly instead of CLI
+    sharp(inputPath)
+      .resize(1200) // Resize to width 1200px, maintaining aspect ratio
+      .jpeg({ quality: 80 })
+      .png({ quality: 80 })
+      .webp({ quality: 80 })
+      .toFile(outputPath + '.tmp')
+      .then(() => {
+        // Replace original with optimized version
+        fs.renameSync(outputPath + '.tmp', outputPath);
         console.log(`Successfully optimized ${file}`);
-      } catch (error) {
-        console.error(`Error optimizing ${file}:`, error.message);
-      }
-    }
-  });
-}
+      })
+      .catch(err => {
+        console.error(`Error processing ${file}: ${err.message}`);
+      });
+  } catch (error) {
+    console.error(`Error optimizing ${file}: ${error.message}`);
+  }
+});
 
-optimizeImages(imageDir);
 console.log('Image optimization complete!');
