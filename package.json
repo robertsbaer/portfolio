@@ -12,7 +12,7 @@
     "lint": "eslint .",
     "optimize-images": "node scripts/optimize-images.js",
     "preview": "vite preview",
-    "predeploy": "npm run build && echo 'dcmademedia.com' > dist/CNAME",
+    "predeploy": "npm run build && echo 'dcmademedia.com' > dist/CNAME && OPEN_ANALYZER=false",
     "deploy": "gh-pages -d dist --repo https://github.com/robertsbaer/portfolio.git",
     "convert-to-webp": "node scripts/convert-to-webp.js",
     "seo-optimize": "node scripts/seo-optimize.js"
@@ -36,6 +36,7 @@
     "react-intersection-observer": "^9.8.1",
     "rollup-plugin-visualizer": "^5.12.0",
     "sharp-cli": "^5.1.0",
+    "svgo": "^3.3.2",
     "tailwindcss": "^3.4.1",
     "terser": "^5.39.0",
     "typescript": "^5.5.3",

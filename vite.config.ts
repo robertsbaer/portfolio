@@ -24,7 +24,7 @@ export default defineConfig({
     }),
     visualizer({
       filename: 'stats.html',
-      open: false, // Change this to false to prevent auto-opening
+      open: false, // Make sure this is set to false
       gzipSize: true,
       brotliSize: true
     }),
