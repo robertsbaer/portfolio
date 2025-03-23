@@ -1,7 +1,7 @@
-import { defineConfig } from 'vite';
-import react from '@vitejs/plugin-react';
-import { visualizer } from 'rollup-plugin-visualizer';
-import { ViteImageOptimizer } from 'vite-plugin-image-optimizer';
+import { defineConfig } from 'vite'
+import react from '@vitejs/plugin-react'
+import { visualizer } from 'rollup-plugin-visualizer'
+import { ViteImageOptimizer } from 'vite-plugin-image-optimizer'
 
 // https://vitejs.dev/config/
 export default defineConfig({
@@ -32,21 +32,15 @@ export default defineConfig({
     rollupOptions: {
       output: {
         manualChunks: {
-          vendor: ['react', 'react-dom', 'react-router-dom', 'framer-motion'],
-          ui: ['lucide-react'],
+          // Split React core from other dependencies
+          'react-core': ['react', 'react-dom', 'react/jsx-runtime'],
+          // Other libraries in separate chunks
+          'router': ['react-router-dom'],
+          'animation': ['framer-motion'],
+          'ui': ['lucide-react'],
+          // Any other dependencies
+          'utils': ['react-intersection-observer']
         },
-        // Ensure CSS is extracted properly
-        assetFileNames: (assetInfo) => {
-          let extType = assetInfo.name?.split('.')?.at(1) ?? '';
-          if (/png|jpe?g|svg|gif|tiff|bmp|ico/i.test(extType)) {
-            extType = 'img';
-          } else if (/woff|woff2|eot|ttf|otf/i.test(extType)) {
-            extType = 'fonts';
-          }
-          return `assets/${extType}/[name]-[hash][extname]`;
-        },
-        chunkFileNames: 'assets/js/[name]-[hash].js',
-        entryFileNames: 'assets/js/[name]-[hash].js',
       },
     },
     chunkSizeWarningLimit: 1000,
@@ -67,5 +61,8 @@ export default defineConfig({
       localsConvention: 'camelCaseOnly',
     },
     devSourcemap: true,
+  },
+  server: {
+    open: false, // Change this to false to prevent auto-opening browser
   },
 });

@@ -2,7 +2,7 @@ import React from "react";
 import { motion } from "framer-motion";
 import { useInView } from "react-intersection-observer";
 import { Code, Smartphone, Globe, Zap, Database, Server } from "lucide-react";
-import image from "../assests/headshot.jpeg";
+import image from "../assests/headshot.webp";
 
 const About = () => {
   const [ref, inView] = useInView({

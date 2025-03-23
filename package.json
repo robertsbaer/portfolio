@@ -13,7 +13,9 @@
     "optimize-images": "node scripts/optimize-images.js",
     "preview": "vite preview",
     "predeploy": "npm run build && echo 'dcmademedia.com' > dist/CNAME",
-    "deploy": "gh-pages -d dist --repo https://github.com/robertsbaer/portfolio.git"
+    "deploy": "gh-pages -d dist --repo https://github.com/robertsbaer/portfolio.git",
+    "convert-to-webp": "node scripts/convert-to-webp.js",
+    "seo-optimize": "node scripts/seo-optimize.js"
   },
   "devDependencies": {
     "@emailjs/browser": "^4.4.1",

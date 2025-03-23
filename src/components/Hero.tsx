@@ -8,15 +8,17 @@ const Hero = () => {
   // Add this useEffect for image preloading
   useEffect(() => {
     // Preload hero background images if you have any
-    const preloadImage = (src) => {
+    const preloadImage = (src: string) => {
       const img = new Image();
       img.src = src;
     };
-    preloadImage('./assets/crushitlogo.png');
-    preloadImage('./assets/headshot.jpeg');
-    preloadImage('./assets/hotones.jpg');
-    preloadImage('./assets/obamabarack,png');
-    preloadImage('./assets/poll24.png');
+    // Fix paths to use the correct structure
+    preloadImage('/src/assests/crushitlogo.webp');
+    preloadImage('/src/assests/headshot.webp');
+    preloadImage('/src/assests/hotones.webp');
+    // Fix the typo in the filename (comma instead of period)
+    preloadImage('/src/assests/obamabarack.webp');
+    preloadImage('/src/assests/poll24.webp');
   }, []);
 
   return (

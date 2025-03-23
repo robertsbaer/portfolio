@@ -1,67 +1,40 @@
 <!doctype html>
 <html lang="en">
   <head>
+    <!-- Google tag (gtag.js) -->
+    <!-- <script async src="https://www.googletagmanager.com/gtag/js?id=G-95J35WQN51"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'G-95J35WQN51');
+    </script> -->
     <meta charset="UTF-8" />
-    <!-- Fix favicon path to use absolute path from root -->
-    <!-- Add these lines in the head section, after your existing favicon link -->
-    <link rel="icon" type="image/png" href="/dcmademedia.png" />
+    <!-- Viewport meta tag -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0" />
     
-    <!-- Android Chrome favicons -->
+    <!-- Favicon and app icons -->
+    <link rel="icon" type="image/png" href="/dcmademedia.png" />
     <link rel="icon" type="image/png" sizes="192x192" href="/android-chrome-192x192.png" />
     <link rel="icon" type="image/png" sizes="512x512" href="/android-chrome-512x512.png" />
-    
-    <!-- iOS favicons -->
     <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+    <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#0ea5e9" />
     
     <!-- Microsoft Tiles -->
     <meta name="msapplication-TileColor" content="#0ea5e9" />
     <meta name="msapplication-TileImage" content="/mstile-144x144.png" />
     
-    <!-- Safari pinned tab -->
-    <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#0ea5e9" />
-    
     <!-- Theme color -->
     <meta name="theme-color" content="#0ea5e9" />
-    <!-- Update canonical URL to enforce HTTPS -->
+    
+    <!-- Canonical URL -->
     <link rel="canonical" href="https://dcmademedia.com/">
     
-    <!-- Primary Meta Tags -->
+    <!-- Title and meta description -->
+    <title>DC Web Developer | React & Political Websites | Robert Baer</title>
     <meta name="description" content="Washington DC-based React & React Native developer specializing in political campaigns and NGO websites. Custom web solutions for DC organizations.">
-    
-    <!-- Open Graph / Facebook - Update image paths -->
-    <meta property="og:type" content="website">
-    <meta property="og:url" content="https://dcmademedia.com/">
-    <meta property="og:image" content="https://dcmademedia.com/dcmademedia.png" />
-    
-    <!-- Twitter - Update image paths -->
-    <meta property="twitter:url" content="https://dcmademedia.com/">
-    <meta property="twitter:image" content="https://dcmademedia.com/dcmademedia.png" />
-    
-    <!-- Update internal links to use anchor links instead of non-existent pages -->
-    <div style="display:none">
-      <!-- Internal links -->
-      <a href="#about">About Robert Baer</a>
-      <a href="#projects">React Development Portfolio</a>
-      <a href="#experience">DC Web Development Services</a>
-      <a href="#contact">Contact DC React Developer</a>
-    </div>
-    
-    <!-- Remove this duplicate section -->
-    <!-- Update internal links to use HTTPS -->
-      <!-- Update internal links to use anchor links instead of non-existent pages -->
-      <div style="display:none">
-        <!-- Internal links -->
-        <a href="#about">About Robert Baer</a>
-        <a href="#projects">React Development Portfolio</a>
-        <a href="#experience">DC Web Development Services</a>
-        <a href="#contact">Contact DC React Developer</a>
-      </div>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>DC React Developer | Political &amp; NGO Websites | Robert Baer</title>
-    
-    <!-- Primary Meta Tags -->
-    <meta name="description" content="Washington DC-based React & React Native developer specializing in political campaigns and NGO websites. Custom web solutions for DC organizations.">
-    <meta name="keywords" content="DC web developer, Washington DC app developer, political website developer, NGO website development, association web developer, React developer DC, React Native developer DC, mobile app developer DC, political campaign websites, nonprofit web development">
+    <meta name="keywords" content="DC web developer, Washington DC web developer, React developer DC, political website developer DC, NGO website developer DC, DC frontend developer, Washington DC React developer, DC political campaign websites, Washington DC mobile app developer, DC nonprofit web development, custom React websites Washington DC, political campaign web development DC, nonprofit website services DC, React Native app developer DC, Washington DC association websites, web developer near me DC, local React developer Washington DC, best web developer in DC, top-rated website developer DC, DC Capitol Hill web services">
     
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website">
@@ -83,10 +56,13 @@
     <meta name="geo.position" content="38.8977;-77.0365" />
     <meta name="ICBM" content="38.8977, -77.0365" />
 
+    <!-- Preload resources -->
+    <link rel="preload" href="/src/index.css" as="style">
+    <link rel="preload" href="/src/assests/headshot.webp" as="image" fetchpriority="high">
+    
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <!-- Preload critical fonts -->
     <link rel="preload" href="https://fonts.gstatic.com/s/inter/v13/UcCO3FwrK3iLTeHuS_fvQtMwCp50KnMw2boKoduKmMEVuLyfAZ9hiA.woff2" as="font" type="font/woff2" crossorigin>
     <link rel="preload" href="https://fonts.gstatic.com/s/firacode/v22/uU9eCBsR6Z2vfE9aq3bL0fxyUs4tcw4W_D1sJVD7Ng.woff2" as="font" type="font/woff2" crossorigin>
 
@@ -116,9 +92,6 @@
     <noscript>
       <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;500;600;700;800&family=Fira+Code:wght@500;600&display=swap">
     </noscript>
-
-    <!-- Remove the original render-blocking font link -->
-    <!-- <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Fira+Code:wght@400;500;600&display=swap" rel="stylesheet"> -->
     
     <!-- Schema.org markup for Google -->
     <script type="application/ld+json">
@@ -159,9 +132,6 @@
     }
     </script>
     
-    <!-- Additional SEO tags -->
-    <link rel="author" href="https://github.com/robertsbaer" />
-    <meta name="author" content="Robert Baer">
     <!-- Additional structured data for portfolio projects -->
     <script type="application/ld+json">
     {
@@ -199,33 +169,30 @@
     <!-- Link to sitemap for better indexing -->
     <link rel="sitemap" type="application/xml" title="Sitemap" href="/sitemap.xml">
     
-    <!-- Preload critical JavaScript -->
-    <!-- Add these lines in the head section, after your existing preloads -->
-    <link rel="preload" href="/src/assests/headshot.jpeg" as="image" fetchpriority="high">
-    <!-- Preload your main JS bundle -->
-    <link rel="preload" href="/src/main.tsx" as="script">
-    
-    <!-- Defer non-critical JavaScript -->
-    <script defer src="/src/main.tsx"></script>
-    
-    <!-- Add module type for better code splitting -->
-    <script type="module">
-      // Dynamic import for route-based code splitting
-      import('/src/main.tsx').then(module => {
-        // Initialize app after main content is loaded
-        window.addEventListener('DOMContentLoaded', () => {
-          module.default();
-        });
-      });
-    </script>
+    <!-- Additional SEO tags -->
+    <link rel="author" href="https://github.com/robertsbaer" />
+    <meta name="author" content="Robert Baer">
   </head>
   <body>
     <div id="root"></div>
-    <!-- Remove this duplicate script tag -->
-    <!-- <script src="/src/main.tsx"></script> -->
-    
-    <!-- Keep only this one -->
     <script type="module" src="/src/main.tsx"></script>
+    
+    <!-- GitHub Pages SPA redirect script -->
+    <script type="text/javascript">
+      // Single Page Apps for GitHub Pages
+      // MIT License
+      // https://github.com/rafgraph/spa-github-pages
+      (function(l) {
+        if (l.search[1] === '/' ) {
+          var decoded = l.search.slice(1).split('&').map(function(s) { 
+            return s.replace(/~and~/g, '&')
+          }).join('?');
+          window.history.replaceState(null, null,
+              l.pathname.slice(0, -1) + decoded + l.hash
+          );
+        }
+      }(window.location))
+    </script>
     
     <!-- Hidden links for SEO - these will be properly integrated in your React components -->
     <div style="display:none">
@@ -243,27 +210,4 @@
       <a href="https://www.techimpact.org/" rel="noopener noreferrer">Tech Impact for Nonprofits</a>
     </div>
   </body>
-</html><!-- Add this near the top of your head section -->
-<head>
-  <!-- Existing meta tags -->
-  
-  <!-- Preload main CSS -->
-  <link rel="preload" href="/src/index.css" as="style">
-  
-  <!-- Rest of your head content -->
-</head>
-<script type="text/javascript">
-    // Single Page Apps for GitHub Pages
-    // MIT License
-    // https://github.com/rafgraph/spa-github-pages
-    (function(l) {
-      if (l.search[1] === '/' ) {
-        var decoded = l.search.slice(1).split('&').map(function(s) { 
-          return s.replace(/~and~/g, '&')
-        }).join('?');
-        window.history.replaceState(null, null,
-            l.pathname.slice(0, -1) + decoded + l.hash
-        );
-      }
-    }(window.location))
-  </script>
+</html>

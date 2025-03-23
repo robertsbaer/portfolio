@@ -4,7 +4,7 @@ import { Briefcase, Calendar } from 'lucide-react';
 import { useRef } from 'react';
 import jsPDF from 'jspdf';
 import html2canvas from 'html2canvas';
-import profileImage from '../assests/headshot.jpeg'; // Import your headshot image
+import profileImage from '../assests/headshot.webp'; // Import your headshot image
 
 const Experience = () => {
   const [ref, inView] = useInView({
