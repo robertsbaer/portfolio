@@ -23,9 +23,10 @@ export default defineConfig({
       },
     }),
     visualizer({
-      open: true,
+      filename: 'stats.html',
+      open: false, // Change this to false to prevent auto-opening
       gzipSize: true,
-      brotliSize: true,
+      brotliSize: true
     }),
   ],
   build: {
@@ -63,6 +64,6 @@ export default defineConfig({
     devSourcemap: true,
   },
   server: {
-    open: false, // Change this to false to prevent auto-opening browser
+    open: false, // Also ensure this is set to false
   },
 });
