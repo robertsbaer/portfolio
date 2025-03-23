@@ -7,24 +7,41 @@ import { ViteImageOptimizer } from 'vite-plugin-image-optimizer'
 export default defineConfig({
   plugins: [
     react(),
-    // Add image optimization
+    // Add image optimization with corrected configuration
     ViteImageOptimizer({
       png: {
         quality: 80,
         compressionLevel: 9,
+        // Remove resize option as it's not supported
       },
       jpeg: {
         quality: 80,
         progressive: true,
+        // Remove resize option as it's not supported
       },
       jpg: {
         quality: 80,
         progressive: true,
+        // Remove resize option as it's not supported
+      },
+      // Add SVG optimization
+      svg: {
+        multipass: true,
+        plugins: [
+          {
+            name: 'preset-default',
+            params: {
+              overrides: {
+                removeViewBox: false,
+              },
+            },
+          },
+        ],
       },
     }),
     visualizer({
       filename: 'stats.html',
-      open: false, // Make sure this is set to false
+      open: false, // This is already set to false
       gzipSize: true,
       brotliSize: true
     }),
