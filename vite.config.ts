@@ -7,24 +7,20 @@ import { ViteImageOptimizer } from 'vite-plugin-image-optimizer'
 export default defineConfig({
   plugins: [
     react(),
-    // Add image optimization with corrected configuration
+    // Fix image optimization configuration
     ViteImageOptimizer({
       png: {
         quality: 80,
         compressionLevel: 9,
-        // Remove resize option as it's not supported
       },
       jpeg: {
         quality: 80,
         progressive: true,
-        // Remove resize option as it's not supported
       },
       jpg: {
         quality: 80,
         progressive: true,
-        // Remove resize option as it's not supported
       },
-      // Add SVG optimization
       svg: {
         multipass: true,
         plugins: [
@@ -38,10 +34,12 @@ export default defineConfig({
           },
         ],
       },
+      // Disable resize which is causing the errors
+      disableResize: true,
     }),
     visualizer({
       filename: 'stats.html',
-      open: false, // This is already set to false
+      open: false,
       gzipSize: true,
       brotliSize: true
     }),
