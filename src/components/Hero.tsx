@@ -2,7 +2,6 @@ import { motion } from 'framer-motion';
 import { Code, Smartphone, ArrowDown } from 'lucide-react';
 import { useEffect } from 'react';
 
-
 // Add near the top of your Hero component
 const Hero = () => {
   // Add this useEffect for image preloading
@@ -12,13 +11,12 @@ const Hero = () => {
       const img = new Image();
       img.src = src;
     };
-    // Fix paths to use the correct structure
-    preloadImage('/src/assests/crushitlogo.webp');
-    preloadImage('/src/assests/headshot.webp');
-    preloadImage('/src/assests/hotones.webp');
-    // Fix the typo in the filename (comma instead of period)
-    preloadImage('/src/assests/obamabarack.webp');
-    preloadImage('/src/assests/poll24.webp');
+    // Use relative paths instead of absolute paths starting with /src
+    preloadImage('./assests/crushitlogo.webp');
+    preloadImage('./assests/headshot.webp');
+    preloadImage('./assests/hotones.webp');
+    preloadImage('./assests/obamabarack.webp');
+    preloadImage('./assests/poll24.webp');
   }, []);
 
   return (
