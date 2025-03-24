@@ -3,7 +3,8 @@
   Cache-Control: public, max-age=31536000, immutable
   X-Content-Type-Options: nosniff
   X-Frame-Options: DENY
-  
+  Expires: Thu, 31 Dec 2037 23:55:55 GMT
+
 http://dcmademedia.com/*
   Cache-Control: no-store, max-age=0
   Permissions-Policy: interest-cohort=()
@@ -11,6 +12,44 @@ http://dcmademedia.com/*
 
 /assets/*
   Cache-Control: public, max-age=31536000, immutable
+  Expires: Thu, 31 Dec 2037 23:55:55 GMT
+
+/favicons/*
+  Cache-Control: public, max-age=31536000, immutable
+  Expires: Thu, 31 Dec 2037 23:55:55 GMT
+
+/*.html
+  Cache-Control: public, max-age=3600
+  Expires: Thu, 31 Dec 2037 23:55:55 GMT
+
+/*.js
+  Cache-Control: public, max-age=31536000, immutable
+  Expires: Thu, 31 Dec 2037 23:55:55 GMT
+
+/*.css
+  Cache-Control: public, max-age=31536000, immutable
+  Expires: Thu, 31 Dec 2037 23:55:55 GMT
+
+/*.webp
+  Cache-Control: public, max-age=31536000, immutable
+  Expires: Thu, 31 Dec 2037 23:55:55 GMT
+
+/*.png
+  Cache-Control: public, max-age=31536000, immutable
+  Expires: Thu, 31 Dec 2037 23:55:55 GMT
+
+/*.jpg
+  Cache-Control: public, max-age=31536000, immutable
+  Expires: Thu, 31 Dec 2037 23:55:55 GMT
+
+/*.svg
+  Cache-Control: public, max-age=31536000, immutable
+  Expires: Thu, 31 Dec 2037 23:55:55 GMT
+
+/*.ico
+  Cache-Control: public, max-age=31536000, immutable
+  Expires: Thu, 31 Dec 2037 23:55:55 GMT
 
 /images/*
   Cache-Control: public, max-age=31536000, immutable
+  Expires: Thu, 31 Dec 2037 23:55:55 GMT
