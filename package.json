@@ -12,7 +12,7 @@
     "lint": "eslint .",
     "optimize-images": "node scripts/generate-responsive-images.js",
     "preview": "vite preview",
-    "predeploy": "npm run build && echo 'dcmademedia.com' > dist/CNAME && OPEN_ANALYZER=false",
+    "predeploy": "npm run build && echo 'dcmademedia.com' > dist/CNAME && cp public/_headers dist/ && OPEN_ANALYZER=false",
     "deploy": "gh-pages -d dist --repo https://github.com/robertsbaer/portfolio.git",
     "convert-to-webp": "node scripts/convert-to-webp.js",
     "seo-optimize": "node scripts/seo-optimize.js"

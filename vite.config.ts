@@ -7,7 +7,6 @@ import { ViteImageOptimizer } from 'vite-plugin-image-optimizer'
 export default defineConfig({
   plugins: [
     react(),
-    // Add image optimization
     ViteImageOptimizer({
       png: {
         quality: 80,
@@ -33,14 +32,16 @@ export default defineConfig({
     rollupOptions: {
       output: {
         manualChunks: {
-          // Split React core from other dependencies
+          // Consolidated React chunks
           'react-core': ['react', 'react-dom', 'react/jsx-runtime'],
-          // Other libraries in separate chunks
           'router': ['react-router-dom'],
-          'animation': ['framer-motion'],
-          'ui': ['lucide-react'],
-          // Any other dependencies
-          'utils': ['react-intersection-observer']
+          'framer-motion': ['framer-motion'],
+          'lucide': ['lucide-react']
+          
+          // Remove these duplicate entries:
+          // 'ui': ['lucide-react'],
+          // 'utils': ['react-intersection-observer'],
+          // 'react-vendor': ['react', 'react-dom', 'react-router-dom'],
         },
       },
     },
@@ -65,5 +66,8 @@ export default defineConfig({
   },
   server: {
     open: false, // Also ensure this is set to false
+    headers: {
+      'Cache-Control': 'public, max-age=31536000, immutable'
+    }
   },
 });

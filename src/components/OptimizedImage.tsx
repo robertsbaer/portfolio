@@ -29,16 +29,26 @@ const OptimizedImage: React.FC<OptimizedImageProps> = ({
     .join(', ');
   
   return (
-    <img
-      src={src}
-      srcSet={srcSet}
-      sizes="(max-width: 640px) 320px, (max-width: 1024px) 640px, (max-width: 1280px) 960px, 1280px"
-      alt={alt}
-      className={className}
-      width={width}
-      height={height}
-      loading="lazy"
-    />
+    <picture>
+      <source
+        srcSet={sizes
+          .map(size => `${basePath}${fileName}-${size}.webp ${size}w`)
+          .join(', ')}
+        type="image/webp"
+      />
+      <img
+        src={src}
+        srcSet={srcSet}
+        sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+        alt={alt}
+        className={className}
+        width={width}
+        height={height}
+        loading="lazy"
+        decoding="async"
+        style="content-visibility: auto; max-width: 100%"
+      />
+    </picture>
   );
 };
 

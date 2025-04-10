@@ -14,6 +14,8 @@ const Experience = lazy(() => import('./components/Experience'));
 const Contact = lazy(() => import('./components/Contact'));
 const Blog = lazy(() => import('./components/Blog'));
 const BlogPost = lazy(() => import('./components/BlogPost'));
+import CommunityPantry from './components/CommunityPantry';
+
 
 // Loading component
 const Loading = () => (
@@ -97,6 +99,8 @@ function HomePage() {
   );
 }
 
+// Add this import at the top of the file with your other imports
+
 function App() {
   return (
     <Router>
@@ -106,6 +110,7 @@ function App() {
             <Route path="" element={<HomePage />} />
             <Route path="blog" element={<Blog />} />
             <Route path="blog/:slug" element={<BlogPost />} />
+            <Route path="community-pantry" element={<CommunityPantry />} />
           </Routes>
         </Suspense>
       </ErrorBoundary>
