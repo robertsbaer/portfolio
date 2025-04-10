@@ -57,13 +57,13 @@ const CommunityPantry = () => {
               
               <h2 className="text-2xl font-bold mt-8 mb-4 text-white">Project Status</h2>
               <p className="text-gray-300 mb-6">
-                This project is currently in development. We're working on:
+                This project is completed and fully functional! Our next phase of development includes:
               </p>
               <ul className="list-disc pl-6 text-gray-300 mb-8">
-                <li className="mb-2">User authentication and profiles</li>
-                <li className="mb-2">Geolocation services for neighborhood matching</li>
-                <li className="mb-2">Messaging system for arranging exchanges</li>
-                <li className="mb-2">Mobile app version for iOS and Android</li>
+                <li className="mb-2">Eco-friendly marketplace for sustainable products</li>
+                <li className="mb-2">Carbon footprint tracking for food donations</li>
+                <li className="mb-2">Community sustainability challenges and rewards</li>
+                <li className="mb-2">Partnerships with local environmental organizations</li>
               </ul>
               
               <div className="bg-gray-800 p-6 rounded-lg mt-8">
