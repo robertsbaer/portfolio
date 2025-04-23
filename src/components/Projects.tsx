@@ -5,6 +5,7 @@ import crushItLogo from "../assests/crushitlogo.webp";
 import poll24 from "../assests/poll24.webp";
 import hotones from "../assests/hotones.webp";
 import obamabarack from "../assests/obamabarack.webp"; // Add this import
+import communityPantry from "../assests/communitypantry.png";
 
 const Projects = () => {
   const [ref, inView] = useInView({
@@ -47,6 +48,15 @@ const Projects = () => {
       image: poll24,
       tags: ["React Native", "Polling", "UI/UX"],
       liveUrl: "",
+      githubUrl: "https://github.com/robertsbaer",
+    },
+    {
+      title: "Community Pantry",
+      description:
+      "Community Pantry is a sustainable food-sharing platform that connects neighbors with excess food to those in need.",
+      image: communityPantry,
+      tags: ["React Native", "Food", "Social"],
+      liveUrl: "https://apps.apple.com/us/app/community-pantry/id6744461115",
       githubUrl: "https://github.com/robertsbaer",
     },
   ];
