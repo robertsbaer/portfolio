@@ -25,7 +25,7 @@ const Experience = () => {
       title: 'Freelance Web Developer',
       company: 'Self-employed',
       period: '2015 - 2019',
-      description: 'Developed custom websites and web applications for clients across various industries, including NGOs, associations, and political campaign organizations. Specialized in creating responsive, user-friendly interfaces using modern JavaScript frameworks. Collaborated directly with clients to translate business requirements into technical solutions.',
+      description: 'Developed custom web development solutions and web applications for clients across various industries, including NGOs, associations, and political campaign organizations. Specialized in creating responsive, user-friendly interfaces using modern JavaScript frameworks. Collaborated directly with clients to translate business requirements into technical solutions.',
     },
     {
       title: 'Web Development Projects',
