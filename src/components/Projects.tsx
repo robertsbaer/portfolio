@@ -6,6 +6,7 @@ import poll24 from "../assests/poll24.webp";
 import hotones from "../assests/hotones.webp";
 import obamabarack from "../assests/obamabarack.webp"; // Add this import
 import communityPantry from "../assests/communitypantry.png";
+import letersets from "../assests/letrsets.webp";
 
 const Projects = () => {
   const [ref, inView] = useInView({
@@ -59,6 +60,15 @@ const Projects = () => {
       liveUrl: "https://apps.apple.com/us/app/community-pantry/id6744461115",
       githubUrl: "https://github.com/robertsbaer",
     },
+    // Add more projects here
+    {
+      title: "Letrsets",
+      description: "Letrsets is a web game where users find words using sets of letters. Available in French, Spanish, English, portuguese, and Turkish.",
+      image: letersets,
+      tags: ["React", "Game", "UI/UX"],
+      liveUrl: "https://letrsets.com/",
+      githubUrl: "https://github.com/robertsbaer/letrsets",
+    }
   ];
 
   const containerVariants = {
