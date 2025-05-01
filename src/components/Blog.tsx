@@ -12,7 +12,7 @@ const Blog = () => {
       <Cursor />
       <Navbar />
       <main className="container mx-auto px-4 py-16 max-w-4xl">
-        <h1 className="text-4xl md:text-5xl font-bold mb-8 text-white">DC Web Development Blog</h1>
+        <h1 className="text-4xl md:text-5xl font-bold mb-8 text-white">Web Dev & Tech Blog</h1>
         
         <div className="grid gap-8 md:grid-cols-2">
           {blogData.posts.map(post => (
