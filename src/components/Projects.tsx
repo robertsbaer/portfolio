@@ -7,6 +7,7 @@ import hotones from "../assests/hotones.webp";
 import obamabarack from "../assests/obamabarack.webp"; // Add this import
 import communityPantry from "../assests/communitypantry.png";
 import letersets from "../assests/letrsets.webp";
+import orangemantariff from "../assests/orangemantariff.png";
 
 const Projects = () => {
   const [ref, inView] = useInView({
@@ -68,6 +69,14 @@ const Projects = () => {
       tags: ["React", "Game", "UI/UX"],
       liveUrl: "https://letrsets.com/",
       githubUrl: "https://github.com/robertsbaer/letrsets",
+    },
+    {
+      title: "Orange Man Tariff",
+      description: "Orange Man Tariff displays the cost of goods with the tariff on Amazon",
+      image: orangemantariff,
+      tags: ["Chrome extension", "Amazon"],
+      liveUrl: "https://chromewebstore.google.com/detail/orange-man-tariff/oolaebalghjpahklfggliaoafgejhlbm",
+      githubUrl: "https://github.com/robertsbaer/OrangeManTariff",
     }
   ];
 
