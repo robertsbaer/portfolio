@@ -139,8 +139,8 @@ body {
 }
 
 body.konami-dark {
-  background: #111 !important;
-  color: #fff !important;
+  background: #ffffff !important;
+  color: #000000 !important;
   transition: background 0.5s, color 0.5s;
 }
 
