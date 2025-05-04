@@ -125,6 +125,40 @@ function App() {
     window.addEventListener("keydown", onKeyDown);
     return () => window.removeEventListener("keydown", onKeyDown);
   }, []);
+  useEffect(() => {
+    // Emoji Rain Easter Egg: Press "r" then "a" then "i" then "n"
+    let rainCode = ["r", "a", "i", "n"];
+    let rainIndex = 0;
+    function onKeyDown(e: KeyboardEvent) {
+      if (e.key.toLowerCase() === rainCode[rainIndex]) {
+        rainIndex++;
+        if (rainIndex === rainCode.length) {
+          // Create emoji rain
+          for (let i = 0; i < 30; i++) {
+            const emoji = document.createElement("div");
+            emoji.textContent = ["🍕", "🌱", "💻", "🎉", "🚀"][Math.floor(Math.random()*5)];
+            emoji.style.position = "fixed";
+            emoji.style.left = Math.random() * 100 + "vw";
+            emoji.style.top = "-2em";
+            emoji.style.fontSize = "2em";
+            emoji.style.pointerEvents = "none";
+            emoji.style.zIndex = "9999";
+            emoji.style.transition = "top 2s linear";
+            document.body.appendChild(emoji);
+            setTimeout(() => {
+              emoji.style.top = "100vh";
+              setTimeout(() => emoji.remove(), 2000);
+            }, 10);
+          }
+          rainIndex = 0;
+        }
+      } else {
+        rainIndex = 0;
+      }
+    }
+    window.addEventListener("keydown", onKeyDown);
+    return () => window.removeEventListener("keydown", onKeyDown);
+  }, []);
   return (
     <Router>
       <ErrorBoundary fallback={<div className="text-red-500 p-8">App Error - Please refresh</div>}>
