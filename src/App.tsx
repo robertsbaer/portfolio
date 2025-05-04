@@ -126,39 +126,64 @@ function App() {
     return () => window.removeEventListener("keydown", onKeyDown);
   }, []);
   useEffect(() => {
-    // Emoji Rain Easter Egg: Press "r" then "a" then "i" then "n"
-    let rainCode = ["r", "a", "i", "n"];
+    const rainCode = ["r", "a", "i", "n"];
     let rainIndex = 0;
+  
+    function createEmojiRain() {
+      const emojis = ["🍕", "🌱", "💻", "🎉", "🚀"];
+      for (let i = 0; i < 40; i++) {
+        const emoji = document.createElement("div");
+        emoji.textContent = emojis[Math.floor(Math.random() * emojis.length)];
+        emoji.style.position = "fixed";
+        emoji.style.left = `${Math.random() * 100}vw`;
+        emoji.style.top = `-2em`;
+        emoji.style.fontSize = `${1.5 + Math.random()}em`;
+        emoji.style.opacity = "1";
+        emoji.style.transform = `rotate(${Math.random() * 360}deg)`;
+        emoji.style.pointerEvents = "none";
+        emoji.style.zIndex = "9999";
+  
+        document.body.appendChild(emoji);
+  
+        let top = -32;
+        let rotation = Math.random() * 360;
+        const fallSpeed = 2 + Math.random() * 3;
+        const rotateSpeed = 1 + Math.random();
+  
+        function animate() {
+          top += fallSpeed;
+          rotation += rotateSpeed;
+          emoji.style.top = `${top}px`;
+          emoji.style.transform = `rotate(${rotation}deg)`;
+          emoji.style.opacity = `${Math.max(0, 1 - top / window.innerHeight)}`;
+          
+          if (top < window.innerHeight) {
+            requestAnimationFrame(animate);
+          } else {
+            emoji.remove();
+          }
+        }
+  
+        requestAnimationFrame(animate);
+      }
+    }
+  
     function onKeyDown(e: KeyboardEvent) {
       if (e.key.toLowerCase() === rainCode[rainIndex]) {
         rainIndex++;
         if (rainIndex === rainCode.length) {
-          // Create emoji rain
-          for (let i = 0; i < 30; i++) {
-            const emoji = document.createElement("div");
-            emoji.textContent = ["🍕", "🌱", "💻", "🎉", "🚀"][Math.floor(Math.random()*5)];
-            emoji.style.position = "fixed";
-            emoji.style.left = Math.random() * 100 + "vw";
-            emoji.style.top = "-2em";
-            emoji.style.fontSize = "2em";
-            emoji.style.pointerEvents = "none";
-            emoji.style.zIndex = "9999";
-            emoji.style.transition = "top 2s linear";
-            document.body.appendChild(emoji);
-            setTimeout(() => {
-              emoji.style.top = "100vh";
-              setTimeout(() => emoji.remove(), 2000);
-            }, 10);
-          }
+          createEmojiRain();
           rainIndex = 0;
         }
       } else {
         rainIndex = 0;
       }
     }
+  
     window.addEventListener("keydown", onKeyDown);
     return () => window.removeEventListener("keydown", onKeyDown);
   }, []);
+  
   return (
     <Router>
       <ErrorBoundary fallback={<div className="text-red-500 p-8">App Error - Please refresh</div>}>
