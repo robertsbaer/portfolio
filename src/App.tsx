@@ -102,6 +102,29 @@ function HomePage() {
 // Add this import at the top of the file with your other imports
 
 function App() {
+  // Easter Egg: Konami Code
+  useEffect(() => {
+    const konamiCode = [
+      "ArrowUp", "ArrowUp", "ArrowDown", "ArrowDown",
+      "ArrowLeft", "ArrowRight", "ArrowLeft", "ArrowRight",
+      "b", "a"
+    ];
+    let konamiIndex = 0;
+    function onKeyDown(e: KeyboardEvent) {
+      if (e.key === konamiCode[konamiIndex]) {
+        konamiIndex++;
+        if (konamiIndex === konamiCode.length) {
+          document.body.classList.toggle("konami-dark");
+          alert("🎉 Konami Code Activated! Enjoy the secret dark mode!");
+          konamiIndex = 0;
+        }
+      } else {
+        konamiIndex = 0;
+      }
+    }
+    window.addEventListener("keydown", onKeyDown);
+    return () => window.removeEventListener("keydown", onKeyDown);
+  }, []);
   return (
     <Router>
       <ErrorBoundary fallback={<div className="text-red-500 p-8">App Error - Please refresh</div>}>

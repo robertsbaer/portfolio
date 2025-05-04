@@ -138,8 +138,11 @@ body {
   }
 }
 
-
-/* Add this to your existing CSS */
+body.konami-dark {
+  background: #111 !important;
+  color: #fff !important;
+  transition: background 0.5s, color 0.5s;
+}
 
 /* Blog content styling */
 .blog-content h2 {
