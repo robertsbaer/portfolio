@@ -15,6 +15,7 @@ const Contact = lazy(() => import('./components/Contact'));
 const Blog = lazy(() => import('./components/Blog'));
 const BlogPost = lazy(() => import('./components/BlogPost'));
 import CommunityPantry from './components/CommunityPantry';
+import Brands from './components/Brands';
 
 
 // Loading component
@@ -90,6 +91,7 @@ function HomePage() {
             <div ref={ref} className="min-h-[100vh]">
               {inView && <Experience />}
             </div>
+            <Brands />
             <Contact />
           </Suspense>
         </ErrorBoundary>
