@@ -23,7 +23,7 @@ const Brands = () => {
           >
             <img
               src="/brands/designrush.png"
-              alt="DesignRush web development agency"
+              alt="web development agency"
               className="mx-auto rounded-xl shadow-lg bg-white/10 p-4"
               style={{ maxWidth: "220px", width: "100%", height: "auto" }}
               loading="lazy"
