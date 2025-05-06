@@ -105,6 +105,9 @@ const About = () => {
                 and React Native. I'm passionate about creating intuitive user
                 interfaces and solving complex problems with elegant solutions.
               </p>
+              <p className="text-gray-400 text-lg mb-8 max-w-lg">
+                I'm Robert Baer, founder of <span className="font-semibold text-primary-400">DCMadeMedia</span>, a Washington DC-based web development agency specializing in React and React Native solutions for political campaigns, NGOs, and associations.
+              </p>
               <p className="text-gray-300 mb-8">
                 My approach combines technical expertise with a strong focus on
                 user experience. I believe that great software should not only
