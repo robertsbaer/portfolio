@@ -75,17 +75,18 @@ const About = () => {
             </h2>
           </motion.div>
 
-          <div className="grid md:grid-cols-2 gap-12 items-center">
-            <motion.div variants={itemVariants}>
+          <div className="grid md:grid-cols-2 gap-12 items-start">
+            {/* Image Column */}
+            <motion.div variants={itemVariants} className="flex justify-center">
               <div className="relative">
                 <div className="relative z-10 overflow-hidden rounded-lg">
-                  <img 
-                    src={image} 
-                    alt="Robert Baer" 
-                    className="w-full h-auto object-cover transform transition-transform duration-500 hover:scale-105"
-                    width="600"  // Add explicit width attribute
-                    height="800"  // Add explicit height attribute
-                    loading="lazy"  // Also add lazy loading for performance
+                  <img
+                    src={image}
+                    alt="Robert Baer"
+                    className="w-full h-auto transform transition-transform duration-500 hover:scale-105"
+                    width="600"
+                    height="800"
+                    loading="lazy"
                   />
                 </div>
                 <div className="absolute -bottom-4 -right-4 w-2/3 h-2/3 border-4 border-primary-500 rounded-lg -z-10"></div>
@@ -93,31 +94,28 @@ const About = () => {
               </div>
             </motion.div>
 
-            <motion.div variants={itemVariants}>
-              <h3 className="text-2xl font-bold mb-4">
-                I'm a{" "}
-                <span className="gradient-text">passionate developer</span>{" "}
-                creating amazing digital experiences
-              </h3>
-
-              <p className="text-gray-300 text-lg mb-8 max-w-lg">
-                I'm Robert Baer, founder of <span className="font-semibold text-primary-400">DCMadeMedia</span>, a Washington DC-based web development agency specializing in React and React Native solutions for political campaigns, NGOs, and associations.
+            {/* Text Column */}
+            <motion.div variants={itemVariants} className="flex flex-col justify-center space-y-4">
+              <h1 className="text-3xl md:text-4xl font-bold">
+                Washington DC Web Developer | React &amp; React Native Expert
+              </h1>
+              <h2 className="text-xl md:text-2xl font-semibold">
+              I'm a <span className="gradient-text">passionate developer</span> creating amazing digital experiences
+              </h2>
+              <p className="text-gray-300 text-base md:text-lg leading-relaxed">
+                Hi, I’m Robert Baer, founder of <span className="font-semibold text-primary-400">DCMadeMedia</span>. Based in Washington DC, I specialize in building high-performance web and mobile applications with React and React Native for political campaigns, NGOs, and associations.
               </p>
-              <p className="text-gray-300 mb-6">
-                With over 10 years of experience in web and mobile development, I
-                specialize in building high-performance applications using React
-                and React Native. I'm passionate about creating intuitive user
-                interfaces and solving complex problems with elegant solutions.
+              <h4 className="text-xl md:text-2xl font-semibold">
+                My Expertise
+              </h4>
+              <p className="text-gray-300 text-base md:text-lg leading-relaxed">
+                With over 10 years of experience, I deliver custom solutions that blend technical excellence with intuitive user experiences. My expertise covers front-end and full-stack development, responsive design, and scalable architecture.
               </p>
-              <p className="text-gray-300 mb-8">
-                My approach combines technical expertise with a strong focus on
-                user experience. I believe that great software should not only
-                work flawlessly but also delight users with its design and
-                functionality.
+              <p className="text-gray-300 text-base md:text-lg leading-relaxed">
+                I’m passionate about solving complex problems and helping organizations achieve their digital goals. Let’s collaborate to bring your next project to life!
               </p>
-
-              <div className="mb-8">
-                <h4 className="text-xl font-semibold mb-4">My Skills</h4>
+              <div>
+                <h4 className="text-lg md:text-xl font-semibold mb-2">My Skills</h4>
                 <div className="grid grid-cols-3 gap-4">
                   {skills.map((skill, index) => (
                     <motion.div
@@ -134,10 +132,9 @@ const About = () => {
                   ))}
                 </div>
               </div>
-
               <a
                 href="#contact"
-                className="btn btn-primary inline-block hover-element"
+                className="btn btn-primary inline-block py-3 px-6 hover-element"
               >
                 Let's Work Together
               </a>
