@@ -3,6 +3,9 @@ import react from '@vitejs/plugin-react'
 import { visualizer } from 'rollup-plugin-visualizer'
 import { ViteImageOptimizer } from 'vite-plugin-image-optimizer'
 
+// Determine if we're in development mode
+const isDev = process.env.NODE_ENV === 'development'
+
 export default defineConfig({
   plugins: [
     react(),
@@ -22,25 +25,21 @@ export default defineConfig({
     }),
     visualizer({
       filename: 'stats.html',
-      open: false, // Make sure this is set to false
+      open: false,
       gzipSize: true,
       brotliSize: true
     }),
   ],
+  // Set the base URL appropriately for development vs production
+  base: isDev ? '/' : 'https://dcmademedia.com/',
   build: {
     rollupOptions: {
       output: {
         manualChunks: {
-          // Consolidated React chunks
           'react-core': ['react', 'react-dom', 'react/jsx-runtime'],
           'router': ['react-router-dom'],
           'framer-motion': ['framer-motion'],
           'lucide': ['lucide-react']
-          
-          // Remove these duplicate entries:
-          // 'ui': ['lucide-react'],
-          // 'utils': ['react-intersection-observer'],
-          // 'react-vendor': ['react', 'react-dom', 'react-router-dom'],
         },
       },
     },
@@ -52,11 +51,9 @@ export default defineConfig({
         drop_debugger: true,
       },
     },
-    // Ensure CSS is properly extracted and minified
     cssCodeSplit: true,
     cssMinify: true,
   },
-  // Fix imports for CSS
   css: {
     modules: {
       localsConvention: 'camelCaseOnly',
@@ -64,8 +61,13 @@ export default defineConfig({
     devSourcemap: true,
   },
   server: {
-    open: false, // Also ensure this is set to false
-    headers: {
+    open: false,
+    // Use different headers for development
+    headers: isDev ? {
+      // Less aggressive caching for development
+      'Cache-Control': 'no-cache, no-store, must-revalidate'
+    } : {
+      // Production caching
       'Cache-Control': 'public, max-age=31536000, immutable'
     }
   },
