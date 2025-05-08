@@ -7,8 +7,8 @@ import { execSync } from 'child_process';
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
-// Path to your assets folder - corrected spelling from "assests" to "assets"
-const imageDir = path.join(__dirname, '../src/assests');
+// Path to your assets folder - corrected spelling from "assets" to "assets"
+const imageDir = path.join(__dirname, '../src/assets');
 
 function convertToWebP(directory) {
   if (!fs.existsSync(directory)) {

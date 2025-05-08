@@ -4,6 +4,7 @@ import Footer from './Footer';
 import Cursor from './Cursor';
 import { motion } from "framer-motion";
 import { useInView } from "react-intersection-observer";
+import dcmademedia from '../assets/dcmademedia.png';
 
 // Medium RSS feed URL with your username
 const MEDIUM_RSS_URL = 'https://api.rss2json.com/v1/api.json?rss_url=https://medium.com/feed/@robert-baer';
@@ -24,7 +25,7 @@ const Blog = () => {
   const [posts, setPosts] = useState<MediumPost[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState('');
-  
+
   const [ref, inView] = useInView({
     triggerOnce: true,
     threshold: 0.1,
@@ -54,20 +55,43 @@ const Blog = () => {
     },
   };
 
+  // Add this constant at the top of your file, below the MEDIUM_RSS_URL
+  const DEFAULT_LOGO = dcmademedia; // Update this path to your actual logo location
+
   useEffect(() => {
     const fetchMediumPosts = async () => {
       try {
         setLoading(true);
         const response = await fetch(MEDIUM_RSS_URL);
-        
+
         if (!response.ok) {
           throw new Error('Failed to fetch Medium posts');
         }
-        
+
         const data = await response.json();
-        
+
         if (data.status === 'ok') {
-          setPosts(data.items);
+          // Process posts to extract thumbnails from description if not provided
+          const processedPosts = data.items.map((post: MediumPost) => {
+            // If thumbnail is empty, try to extract from description
+            if (!post.thumbnail || post.thumbnail === '') {
+              // Create a temporary div to parse HTML
+              const tempDiv = document.createElement('div');
+              tempDiv.innerHTML = post.description;
+
+              // Look for the first image in the description
+              const firstImg = tempDiv.querySelector('img');
+              if (firstImg && firstImg.src) {
+                post.thumbnail = firstImg.src;
+              } else {
+                // If no image found in description, use default logo
+                post.thumbnail = DEFAULT_LOGO;
+              }
+            }
+            return post;
+          });
+
+          setPosts(processedPosts);
         } else {
           throw new Error('Invalid response from Medium API');
         }
@@ -94,7 +118,7 @@ const Blog = () => {
     // Create a temporary div to parse HTML
     const tempDiv = document.createElement('div');
     tempDiv.innerHTML = html;
-    
+
     // Get text content and limit to ~150 characters
     const text = tempDiv.textContent || '';
     return text.substring(0, 150) + (text.length > 150 ? '...' : '');
@@ -108,7 +132,7 @@ const Blog = () => {
       <main>
         <section className="py-20 relative overflow-hidden">
           <div className="absolute inset-0 grid-background z-0"></div>
-          
+
           {/* Animated background elements */}
           <motion.div
             className="absolute -right-20 top-20 w-80 h-80 rounded-full bg-primary-500/10 blur-3xl"
@@ -122,7 +146,7 @@ const Blog = () => {
               repeatType: "reverse",
             }}
           />
-          
+
           <div className="container mx-auto px-4 md:px-6 relative z-10">
             <motion.div
               ref={ref}
@@ -144,34 +168,39 @@ const Blog = () => {
                   Thoughts on React, React Native, and modern web development for political campaigns and NGOs in Washington DC.
                 </p>
               </motion.div>
-              
+
               {loading && (
                 <div className="flex justify-center py-12">
                   <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-primary-500"></div>
                 </div>
               )}
-              
+
               {error && (
                 <motion.div variants={itemVariants} className="bg-red-900/30 border border-red-500 text-red-200 rounded-lg p-4 mb-8">
                   {error}
                 </motion.div>
               )}
-              
+
               {!loading && !error && (
                 <motion.div variants={containerVariants} className="grid gap-8 md:grid-cols-2">
                   {posts.map(post => (
-                    <motion.article 
-                      key={post.guid} 
+                    <motion.article
+                      key={post.guid}
                       variants={itemVariants}
                       className="bg-gray-800/50 backdrop-blur-sm rounded-lg overflow-hidden shadow-lg transition-all hover:shadow-primary-500/20 hover:scale-[1.02]"
                     >
                       {post.thumbnail && (
                         <div className="overflow-hidden">
-                          <img 
-                            src={post.thumbnail} 
-                            alt={post.title} 
-                            className="w-full h-48 object-cover transition-transform hover:scale-105 duration-500"
+                          <img
+                            src={post.thumbnail || DEFAULT_LOGO}
+                            alt={post.title}
                             loading="lazy"
+                            className="w-full h-48 object-cover transition-transform hover:scale-105 duration-500"
+                            onError={(e) => {
+                              // if the URL is broken or missing, swap in your logo
+                              e.currentTarget.onerror = null;
+                              e.currentTarget.src = DEFAULT_LOGO;
+                            }}
                           />
                         </div>
                       )}
@@ -179,13 +208,13 @@ const Blog = () => {
                         <h3 className="text-xl font-bold mb-2 text-white">{post.title}</h3>
                         <p className="text-primary-400 text-sm mb-4">Published: {formatDate(post.pubDate)}</p>
                         <p className="text-gray-400 mb-4">{getExcerpt(post.description)}</p>
-                        <a 
-                          href={post.link} 
+                        <a
+                          href={post.link}
                           target="_blank"
                           rel="noopener noreferrer"
                           className="inline-flex items-center text-primary-400 hover:text-primary-300 transition-colors"
                         >
-                          Read on Medium 
+                          Read on Medium
                           <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 ml-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
                           </svg>
@@ -195,15 +224,15 @@ const Blog = () => {
                   ))}
                 </motion.div>
               )}
-              
+
               {/* Further Reading Resources */}
               <motion.div variants={itemVariants} className="mt-16 bg-gray-800/50 backdrop-blur-sm p-8 rounded-lg shadow-lg">
                 <h3 className="text-2xl font-bold mb-4 text-white">Further Reading</h3>
                 <p className="text-gray-400 mb-6">Explore these resources to deepen your knowledge of web development.</p>
                 <div className="grid gap-4 md:grid-cols-2">
-                  <a 
-                    href="https://reactjs.org/docs/getting-started.html" 
-                    target="_blank" 
+                  <a
+                    href="https://reactjs.org/docs/getting-started.html"
+                    target="_blank"
                     rel="noopener noreferrer"
                     className="p-4 bg-gray-700/50 rounded hover:bg-gray-700/70 transition-colors flex items-center"
                   >
@@ -217,9 +246,9 @@ const Blog = () => {
                       <p className="text-sm text-gray-400">Official guides and API reference</p>
                     </div>
                   </a>
-                  <a 
-                    href="https://www.smashingmagazine.com/category/react" 
-                    target="_blank" 
+                  <a
+                    href="https://www.smashingmagazine.com/category/react"
+                    target="_blank"
                     rel="noopener noreferrer"
                     className="p-4 bg-gray-700/50 rounded hover:bg-gray-700/70 transition-colors flex items-center"
                   >
@@ -233,9 +262,9 @@ const Blog = () => {
                       <p className="text-sm text-gray-400">In-depth React articles and tutorials</p>
                     </div>
                   </a>
-                  <a 
-                    href="https://css-tricks.com" 
-                    target="_blank" 
+                  <a
+                    href="https://css-tricks.com"
+                    target="_blank"
                     rel="noopener noreferrer"
                     className="p-4 bg-gray-700/50 rounded hover:bg-gray-700/70 transition-colors flex items-center"
                   >
@@ -249,9 +278,9 @@ const Blog = () => {
                       <p className="text-sm text-gray-400">Modern CSS and web design techniques</p>
                     </div>
                   </a>
-                  <a 
-                    href="https://github.com/enaqx/awesome-react" 
-                    target="_blank" 
+                  <a
+                    href="https://github.com/enaqx/awesome-react"
+                    target="_blank"
                     rel="noopener noreferrer"
                     className="p-4 bg-gray-700/50 rounded hover:bg-gray-700/70 transition-colors flex items-center"
                   >

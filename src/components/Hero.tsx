@@ -12,11 +12,11 @@ const Hero = () => {
       img.src = src;
     };
     // Use relative paths instead of absolute paths starting with /src
-    preloadImage('./assests/crushitlogo.webp');
-    preloadImage('./assests/headshot.webp');
-    preloadImage('./assests/hotones.webp');
-    preloadImage('./assests/obamabarack.webp');
-    preloadImage('./assests/poll24.webp');
+    preloadImage('./assets/crushitlogo.webp');
+    preloadImage('./assets/headshot.webp');
+    preloadImage('./assets/hotones.webp');
+    preloadImage('./assets/obamabarack.webp');
+    preloadImage('./assets/poll24.webp');
   }, []);
 
   return (

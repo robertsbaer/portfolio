@@ -5,6 +5,8 @@ import { useInView } from 'react-intersection-observer';
 import Navbar from './components/Navbar';
 import Footer from './components/Footer';
 import Cursor from './components/Cursor';
+import './styles/blog.css';
+
 
 // Lazy load components
 const Hero = lazy(() => import('./components/Hero'));

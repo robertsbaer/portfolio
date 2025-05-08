@@ -1,13 +1,13 @@
 import { motion } from "framer-motion";
 import { useInView } from "react-intersection-observer";
 import { ExternalLink, Github } from "lucide-react";
-import crushItLogo from "../assests/crushitlogo.webp";
-import poll24 from "../assests/poll24.webp";
-import hotones from "../assests/hotones.webp";
-import obamabarack from "../assests/obamabarack.webp"; // Add this import
-import communityPantry from "../assests/communitypantry.png";
-import letersets from "../assests/letrsets.webp";
-import orangemantariff from "../assests/orangemantariff.png";
+import crushItLogo from "../assets/crushitlogo.webp";
+import poll24 from "../assets/poll24.webp";
+import hotones from "../assets/hotones.webp";
+import obamabarack from "../assets/obamabarack.webp"; // Add this import
+import communityPantry from "../assets/communitypantry.png";
+import letersets from "../assets/letrsets.webp";
+import orangemantariff from "../assets/orangemantariff.png";
 
 const Projects = () => {
   const [ref, inView] = useInView({
