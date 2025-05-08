@@ -10,11 +10,8 @@ const Footer = () => {
   const handleNavClick = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
     e.preventDefault();
     
-    if (href.startsWith("/")) {
-      // For absolute paths like "/blog", use navigate directly
+    if (href === "/blog") {
       navigate(href);
-      // Scroll to top after navigation
-      window.scrollTo(0, 0);
       return;
     }
     
