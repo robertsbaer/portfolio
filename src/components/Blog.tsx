@@ -30,6 +30,11 @@ const Blog = () => {
     threshold: 0.1,
   });
 
+  // Add this useEffect to scroll to top when component mounts
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
   const containerVariants = {
     hidden: { opacity: 0 },
     visible: {
@@ -191,24 +196,76 @@ const Blog = () => {
                 </motion.div>
               )}
               
-              {/* Newsletter signup for SEO */}
+              {/* Further Reading Resources */}
               <motion.div variants={itemVariants} className="mt-16 bg-gray-800/50 backdrop-blur-sm p-8 rounded-lg shadow-lg">
-                <h3 className="text-2xl font-bold mb-4 text-white">Subscribe to Our Web Development Newsletter</h3>
-                <p className="text-gray-400 mb-6">Get the latest insights on React, political tech, and nonprofit digital strategies delivered to your inbox.</p>
-                <form className="flex flex-col md:flex-row gap-4">
-                  <input 
-                    type="email" 
-                    placeholder="Your email address" 
-                    className="px-4 py-3 rounded bg-gray-700/70 text-white flex-grow focus:outline-none focus:ring-2 focus:ring-primary-500"
-                    aria-label="Email address"
-                  />
-                  <button 
-                    type="submit" 
-                    className="px-6 py-3 bg-primary-500 text-white rounded hover:bg-primary-400 transition-colors font-medium"
+                <h3 className="text-2xl font-bold mb-4 text-white">Further Reading</h3>
+                <p className="text-gray-400 mb-6">Explore these resources to deepen your knowledge of web development and political tech.</p>
+                <div className="grid gap-4 md:grid-cols-2">
+                  <a 
+                    href="https://reactjs.org/docs/getting-started.html" 
+                    target="_blank" 
+                    rel="noopener noreferrer"
+                    className="p-4 bg-gray-700/50 rounded hover:bg-gray-700/70 transition-colors flex items-center"
                   >
-                    Subscribe
-                  </button>
-                </form>
+                    <div className="bg-primary-500/20 p-3 rounded mr-4">
+                      <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6 text-primary-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+                      </svg>
+                    </div>
+                    <div>
+                      <h4 className="font-medium text-white">React Documentation</h4>
+                      <p className="text-sm text-gray-400">Official guides and API reference</p>
+                    </div>
+                  </a>
+                  <a 
+                    href="https://www.smashingmagazine.com/category/react" 
+                    target="_blank" 
+                    rel="noopener noreferrer"
+                    className="p-4 bg-gray-700/50 rounded hover:bg-gray-700/70 transition-colors flex items-center"
+                  >
+                    <div className="bg-primary-500/20 p-3 rounded mr-4">
+                      <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6 text-primary-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 20H5a2 2 0 01-2-2V6a2 2 0 012-2h10a2 2 0 012 2v1m2 13a2 2 0 01-2-2V7m2 13a2 2 0 002-2V9a2 2 0 00-2-2h-2m-4-3H9M7 16h6M7 8h6v4H7V8z" />
+                      </svg>
+                    </div>
+                    <div>
+                      <h4 className="font-medium text-white">Smashing Magazine</h4>
+                      <p className="text-sm text-gray-400">In-depth React articles and tutorials</p>
+                    </div>
+                  </a>
+                  <a 
+                    href="https://css-tricks.com" 
+                    target="_blank" 
+                    rel="noopener noreferrer"
+                    className="p-4 bg-gray-700/50 rounded hover:bg-gray-700/70 transition-colors flex items-center"
+                  >
+                    <div className="bg-primary-500/20 p-3 rounded mr-4">
+                      <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6 text-primary-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M7 21a4 4 0 01-4-4V5a2 2 0 012-2h4a2 2 0 012 2v12a4 4 0 01-4 4zm0 0h12a2 2 0 002-2v-4a2 2 0 00-2-2h-2.343M11 7.343l1.657-1.657a2 2 0 012.828 0l2.829 2.829a2 2 0 010 2.828l-8.486 8.485M7 17h.01" />
+                      </svg>
+                    </div>
+                    <div>
+                      <h4 className="font-medium text-white">CSS-Tricks</h4>
+                      <p className="text-sm text-gray-400">Modern CSS and web design techniques</p>
+                    </div>
+                  </a>
+                  <a 
+                    href="https://github.com/enaqx/awesome-react" 
+                    target="_blank" 
+                    rel="noopener noreferrer"
+                    className="p-4 bg-gray-700/50 rounded hover:bg-gray-700/70 transition-colors flex items-center"
+                  >
+                    <div className="bg-primary-500/20 p-3 rounded mr-4">
+                      <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6 text-primary-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z" />
+                      </svg>
+                    </div>
+                    <div>
+                      <h4 className="font-medium text-white">Awesome React</h4>
+                      <p className="text-sm text-gray-400">Curated list of React resources</p>
+                    </div>
+                  </a>
+                </div>
               </motion.div>
             </motion.div>
           </div>
