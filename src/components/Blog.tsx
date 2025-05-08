@@ -33,7 +33,19 @@ const Blog = () => {
 
   // Add this useEffect to scroll to top when component mounts
   useEffect(() => {
-    window.scrollTo(0, 0);
+    // Replace the existing useEffect for scrolling
+    useEffect(() => {
+      // Scroll to top immediately
+      window.scrollTo(0, 0);
+      
+      // Also scroll after a small delay to ensure all content is loaded
+      const timeoutId = setTimeout(() => {
+        window.scrollTo(0, 0);
+      }, 100);
+      
+      // Clean up the timeout
+      return () => clearTimeout(timeoutId);
+    }, []);
   }, []);
 
   const containerVariants = {
