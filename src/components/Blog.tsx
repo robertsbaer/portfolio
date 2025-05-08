@@ -199,7 +199,7 @@ const Blog = () => {
               {/* Further Reading Resources */}
               <motion.div variants={itemVariants} className="mt-16 bg-gray-800/50 backdrop-blur-sm p-8 rounded-lg shadow-lg">
                 <h3 className="text-2xl font-bold mb-4 text-white">Further Reading</h3>
-                <p className="text-gray-400 mb-6">Explore these resources to deepen your knowledge of web development and political tech.</p>
+                <p className="text-gray-400 mb-6">Explore these resources to deepen your knowledge of web development.</p>
                 <div className="grid gap-4 md:grid-cols-2">
                   <a 
                     href="https://reactjs.org/docs/getting-started.html" 
