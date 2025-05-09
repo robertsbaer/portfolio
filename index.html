@@ -2,14 +2,20 @@
 <html lang="en">
 
 <head>
-  <!-- Google tag (gtag.js) -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-HRS893TMBT"></script>
+  <!-- Google tag (gtag.js) - Load with defer attribute -->
+  <script async defer src="https://www.googletagmanager.com/gtag/js?id=G-HRS893TMBT"></script>
   <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag() { dataLayer.push(arguments); }
-    gtag('js', new Date());
-
-    gtag('config', 'G-HRS893TMBT');
+    // Delay GTM execution until after page load
+    window.addEventListener('load', function() {
+      window.dataLayer = window.dataLayer || [];
+      function gtag() { dataLayer.push(arguments); }
+      gtag('js', new Date());
+      gtag('config', 'G-HRS893TMBT', { 'send_page_view': false });
+      // Only send page view after page has loaded
+      setTimeout(function() {
+        gtag('event', 'page_view');
+      }, 100);
+    });
   </script>
   <meta charset="UTF-8" />
   <!-- Viewport meta tag -->
@@ -204,7 +210,7 @@
   <!-- Additional SEO tags -->
   <link rel="author" href="https://github.com/robertsbaer" />
   <meta name="author" content="Robert Baer">
-  <script type="module" crossorigin src="https://dcmademedia.com/assets/index-D14JiKQJ.js"></script>
+  <script type="module" crossorigin src="https://dcmademedia.com/assets/index-CtLy4k0o.js"></script>
   <link rel="modulepreload" crossorigin href="https://dcmademedia.com/assets/react-core-BDetJ_l3.js">
   <link rel="modulepreload" crossorigin href="https://dcmademedia.com/assets/router-BitTBFnF.js">
   <link rel="modulepreload" crossorigin href="https://dcmademedia.com/assets/lucide-S68kNpgy.js">
