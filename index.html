@@ -1,258 +1,50 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
-
 <head>
-  <!-- Google tag (gtag.js) - Load with defer attribute -->
-  <script async defer src="https://www.googletagmanager.com/gtag/js?id=G-HRS893TMBT"></script>
+  <meta charset="UTF-8" />
+  <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Robert Baer | Web Developer</title>
+  
+  <!-- Preload critical fonts -->
+  <link rel="preload" href="/fonts/your-main-font.woff2" as="font" type="font/woff2" crossorigin>
+  
+  <!-- Preload critical CSS -->
+  <link rel="preload" href="/assets/index.css" as="style">
+  <link rel="stylesheet" href="/assets/index.css">
+  
+  <!-- Defer Google Tag Manager -->
   <script>
-    // Delay GTM execution until after page load
+    // Minimal GTM loader that doesn't block rendering
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    
+    // Load GTM after page load
     window.addEventListener('load', function() {
-      window.dataLayer = window.dataLayer || [];
-      function gtag() { dataLayer.push(arguments); }
-      gtag('js', new Date());
-      gtag('config', 'G-HRS893TMBT', { 'send_page_view': false });
-      // Only send page view after page has loaded
-      setTimeout(function() {
-        gtag('event', 'page_view');
-      }, 100);
+      const script = document.createElement('script');
+      script.src = 'https://www.googletagmanager.com/gtag/js?id=G-HRS893TMBT';
+      script.async = true;
+      document.head.appendChild(script);
+      
+      // Initialize after script loads
+      script.onload = function() {
+        gtag('config', 'G-HRS893TMBT', { 'send_page_view': false });
+        // Only send page view after everything is loaded
+        setTimeout(function() {
+          gtag('event', 'page_view');
+        }, 100);
+      };
     });
   </script>
-  <meta charset="UTF-8" />
-  <!-- Viewport meta tag -->
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0" />
-
-  <!-- Favicon and app icons -->
-  <!-- Use favicon.ico for broad compatibility -->
-  <link rel="icon" href="https://dcmademedia.com/favicons/favicon.ico" sizes="any"> 
-  <!-- Provide SVG version for modern browsers -->
-  <link rel="icon" href="https://dcmademedia.com/favicons/favicon.svg" type="image/svg+xml">
-  <!-- Apple touch icon -->
-  <link rel="apple-touch-icon" href="https://dcmademedia.com/favicons/apple-touch-icon.png"> 
-  <!-- Link to web app manifest -->
-  <link rel="manifest" href="https://dcmademedia.com/site.webmanifest"> 
-  <!-- Remove or comment out old/redundant links -->
-  <!-- <link rel="icon" type="image/png" href="/dcmademedia.png" /> -->
-  <!-- <link rel="icon" type="image/png" sizes="192x192" href="/android-chrome-192x192.png" /> -->
-  <!-- <link rel="icon" type="image/png" sizes="512x512" href="/android-chrome-512x512.png" /> -->
-  <!-- <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" /> --> 
-  <!-- <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#0ea5e9" /> -->
-
-  <!-- Microsoft Tiles -->
-  <meta name="msapplication-TileColor" content="#0ea5e9" />
-  <!-- Update path if you have a specific tile image in /favicons/ -->
-  <meta name="msapplication-TileImage" content="/favicons/mstile-144x144.png" /> 
-
-  <!-- Theme color -->
-  <meta name="theme-color" content="#0ea5e9" />
-
-  <!-- Canonical URL -->
-  <!-- Add this in the head section -->
-  <link rel="canonical" href="https://dcmademedia.com/">
-  <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
-
-  <!-- Add security headers -->
-  <meta http-equiv="Strict-Transport-Security" content="max-age=31536000; includeSubDomains; preload">
-  <meta http-equiv="X-Content-Type-Options" content="nosniff">
-  <meta http-equiv="X-Frame-Options" content="DENY">
-
-  <!-- Title and meta description -->
-  <title>Washington DC Web Developer | React & React Native</title>
-  <meta name="description"
-    content="Washington DC-based React & React Native developer specializing in political campaigns and NGO websites. Custom web solutions for DC organizations.">
-  <meta name="keywords"
-    content="DC web developer, Washington DC web developer, React developer DC, political website developer DC, NGO website developer DC, DC frontend developer, Washington DC React developer, DC political campaign websites, Washington DC mobile app developer, DC nonprofit web development, custom React websites Washington DC, political campaign web development DC, nonprofit website services DC, React Native app developer DC, Washington DC association websites, web developer near me DC, local React developer Washington DC, best web developer in DC, top-rated website developer DC, DC Capitol Hill web services">
-
-  <!-- Open Graph / Facebook -->
-  <meta property="og:type" content="website">
-  <meta property="og:url" content="https://dcmademedia.com/">
-  <meta property="og:title"
-    content="Washington DC Website Developer | React Web Developer | Political & NGO Websites" />
-  <meta property="og:description"
-    content="Washington DC-based React & React Native developer specializing in political campaigns and NGO websites. Custom web solutions for DC organizations." />
-  <meta property="og:image" content="https://dcmademedia.com/dcmademedia.png" />
-
-  <!-- Twitter -->
-  <meta property="twitter:card" content="summary_large_image" />
-  <meta property="twitter:url" content="https://dcmademedia.com/" />
-  <meta property="twitter:title"
-    content="Washington DC Website Developer | React Web Developer | Political & NGO Websites" />
-  <meta property="twitter:description"
-    content="Washington DC-based React & React Native developer specializing in political campaigns and NGO websites. Custom web solutions for DC organizations." />
-  <meta property="twitter:image" content="https://dcmademedia.com/dcmademedia.png" />
-
-  <!-- Geo Tags -->
-  <meta name="geo.region" content="US-DC" />
-  <meta name="geo.placename" content="Washington" />
-  <meta name="geo.position" content="38.8977;-77.0365" />
-  <meta name="ICBM" content="38.8977, -77.0365" />
-
-  <!-- Preload resources -->
-  <link rel="preload" href="https://dcmademedia.com/assets/headshot-BO5GNQAk.webp" as="image" fetchpriority="high">
-
-  <!-- Fonts -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link rel="preconnect" href="https://github.com" crossorigin>
-  <link rel="preconnect" href="https://api.emailjs.com" crossorigin>
-  <link rel="preload"
-    href="https://fonts.gstatic.com/s/inter/v13/UcCO3FwrK3iLTeHuS_fvQtMwCp50KnMw2boKoduKmMEVuLyfAZ9hiA.woff2" as="font"
-    type="font/woff2" crossorigin>
-  <link rel="preload" href="https://fonts.gstatic.com/s/firacode/v22/uU9eCBsR6Z2vfE9aq3bL0fxyUs4tcw4W_D1sJVD7Ng.woff2"
-    as="font" type="font/woff2" crossorigin>
-
-  <!-- Inline critical font styles -->
-  <style>
-    /* Inline critical Inter font */
-    @font-face {
-      font-family: 'Inter';
-      font-style: normal;
-      font-weight: 400;
-      font-display: swap;
-      src: url(https://fonts.gstatic.com/s/inter/v13/UcCO3FwrK3iLTeHuS_fvQtMwCp50KnMw2boKoduKmMEVuLyfAZ9hiA.woff2) format('woff2');
-    }
-
-    /* Inline critical Fira Code font */
-    @font-face {
-      font-family: 'Fira Code';
-      font-style: normal;
-      font-weight: 400;
-      font-display: swap;
-      src: url(https://fonts.gstatic.com/s/firacode/v22/uU9eCBsR6Z2vfE9aq3bL0fxyUs4tcw4W_D1sJVD7Ng.woff2) format('woff2');
-    }
-  </style>
-
-  <!-- Load remaining font weights asynchronously -->
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;500;600;700;800&display=swap"
-    media="print" onload="this.media='all'">
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@500;600&display=swap"
-    media="print" onload="this.media='all'">
-  <noscript>
-    <link rel="stylesheet"
-      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;500;600;700;800&family=Fira+Code:wght@500;600&display=swap">
-  </noscript>
-
-  <!-- Schema.org markup for Google -->
-  <script type="application/ld+json">
-    {
-      "@context": "https://schema.org",
-      "@type": "ProfessionalService",
-      "name": "DC React Developer | Political & NGO Websites | Robert Baer",
-      "description": "Washington DC-based React & React Native developer specializing in political campaigns, NGO websites, and association platforms.",
-      "image": "https://dcmademedia.com/dcmademedia.png",
-      "url": "https://dcmademedia.com",
-      "address": {
-        "@type": "PostalAddress",
-        "addressLocality": "Washington",
-        "addressRegion": "DC",
-        "addressCountry": "US"
-      },
-      "geo": {
-        "@type": "GeoCoordinates",
-        "latitude": "38.8977",
-        "longitude": "-77.0365"
-      },
-      "areaServed": {
-        "@type": "GeoCircle",
-        "geoMidpoint": {
-          "@type": "GeoCoordinates",
-          "latitude": "38.8977",
-          "longitude": "-77.0365"
-        },
-        "geoRadius": "50000"
-      },
-      "serviceType": ["Web Development", "Mobile App Development", "Political Website Development", "NGO Website Development", "Association Platforms"],
-      "knowsAbout": ["React", "React Native", "JavaScript", "TypeScript", "Political Campaign Websites", "NGO Digital Platforms", "Association Websites"],
-      "sameAs": [
-        "https://github.com/robertsbaer",
-        "https://www.linkedin.com/in/robert-baer/",
-        "https://twitter.com/robertsbaer"
-      ]
-    }
-    </script>
-
-  <!-- Additional structured data for portfolio projects -->
-  <script type="application/ld+json">
-    {
-      "@context": "https://schema.org",
-      "@type": "ItemList",
-      "itemListElement": [
-        {
-          "@type": "SoftwareApplication",
-          "name": "Obama Campaign Site",
-          "applicationCategory": "WebApplication",
-          "operatingSystem": "Web",
-          "description": "A modern React-based campaign website prototype showcasing responsive design and political campaign best practices.",
-          "url": "https://robertsbaer.github.io/political-campaign/",
-          "author": {
-            "@type": "Person",
-            "name": "Robert Baer"
-          }
-        },
-        {
-          "@type": "SoftwareApplication",
-          "name": "Hot Ones Data Viz",
-          "applicationCategory": "WebApplication",
-          "operatingSystem": "Web",
-          "description": "A web app that visualizes data from the popular YouTube series 'Hot Ones'.",
-          "url": "https://robertsbaer.github.io/hot-ones-data/",
-          "author": {
-            "@type": "Person",
-            "name": "Robert Baer"
-          }
-        }
-      ]
-    }
-    </script>
-
-  <!-- Link to sitemap for better indexing -->
-  <link rel="sitemap" type="application/xml" title="Sitemap" href="https://dcmademedia.com/sitemap.xml">
-
-  <!-- Additional SEO tags -->
-  <link rel="author" href="https://github.com/robertsbaer" />
-  <meta name="author" content="Robert Baer">
-  <script type="module" crossorigin src="https://dcmademedia.com/assets/index-CtLy4k0o.js"></script>
+  <script type="module" crossorigin src="https://dcmademedia.com/assets/index-Drdhfw-M.js"></script>
   <link rel="modulepreload" crossorigin href="https://dcmademedia.com/assets/react-core-BDetJ_l3.js">
   <link rel="modulepreload" crossorigin href="https://dcmademedia.com/assets/router-BitTBFnF.js">
   <link rel="modulepreload" crossorigin href="https://dcmademedia.com/assets/lucide-S68kNpgy.js">
   <link rel="modulepreload" crossorigin href="https://dcmademedia.com/assets/framer-motion-BkQPMVnF.js">
-  <link rel="stylesheet" crossorigin href="https://dcmademedia.com/assets/index-DYocyU-T.css">
+  <link rel="stylesheet" crossorigin href="https://dcmademedia.com/assets/index-C2S126UV.css">
 </head>
-
 <body>
   <div id="root"></div>
-
-  <!-- GitHub Pages SPA redirect script -->
-  <script type="text/javascript">
-    // Single Page Apps for GitHub Pages
-    // MIT License
-    // https://github.com/rafgraph/spa-github-pages
-    (function (l) {
-      if (l.search[1] === '/') {
-        var decoded = l.search.slice(1).split('&').map(function (s) {
-          return s.replace(/~and~/g, '&')
-        }).join('?');
-        window.history.replaceState(null, null,
-          l.pathname.slice(0, -1) + decoded + l.hash
-        );
-      }
-    }(window.location))
-  </script>
-
-  <!-- Hidden links for SEO - these will be properly integrated in your React components -->
-  <div style="display:none">
-    <!-- Internal links -->
-    <a href="#about">About Robert Baer</a>
-    <a href="#projects">React Development Portfolio</a>
-    <a href="#experience">DC Web Development Services</a>
-    <a href="#contact">Contact DC React Developer</a>
-
-    <!-- External relevant links -->
-    <a href="https://reactjs.org/" rel="noopener noreferrer">React Official Documentation</a>
-    <a href="https://reactnative.dev/" rel="noopener noreferrer">React Native Documentation</a>
-    <a href="https://www.washingtondc.gov/business" rel="noopener noreferrer">Washington DC Business Resources</a>
-    <a href="https://www.nonprofitimpact.com/" rel="noopener noreferrer">Nonprofit Impact Resources</a>
-    <a href="https://www.techimpact.org/" rel="noopener noreferrer">Tech Impact for Nonprofits</a>
-  </div>
 </body>
-
 </html>
