@@ -26,7 +26,16 @@ const Navbar = () => {
   // Add proper TypeScript type annotations
   const handleNavClick = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
     e.preventDefault();
-    
+
+    if (href === "/blog") {
+      navigate(href);
+      // Close mobile menu if open
+      if (isOpen) {
+        setIsOpen(false);
+      }
+      return;
+    }
+
     if (isHomePage) {
       // If on homepage, just scroll to the section
       const element = document.querySelector(href);
@@ -44,7 +53,7 @@ const Navbar = () => {
         }
       }, 100);
     }
-    
+
     // Close mobile menu if open
     if (isOpen) {
       setIsOpen(false);
@@ -57,6 +66,7 @@ const Navbar = () => {
     { name: "Projects", href: "#projects" },
     { name: "Experience", href: "#experience" },
     { name: "Contact", href: "#contact" },
+    { name: "Blog", href: "/blog"}
   ];
 
   const socialLinks = [
