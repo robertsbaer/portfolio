@@ -124,6 +124,13 @@ const Blog = () => {
     return text.substring(0, 150) + (text.length > 150 ? '...' : '');
   };
 
+  // Utility function to decode HTML entities
+  function decodeHtmlEntities(text: string) {
+    const txt = document.createElement('textarea');
+    txt.innerHTML = text;
+    return txt.value;
+  }
+
   return (
     <div className="relative">
       <div className="noise-overlay"></div>
@@ -205,7 +212,7 @@ const Blog = () => {
                         </div>
                       )}
                       <div className="p-6">
-                        <h3 className="text-xl font-bold mb-2 text-white">{post.title}</h3>
+                        <h3 className="text-xl font-bold mb-2 text-white">{decodeHtmlEntities(post.title)}</h3>
                         <p className="text-primary-400 text-sm mb-4">Published: {formatDate(post.pubDate)}</p>
                         <p className="text-gray-400 mb-4">{getExcerpt(post.description)}</p>
                         <a
