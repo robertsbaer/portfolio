@@ -1,15 +1,16 @@
+import { useState } from "react";
 import { motion } from "framer-motion";
 import { useInView } from "react-intersection-observer";
 import { ExternalLink, Github } from "lucide-react";
 import crushItLogo from "../assets/crushitlogo.webp";
 import poll24 from "../assets/poll24.webp";
 import hotones from "../assets/hotones.webp";
-import obamabarack from "../assets/obamabarack.webp"; // Add this import
+import obamabarack from "../assets/obamabarack.webp";
 import communityPantry from "../assets/communitypantry.png";
 import letersets from "../assets/letrsets.webp";
 import orangemantariff from "../assets/orangemantariff.png";
-import gulfofmexico from "../assets/gulfofmexico.png"; // Add this import
-import { useState } from "react"; // Import useState
+import gulfofmexico from "../assets/gulfofmexico.png";
+import clipboard from "../assets/clipboard.png";
 
 const Projects = () => {
   const [ref, inView] = useInView({
@@ -94,6 +95,15 @@ const Projects = () => {
       tags: ["Chrome extension", "Google Maps", "Historical Accuracy"],
       liveUrl: "https://chromewebstore.google.com/detail/gulf-of-mexico/iimjcfobpghafhjkbjflpnlfmfiggegg",
       githubUrl: "https://github.com/robertsbaer/Gulf-Of-Mexico",
+      type: "Chrome extension"
+    },
+    {
+      title: "Mini Clipboard Manager",
+      description: "Chrome extension that allows users to easily copy and paste text, images, and URLs from the web to their clipboard.",
+      image: clipboard,
+      tags: ["Chrome extension", "Clipboard", "UI/UX"],
+      liveUrl: "https://chromewebstore.google.com/detail/mini-clipboard-manager/bjnhcllpmobjnpcmmhmjnmmfgfphbchj",
+      githubUrl: "https://github.com/robertsbaer/mini-clipboard-manager",
       type: "Chrome extension"
     }
   ];
