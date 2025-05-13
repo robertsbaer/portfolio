@@ -8,6 +8,7 @@ import obamabarack from "../assets/obamabarack.webp"; // Add this import
 import communityPantry from "../assets/communitypantry.png";
 import letersets from "../assets/letrsets.webp";
 import orangemantariff from "../assets/orangemantariff.png";
+import { useState } from "react"; // Import useState
 
 const Projects = () => {
   const [ref, inView] = useInView({
@@ -24,6 +25,7 @@ const Projects = () => {
       tags: ["React", "Vite", "Political Campaign", "Responsive Design"],
       liveUrl: "https://robertsbaer.github.io/political-campaign/",
       githubUrl: "https://github.com/robertsbaer/political-campaign",
+      type: "website"
     },
     {
       title: "Hot Ones Data Viz",
@@ -33,6 +35,7 @@ const Projects = () => {
       tags: ["React", "Vite", "Data Visualization"],
       liveUrl: "https://robertsbaer.github.io/hot-ones-data/",
       githubUrl: "https://github.com/robertsbaer/hot-ones-data",
+      type: "website"
     },
     {
       title: "Crush'd",
@@ -42,6 +45,7 @@ const Projects = () => {
       tags: ["React Native", "Expo", "Food Challenge"],
       liveUrl: "",
       githubUrl: "https://github.com/robertsbaer",
+      type: "app"
     },
     {
       title: "Polling App",
@@ -51,6 +55,7 @@ const Projects = () => {
       tags: ["React Native", "Polling", "UI/UX"],
       liveUrl: "",
       githubUrl: "https://github.com/robertsbaer",
+      type: "app"
     },
     {
       title: "Community Pantry",
@@ -60,6 +65,7 @@ const Projects = () => {
       tags: ["React Native", "Food", "Social"],
       liveUrl: "https://apps.apple.com/us/app/community-pantry/id6744461115",
       githubUrl: "https://github.com/robertsbaer",
+      type: "app"
     },
     // Add more projects here
     {
@@ -69,6 +75,7 @@ const Projects = () => {
       tags: ["React", "Game", "UI/UX"],
       liveUrl: "https://letrsets.com/",
       githubUrl: "https://github.com/robertsbaer/letrsets",
+      type: "website"
     },
     {
       title: "Orange Man Tariff",
@@ -77,8 +84,19 @@ const Projects = () => {
       tags: ["Chrome extension", "Amazon"],
       liveUrl: "https://chromewebstore.google.com/detail/orange-man-tariff/oolaebalghjpahklfggliaoafgejhlbm",
       githubUrl: "https://github.com/robertsbaer/OrangeManTariff",
+      type: "Chrome extension"
     }
   ];
+
+  const [selectedType, setSelectedType] = useState<string>('All'); // State for selected type
+
+  // Get unique project types, including "All"
+  const projectTypes = ['All', ...Array.from(new Set(projects.map(p => p.type)))];
+
+  // Filter projects based on selected type
+  const filteredProjects = selectedType === 'All'
+    ? projects
+    : projects.filter(project => project.type === selectedType);
 
   const containerVariants = {
     hidden: { opacity: 0 },
@@ -136,8 +154,28 @@ const Projects = () => {
             </p>
           </motion.div>
 
+          {/* Filter Buttons */}
+          <motion.div
+            variants={itemVariants}
+            className="flex flex-wrap justify-center gap-4 mb-12"
+          >
+            {projectTypes.map((type) => (
+              <button
+                key={type}
+                onClick={() => setSelectedType(type)}
+                className={`px-4 py-2 rounded-full text-sm font-medium transition-colors duration-300 hover-element
+                  ${selectedType === type
+                    ? 'bg-primary-500 text-white shadow-lg'
+                    : 'bg-gray-800 text-gray-300 hover:bg-gray-700 hover:text-white'
+                  }`}
+              >
+                {type}
+              </button>
+            ))}
+          </motion.div>
+
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {projects.map((project) => (
+            {filteredProjects.map((project) => (
               <motion.div
                 key={project.title}
                 variants={itemVariants}
