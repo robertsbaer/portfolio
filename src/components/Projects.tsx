@@ -8,6 +8,7 @@ import obamabarack from "../assets/obamabarack.webp"; // Add this import
 import communityPantry from "../assets/communitypantry.png";
 import letersets from "../assets/letrsets.webp";
 import orangemantariff from "../assets/orangemantariff.png";
+import gulfofmexico from "../assets/gulfofmexico.png"; // Add this import
 import { useState } from "react"; // Import useState
 
 const Projects = () => {
@@ -84,6 +85,15 @@ const Projects = () => {
       tags: ["Chrome extension", "Amazon"],
       liveUrl: "https://chromewebstore.google.com/detail/orange-man-tariff/oolaebalghjpahklfggliaoafgejhlbm",
       githubUrl: "https://github.com/robertsbaer/OrangeManTariff",
+      type: "Chrome extension"
+    },
+    {
+      title: "Gulf Of Mexico",
+      description: "Chrome extension for Google Maps that corrects altered names for the 'Gulf of Mexico' back to its historically recognized name in real-time.",
+      image: gulfofmexico,
+      tags: ["Chrome extension", "Google Maps", "Historical Accuracy"],
+      liveUrl: "https://github.com/robertsbaer/Gulf-Of-Mexico",
+      githubUrl: "https://github.com/robertsbaer/Gulf-Of-Mexico",
       type: "Chrome extension"
     }
   ];
