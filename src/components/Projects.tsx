@@ -92,7 +92,7 @@ const Projects = () => {
       description: "Chrome extension for Google Maps that corrects altered names for the 'Gulf of Mexico' back to its historically recognized name in real-time.",
       image: gulfofmexico,
       tags: ["Chrome extension", "Google Maps", "Historical Accuracy"],
-      liveUrl: "https://chromewebstore.google.com/detail/gulf-of-mexico/iimjcfobpghafhjkbjflpnlfmfiggegg/reviews",
+      liveUrl: "https://chromewebstore.google.com/detail/gulf-of-mexico/iimjcfobpghafhjkbjflpnlfmfiggegg",
       githubUrl: "https://github.com/robertsbaer/Gulf-Of-Mexico",
       type: "Chrome extension"
     }
