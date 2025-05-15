@@ -16,7 +16,8 @@ const Experience = lazy(() => import('./components/Experience'));
 const Contact = lazy(() => import('./components/Contact'));
 const Blog = lazy(() => import('./components/Blog'));
 const BlogPost = lazy(() => import('./components/BlogPost'));
-import CommunityPantry from './components/CommunityPantry';
+// import CommunityPantry from './components/CommunityPantry'; // Remove direct import if only used as a route
+const CommunityPantryPage = lazy(() => import('./components/CommunityPantry')); // Lazy load it
 import Brands from './components/Brands';
 
 
@@ -196,7 +197,7 @@ function App() {
             <Route path="" element={<HomePage />} />
             <Route path="blog" element={<Blog />} />
             <Route path="blog/:slug" element={<BlogPost />} />
-            <Route path="community-pantry" element={<CommunityPantry />} />
+            <Route path="community-pantry" element={<CommunityPantryPage />} /> {/* Use lazy-loaded version */}
           </Routes>
         </Suspense>
       </ErrorBoundary>
