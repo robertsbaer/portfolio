@@ -65,11 +65,11 @@ const About = () => {
           className="max-w-4xl mx-auto"
         >
           <motion.div variants={itemVariants} className="text-center mb-16">
-            <p className="text-primary-400 font-medium mb-4 flex items-center justify-center">
+            <h1 className="text-primary-400 font-medium mb-4 flex items-center justify-center">
               <span className="inline-block w-10 h-[2px] bg-primary-500 mr-3"></span>
               About Me
               <span className="inline-block w-10 h-[2px] bg-primary-500 ml-3"></span>
-            </p>
+            </h1>
             <h2 className="text-3xl md:text-4xl font-bold mb-6">
               Get to know me<span className="text-primary-500">.</span>
             </h2>
