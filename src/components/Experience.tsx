@@ -19,7 +19,7 @@ const Experience = () => {
       title: 'Founder & Lead Developer',
       company: 'DC Made Media',
       period: '2019 - Present',
-      description: 'Founded a solo development agency specializing in custom websites and mobile applications. Managed the entire development lifecycle from client consultation to deployment and maintenance. Delivered responsive React-based solutions for small businesses and individuals.',
+      description: 'Founded a solo development agency specializing in custom websites and mobile applications. Managed the entire development lifecycle from client consultation to deployment and maintenance. Delivered responsive React-based solutions for small businesses, association, N.G.O, and individuals.',
     },
     {
       title: 'Freelance Web Developer',
