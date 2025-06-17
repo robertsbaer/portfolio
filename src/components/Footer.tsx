@@ -7,14 +7,17 @@ const Footer = () => {
   const navigate = useNavigate();
   const isHomePage = location.pathname === "/" || location.pathname === "";
 
-  const handleNavClick = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
+  const handleNavClick = (
+    e: React.MouseEvent<HTMLAnchorElement>,
+    href: string
+  ) => {
     e.preventDefault();
-    
+
     if (href === "/blog") {
       navigate(href);
       return;
     }
-    
+
     if (isHomePage) {
       // If on homepage, just scroll to the section
       const element = document.querySelector(href);
@@ -45,16 +48,11 @@ const Footer = () => {
       href: "https://linkedin.com/in/robert-baer",
       label: "LinkedIn",
     },
-    {
-      icon: <Twitter className="w-5 h-5" />,
-      href: "https://twitter.com/robertsbaer",
-      label: "Twitter",
-    },
-    {
-      icon: <Facebook className="w-5 h-5" />,
-      href: "https://facebook.com/dcmademedia",
-      label: "Facebook",
-    }
+    // {
+    //   icon: <Facebook className="w-5 h-5" />,
+    //   href: "https://facebook.com/dcmademedia",
+    //   label: "Facebook",
+    // }
   ];
 
   return (
@@ -92,36 +90,36 @@ const Footer = () => {
 
         {/* Mobile-friendly navigation links */}
         <div className="flex flex-wrap justify-center mt-6 gap-4 md:gap-8">
-          <a 
-            href="#about" 
+          <a
+            href="#about"
             className="text-gray-400 hover:text-primary-500 transition-colors duration-300 px-3 py-2"
             onClick={(e) => handleNavClick(e, "#about")}
           >
             About
           </a>
-          <a 
-            href="#projects" 
+          <a
+            href="#projects"
             className="text-gray-400 hover:text-primary-500 transition-colors duration-300 px-3 py-2"
             onClick={(e) => handleNavClick(e, "#projects")}
           >
             Projects
           </a>
-          <a 
-            href="#experience" 
+          <a
+            href="#experience"
             className="text-gray-400 hover:text-primary-500 transition-colors duration-300 px-3 py-2"
             onClick={(e) => handleNavClick(e, "#experience")}
           >
             Experience
           </a>
-          <a 
-            href="#contact" 
+          <a
+            href="#contact"
             className="text-gray-400 hover:text-primary-500 transition-colors duration-300 px-3 py-2"
             onClick={(e) => handleNavClick(e, "#contact")}
           >
             Contact
           </a>
-          <a 
-            href="/blog" 
+          <a
+            href="/blog"
             className="text-gray-400 hover:text-primary-500 transition-colors duration-300 px-3 py-2"
             onClick={(e) => handleNavClick(e, "/blog")}
             aria-label="Read our web development blog"
