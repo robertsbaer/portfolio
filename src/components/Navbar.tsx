@@ -24,7 +24,10 @@ const Navbar = () => {
   }, []);
 
   // Add proper TypeScript type annotations
-  const handleNavClick = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
+  const handleNavClick = (
+    e: React.MouseEvent<HTMLAnchorElement>,
+    href: string
+  ) => {
     e.preventDefault();
 
     if (href === "/blog") {
@@ -66,7 +69,7 @@ const Navbar = () => {
     { name: "Projects", href: "#projects" },
     { name: "Experience", href: "#experience" },
     { name: "Contact", href: "#contact" },
-    { name: "Blog", href: "/blog"}
+    { name: "Blog", href: "/blog" },
   ];
 
   const socialLinks = [
@@ -79,11 +82,6 @@ const Navbar = () => {
       icon: <Linkedin className="w-5 h-5" />,
       href: "https://linkedin.com/in/robert-baer",
       label: "LinkedIn",
-    },
-    {
-      icon: <Twitter className="w-5 h-5" />,
-      href: "https://twitter.com/robertsbaer",
-      label: "Twitter",
     },
   ];
 
