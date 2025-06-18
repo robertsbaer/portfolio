@@ -1,6 +1,7 @@
 import React, { useState, useRef, lazy, Suspense } from 'react';
 import { useInView } from 'react-intersection-observer';
-import { Calendar, Clock, CheckCircle, ArrowRight, Mail, Phone } from 'lucide-react';
+import { useNavigate } from 'react-router-dom';
+import { Calendar, Clock, CheckCircle, ArrowRight, Mail, Phone, ArrowLeft } from 'lucide-react';
 import emailjs from '@emailjs/browser';
 
 // Lazy load motion components
@@ -14,6 +15,7 @@ const motion = {
 };
 
 const Consultation = () => {
+  const navigate = useNavigate();
   const [ref, inView] = useInView({
     triggerOnce: false,
     threshold: 0.1,
@@ -47,24 +49,42 @@ const Consultation = () => {
     setSubmitError('');
     
     const serviceId = 'service_aepgqsj';
-    const templateId = 'template_consultation';
+    const templateId = 'template_clnlt9f'; // Use the same working template as contact form
     const publicKey = '0ay0JaUpW_SnUCGGR';
+    
+    // Format the consultation details into a message format that works with the existing template
+    const consultationMessage = `
+CONSULTATION REQUEST
+
+Contact Information:
+- Name: ${formData.name}
+- Email: ${formData.email}
+- Phone: ${formData.phone || 'Not provided'}
+- Company: ${formData.company || 'Not provided'}
+
+Project Details:
+- Project Type: ${formData.projectType}
+- Budget Range: ${formData.budget || 'Not specified'}
+- Timeline: ${formData.timeline || 'Not specified'}
+- Preferred Consultation Time: ${formData.preferredTime || 'Flexible'}
+
+Project Description:
+${formData.description}
+
+---
+This is a consultation request from the MVP Services page.`;
     
     const templateParams = {
       from_name: formData.name,
       from_email: formData.email,
-      phone: formData.phone,
-      company: formData.company,
-      project_type: formData.projectType,
-      budget: formData.budget,
-      timeline: formData.timeline,
-      description: formData.description,
-      preferred_time: formData.preferredTime,
-      to_name: 'Robert Baer',
+      subject: `MVP Consultation Request - ${formData.projectType || 'New Project'}`,
+      message: consultationMessage,
+      to_email: 'robert@dcmademedia.com'
     };
 
     emailjs.send(serviceId, templateId, templateParams, publicKey)
-      .then(() => {
+      .then((response) => {
+        console.log('SUCCESS!', response.status, response.text);
         setSubmitSuccess(true);
         setFormData({
           name: '',
@@ -77,9 +97,14 @@ const Consultation = () => {
           description: '',
           preferredTime: ''
         });
+        
+        // Reset success message after 5 seconds
+        setTimeout(() => {
+          setSubmitSuccess(false);
+        }, 5000);
       })
       .catch((error) => {
-        console.error('EmailJS error:', error);
+        console.error('FAILED...', error);
         setSubmitError('Failed to send consultation request. Please try again.');
       })
       .finally(() => {
@@ -115,23 +140,34 @@ const Consultation = () => {
   ];
 
   const budgetRanges = [
-    '$5,000 - $15,000',
-    '$15,000 - $30,000',
-    '$30,000 - $50,000',
-    '$50,000+',
+    '$2,999 - $4,999',
+    '$4,999 - $7,999',
+    '$7,999 - $9,999',
+    '$10,000+',
     'Not sure yet'
   ];
 
   const timelineOptions = [
-    '1-2 months',
-    '3-4 months',
-    '5-6 months',
-    '6+ months',
+    '2-3 weeks',
+    '3-5 weeks',
+    '5-6 weeks',
+    '6+ weeks',
     'Flexible'
   ];
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900 text-white">
+      {/* Back Button */}
+      <div className="fixed top-20 left-2 md:top-24 md:left-4 z-50">
+        <button
+          onClick={() => navigate(-1)}
+          className="flex items-center gap-1 md:gap-2 px-2 py-1.5 md:px-4 md:py-2 bg-gray-800/90 backdrop-blur-sm border border-gray-700 rounded-lg text-white hover:bg-gray-700/80 transition-all duration-300 group text-sm md:text-base"
+        >
+          <ArrowLeft className="w-3.5 h-3.5 md:w-4 md:h-4 group-hover:-translate-x-1 transition-transform duration-300" />
+          <span className="hidden sm:inline">Back</span>
+        </button>
+      </div>
+      
       {/* Hero Section */}
       <section className="pt-32 pb-20 px-4">
         <div className="container mx-auto text-center">

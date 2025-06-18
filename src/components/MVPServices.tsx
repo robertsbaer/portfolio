@@ -1,7 +1,7 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { useNavigate } from 'react-router-dom';
-import { CheckCircle, Zap, Rocket, Star, ArrowRight, Code, Smartphone, Globe } from 'lucide-react';
+import { CheckCircle, Zap, Rocket, Star, ArrowRight, Code, Smartphone, Globe, ArrowLeft } from 'lucide-react';
 
 const MVPServices = () => {
   const navigate = useNavigate();
@@ -90,11 +90,24 @@ const MVPServices = () => {
     { name: "React Native", icon: <Smartphone className="w-6 h-6" /> },
     { name: "TypeScript", icon: <Code className="w-6 h-6" /> },
     { name: "MongoDB", icon: <Globe className="w-6 h-6" /> },
-    { name: "AWS", icon: <Globe className="w-6 h-6" /> }
+    { name: "AWS", icon: <Globe className="w-6 h-6" /> },
+    { name: "Firebase", icon: <Globe className="w-6 h-6" /> },
+    { name: "Supabase", icon: <Globe className="w-6 h-6" /> },
   ];
 
   return (
     <div className="min-h-screen bg-dark text-white">
+      {/* Back Button */}
+      <div className="fixed top-20 left-2 md:top-24 md:left-4 z-50">
+        <button
+          onClick={() => navigate(-1)}
+          className="flex items-center gap-1 md:gap-2 px-2 py-1.5 md:px-4 md:py-2 bg-gray-800/90 backdrop-blur-sm border border-gray-700 rounded-lg text-white hover:bg-gray-700/80 transition-all duration-300 group text-sm md:text-base"
+        >
+          <ArrowLeft className="w-3.5 h-3.5 md:w-4 md:h-4 group-hover:-translate-x-1 transition-transform duration-300" />
+          <span className="hidden sm:inline">Back</span>
+        </button>
+      </div>
+      
       {/* Hero Section */}
       <section className="pt-32 pb-20 px-4">
         <div className="container mx-auto text-center">
