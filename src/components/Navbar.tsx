@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import React, { useState, useEffect } from 'react';
 import { Menu, X, Github, Linkedin, Twitter } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import { useLocation, useNavigate } from "react-router-dom";
@@ -30,7 +30,7 @@ const Navbar = () => {
   ) => {
     e.preventDefault();
 
-    if (href === "/blog") {
+    if (href === "/blog" || href === "/mvp-services") {
       navigate(href);
       // Close mobile menu if open
       if (isOpen) {
@@ -68,6 +68,7 @@ const Navbar = () => {
     { name: "About", href: "#about" },
     { name: "Projects", href: "#projects" },
     { name: "Experience", href: "#experience" },
+    { name: "MVP Services", href: "/mvp-services" },
     { name: "Contact", href: "#contact" },
     { name: "Blog", href: "/blog" },
   ];

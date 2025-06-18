@@ -16,6 +16,8 @@ const Experience = lazy(() => import('./components/Experience'));
 const Contact = lazy(() => import('./components/Contact'));
 const Blog = lazy(() => import('./components/Blog'));
 const BlogPost = lazy(() => import('./components/BlogPost'));
+const MVPServices = lazy(() => import('./components/MVPServices'));
+const Consultation = lazy(() => import('./components/Consultation'));
 // import CommunityPantry from './components/CommunityPantry'; // Remove direct import if only used as a route
 const CommunityPantryPage = lazy(() => import('./components/CommunityPantry')); // Lazy load it
 import Brands from './components/Brands';
@@ -197,6 +199,8 @@ function App() {
             <Route path="" element={<HomePage />} />
             <Route path="blog" element={<Blog />} />
             <Route path="blog/:slug" element={<BlogPost />} />
+            <Route path="mvp-services" element={<MVPServices />} />
+            <Route path="consultation" element={<Consultation />} />
             <Route path="community-pantry" element={<CommunityPantryPage />} /> {/* Use lazy-loaded version */}
           </Routes>
         </Suspense>
