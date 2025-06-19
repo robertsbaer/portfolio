@@ -1,17 +1,29 @@
-import React, { useState, useRef, lazy, Suspense } from 'react';
-import { useInView } from 'react-intersection-observer';
-import { useNavigate } from 'react-router-dom';
-import { Calendar, Clock, CheckCircle, ArrowRight, Mail, Phone, ArrowLeft } from 'lucide-react';
-import emailjs from '@emailjs/browser';
+import React, { useState, useRef, lazy, Suspense } from "react";
+import { useInView } from "react-intersection-observer";
+import { useNavigate } from "react-router-dom";
+import {
+  Calendar,
+  Clock,
+  CheckCircle,
+  ArrowRight,
+  Mail,
+  Phone,
+  ArrowLeft,
+} from "lucide-react";
+import emailjs from "@emailjs/browser";
 
 // Lazy load motion components
 const motion = {
-  div: lazy(() => import('framer-motion').then(mod => ({ 
-    default: mod.motion.div 
-  }))),
-  button: lazy(() => import('framer-motion').then(mod => ({ 
-    default: mod.motion.button 
-  })))
+  div: lazy(() =>
+    import("framer-motion").then((mod) => ({
+      default: mod.motion.div,
+    }))
+  ),
+  button: lazy(() =>
+    import("framer-motion").then((mod) => ({
+      default: mod.motion.button,
+    }))
+  ),
 };
 
 const Consultation = () => {
@@ -23,35 +35,39 @@ const Consultation = () => {
 
   const formRef = useRef<HTMLFormElement>(null);
   const [formData, setFormData] = useState({
-    name: '',
-    email: '',
-    phone: '',
-    company: '',
-    projectType: '',
-    budget: '',
-    timeline: '',
-    description: '',
-    preferredTime: ''
+    name: "",
+    email: "",
+    phone: "",
+    company: "",
+    projectType: "",
+    budget: "",
+    timeline: "",
+    description: "",
+    preferredTime: "",
   });
 
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitSuccess, setSubmitSuccess] = useState(false);
-  const [submitError, setSubmitError] = useState('');
+  const [submitError, setSubmitError] = useState("");
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
+  const handleChange = (
+    e: React.ChangeEvent<
+      HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement
+    >
+  ) => {
     const { name, value } = e.target;
-    setFormData(prev => ({ ...prev, [name]: value }));
+    setFormData((prev) => ({ ...prev, [name]: value }));
   };
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     setIsSubmitting(true);
-    setSubmitError('');
-    
-    const serviceId = 'service_aepgqsj';
-    const templateId = 'template_clnlt9f'; // Use the same working template as contact form
-    const publicKey = '0ay0JaUpW_SnUCGGR';
-    
+    setSubmitError("");
+
+    const serviceId = "service_aepgqsj";
+    const templateId = "template_clnlt9f"; // Use the same working template as contact form
+    const publicKey = "0ay0JaUpW_SnUCGGR";
+
     // Format the consultation details into a message format that works with the existing template
     const consultationMessage = `
 CONSULTATION REQUEST
@@ -59,53 +75,58 @@ CONSULTATION REQUEST
 Contact Information:
 - Name: ${formData.name}
 - Email: ${formData.email}
-- Phone: ${formData.phone || 'Not provided'}
-- Company: ${formData.company || 'Not provided'}
+- Phone: ${formData.phone || "Not provided"}
+- Company: ${formData.company || "Not provided"}
 
 Project Details:
 - Project Type: ${formData.projectType}
-- Budget Range: ${formData.budget || 'Not specified'}
-- Timeline: ${formData.timeline || 'Not specified'}
-- Preferred Consultation Time: ${formData.preferredTime || 'Flexible'}
+- Budget Range: ${formData.budget || "Not specified"}
+- Timeline: ${formData.timeline || "Not specified"}
+- Preferred Consultation Time: ${formData.preferredTime || "Flexible"}
 
 Project Description:
 ${formData.description}
 
 ---
 This is a consultation request from the MVP Services page.`;
-    
+
     const templateParams = {
       from_name: formData.name,
       from_email: formData.email,
-      subject: `MVP Consultation Request - ${formData.projectType || 'New Project'}`,
+      subject: `MVP Consultation Request - ${
+        formData.projectType || "New Project"
+      }`,
       message: consultationMessage,
-      to_email: 'robert@dcmademedia.com'
+      to_email: "robert@dcmademedia.com",
     };
 
-    emailjs.send(serviceId, templateId, templateParams, publicKey)
+    emailjs
+      .send(serviceId, templateId, templateParams, publicKey)
       .then((response) => {
-        console.log('SUCCESS!', response.status, response.text);
+        console.log("SUCCESS!", response.status, response.text);
         setSubmitSuccess(true);
         setFormData({
-          name: '',
-          email: '',
-          phone: '',
-          company: '',
-          projectType: '',
-          budget: '',
-          timeline: '',
-          description: '',
-          preferredTime: ''
+          name: "",
+          email: "",
+          phone: "",
+          company: "",
+          projectType: "",
+          budget: "",
+          timeline: "",
+          description: "",
+          preferredTime: "",
         });
-        
+
         // Reset success message after 5 seconds
         setTimeout(() => {
           setSubmitSuccess(false);
         }, 5000);
       })
       .catch((error) => {
-        console.error('FAILED...', error);
-        setSubmitError('Failed to send consultation request. Please try again.');
+        console.error("FAILED...", error);
+        setSubmitError(
+          "Failed to send consultation request. Please try again."
+        );
       })
       .finally(() => {
         setIsSubmitting(false);
@@ -116,43 +137,44 @@ This is a consultation request from the MVP Services page.`;
     {
       icon: <Calendar className="w-6 h-6" />,
       title: "Free 30-Minute Session",
-      description: "No cost, no commitment - just valuable insights for your project"
+      description:
+        "No cost, no commitment - just valuable insights for your project",
     },
     {
       icon: <CheckCircle className="w-6 h-6" />,
       title: "Project Feasibility Analysis",
-      description: "Technical assessment and realistic timeline estimation"
+      description: "Technical assessment and realistic timeline estimation",
     },
     {
       icon: <Clock className="w-6 h-6" />,
       title: "Quick Response",
-      description: "I'll get back to you within 24 hours to schedule our call"
-    }
+      description: "I'll get back to you within 24 hours to schedule our call",
+    },
   ];
 
   const projectTypes = [
-    'Web Application',
-    'Mobile App (React Native)',
-    'E-commerce Platform',
-    'SaaS Product',
-    'API Development',
-    'Other'
+    "Web Application",
+    "Mobile App (React Native)",
+    "E-commerce Platform",
+    "SaaS Product",
+    "API Development",
+    "Other",
   ];
 
   const budgetRanges = [
-    '$2,999 - $4,999',
-    '$4,999 - $7,999',
-    '$7,999 - $9,999',
-    '$10,000+',
-    'Not sure yet'
+    "$2,999 - $4,999",
+    "$4,999 - $7,999",
+    "$7,999 - $9,999",
+    "$10,000+",
+    "Not sure yet",
   ];
 
   const timelineOptions = [
-    '2-3 weeks',
-    '3-5 weeks',
-    '5-6 weeks',
-    '6+ weeks',
-    'Flexible'
+    "2-3 weeks",
+    "3-5 weeks",
+    "5-6 weeks",
+    "6+ weeks",
+    "Flexible",
   ];
 
   return (
@@ -167,7 +189,7 @@ This is a consultation request from the MVP Services page.`;
           <span className="hidden sm:inline">Back</span>
         </button>
       </div>
-      
+
       {/* Hero Section */}
       <section className="pt-32 pb-20 px-4">
         <div className="container mx-auto text-center">
@@ -181,8 +203,9 @@ This is a consultation request from the MVP Services page.`;
                 Free <span className="gradient-text">Consultation</span>
               </h1>
               <p className="text-xl md:text-2xl text-gray-300 mb-8 max-w-3xl mx-auto">
-                Let's discuss your project and explore how I can help bring your vision to life. 
-                No sales pitch - just honest advice and technical insights.
+                Let's discuss your project and explore how I can help bring your
+                vision to life. No sales pitch - just honest advice and
+                technical insights.
               </p>
             </motion.div>
           </Suspense>
@@ -208,7 +231,9 @@ This is a consultation request from the MVP Services page.`;
                   <div className="text-primary-500 mb-4 flex justify-center">
                     {benefit.icon}
                   </div>
-                  <h3 className="text-xl font-semibold mb-3">{benefit.title}</h3>
+                  <h3 className="text-xl font-semibold mb-3">
+                    {benefit.title}
+                  </h3>
                   <p className="text-gray-300">{benefit.description}</p>
                 </motion.div>
               </Suspense>
@@ -222,9 +247,10 @@ This is a consultation request from the MVP Services page.`;
         <div className="container mx-auto max-w-4xl">
           <div className="bg-gray-800/50 p-8 md:p-12 rounded-2xl border border-gray-700">
             <h2 className="text-3xl font-bold text-center mb-8">
-              Schedule Your <span className="gradient-text">Free Consultation</span>
+              Schedule Your{" "}
+              <span className="gradient-text">Free Consultation</span>
             </h2>
-            
+
             {submitSuccess ? (
               <Suspense fallback={<div>Loading...</div>}>
                 <motion.div
@@ -233,9 +259,12 @@ This is a consultation request from the MVP Services page.`;
                   className="text-center py-12"
                 >
                   <CheckCircle className="w-16 h-16 text-green-500 mx-auto mb-4" />
-                  <h3 className="text-2xl font-bold mb-4">Consultation Request Sent!</h3>
+                  <h3 className="text-2xl font-bold mb-4">
+                    Consultation Request Sent!
+                  </h3>
                   <p className="text-gray-300 mb-6">
-                    Thank you for your interest! I'll review your information and get back to you within 24 hours to schedule our call.
+                    Thank you for your interest! I'll review your information
+                    and get back to you within 24 hours to schedule our call.
                   </p>
                   <motion.button
                     whileHover={{ scale: 1.05 }}
@@ -251,7 +280,10 @@ This is a consultation request from the MVP Services page.`;
               <form ref={formRef} onSubmit={handleSubmit} className="space-y-6">
                 <div className="grid md:grid-cols-2 gap-6">
                   <div>
-                    <label htmlFor="name" className="block text-sm font-medium mb-2">
+                    <label
+                      htmlFor="name"
+                      className="block text-sm font-medium mb-2"
+                    >
                       Full Name *
                     </label>
                     <input
@@ -266,7 +298,10 @@ This is a consultation request from the MVP Services page.`;
                     />
                   </div>
                   <div>
-                    <label htmlFor="email" className="block text-sm font-medium mb-2">
+                    <label
+                      htmlFor="email"
+                      className="block text-sm font-medium mb-2"
+                    >
                       Email Address *
                     </label>
                     <input
@@ -284,7 +319,10 @@ This is a consultation request from the MVP Services page.`;
 
                 <div className="grid md:grid-cols-2 gap-6">
                   <div>
-                    <label htmlFor="phone" className="block text-sm font-medium mb-2">
+                    <label
+                      htmlFor="phone"
+                      className="block text-sm font-medium mb-2"
+                    >
                       Phone Number
                     </label>
                     <input
@@ -298,7 +336,10 @@ This is a consultation request from the MVP Services page.`;
                     />
                   </div>
                   <div>
-                    <label htmlFor="company" className="block text-sm font-medium mb-2">
+                    <label
+                      htmlFor="company"
+                      className="block text-sm font-medium mb-2"
+                    >
                       Company/Organization
                     </label>
                     <input
@@ -315,7 +356,10 @@ This is a consultation request from the MVP Services page.`;
 
                 <div className="grid md:grid-cols-3 gap-6">
                   <div>
-                    <label htmlFor="projectType" className="block text-sm font-medium mb-2">
+                    <label
+                      htmlFor="projectType"
+                      className="block text-sm font-medium mb-2"
+                    >
                       Project Type *
                     </label>
                     <select
@@ -328,12 +372,17 @@ This is a consultation request from the MVP Services page.`;
                     >
                       <option value="">Select project type</option>
                       {projectTypes.map((type) => (
-                        <option key={type} value={type}>{type}</option>
+                        <option key={type} value={type}>
+                          {type}
+                        </option>
                       ))}
                     </select>
                   </div>
                   <div>
-                    <label htmlFor="budget" className="block text-sm font-medium mb-2">
+                    <label
+                      htmlFor="budget"
+                      className="block text-sm font-medium mb-2"
+                    >
                       Budget Range
                     </label>
                     <select
@@ -345,12 +394,17 @@ This is a consultation request from the MVP Services page.`;
                     >
                       <option value="">Select budget range</option>
                       {budgetRanges.map((range) => (
-                        <option key={range} value={range}>{range}</option>
+                        <option key={range} value={range}>
+                          {range}
+                        </option>
                       ))}
                     </select>
                   </div>
                   <div>
-                    <label htmlFor="timeline" className="block text-sm font-medium mb-2">
+                    <label
+                      htmlFor="timeline"
+                      className="block text-sm font-medium mb-2"
+                    >
                       Timeline
                     </label>
                     <select
@@ -362,14 +416,19 @@ This is a consultation request from the MVP Services page.`;
                     >
                       <option value="">Select timeline</option>
                       {timelineOptions.map((option) => (
-                        <option key={option} value={option}>{option}</option>
+                        <option key={option} value={option}>
+                          {option}
+                        </option>
                       ))}
                     </select>
                   </div>
                 </div>
 
                 <div>
-                  <label htmlFor="preferredTime" className="block text-sm font-medium mb-2">
+                  <label
+                    htmlFor="preferredTime"
+                    className="block text-sm font-medium mb-2"
+                  >
                     Preferred Consultation Time
                   </label>
                   <input
@@ -384,7 +443,10 @@ This is a consultation request from the MVP Services page.`;
                 </div>
 
                 <div>
-                  <label htmlFor="description" className="block text-sm font-medium mb-2">
+                  <label
+                    htmlFor="description"
+                    className="block text-sm font-medium mb-2"
+                  >
                     Project Description *
                   </label>
                   <textarea
@@ -400,9 +462,7 @@ This is a consultation request from the MVP Services page.`;
                 </div>
 
                 {submitError && (
-                  <div className="text-red-400 text-center">
-                    {submitError}
-                  </div>
+                  <div className="text-red-400 text-center">{submitError}</div>
                 )}
 
                 <Suspense fallback={<div>Loading...</div>}>
@@ -414,7 +474,7 @@ This is a consultation request from the MVP Services page.`;
                     className="w-full bg-gradient-to-r from-primary-500 to-purple-600 text-white py-4 rounded-lg font-semibold text-lg hover:shadow-lg transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed"
                   >
                     {isSubmitting ? (
-                      'Sending Request...'
+                      "Sending Request..."
                     ) : (
                       <>
                         Schedule Free Consultation
@@ -448,7 +508,7 @@ This is a consultation request from the MVP Services page.`;
               className="flex items-center space-x-3 text-primary-500 hover:text-primary-400 transition-colors"
             >
               <Phone className="w-5 h-5" />
-              <span>(202) 555-0123</span>
+              <span>(202) 642-9753</span>
             </a>
           </div>
         </div>
