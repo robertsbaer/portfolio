@@ -21,6 +21,7 @@ const Consultation = lazy(() => import('./components/Consultation'));
 // import CommunityPantry from './components/CommunityPantry'; // Remove direct import if only used as a route
 const CommunityPantryPage = lazy(() => import('./components/CommunityPantry')); // Lazy load it
 import Brands from './components/Brands';
+const NotFound = lazy(() => import('./components/NotFound'));
 
 
 // Loading component
@@ -201,7 +202,9 @@ function App() {
             <Route path="blog/:slug" element={<BlogPost />} />
             <Route path="mvp-services" element={<MVPServices />} />
             <Route path="consultation" element={<Consultation />} />
-            <Route path="community-pantry" element={<CommunityPantryPage />} /> {/* Use lazy-loaded version */}
+            <Route path="community-pantry" element={<CommunityPantryPage />} />
+            {/* Add this catch-all route at the end */}
+            <Route path="*" element={<NotFound />} />
           </Routes>
         </Suspense>
       </ErrorBoundary>
