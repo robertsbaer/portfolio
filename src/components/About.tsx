@@ -65,11 +65,11 @@ const About = () => {
           className="max-w-4xl mx-auto"
         >
           <motion.div variants={itemVariants} className="text-center mb-16">
-            <h1 className="text-primary-400 font-medium mb-4 flex items-center justify-center">
+            <h2 className="text-primary-400 font-medium mb-4 flex items-center justify-center">
               <span className="inline-block w-10 h-[2px] bg-primary-500 mr-3"></span>
               About Me
               <span className="inline-block w-10 h-[2px] bg-primary-500 ml-3"></span>
-            </h1>
+            </h2>
             <h2 className="text-3xl md:text-4xl font-bold mb-6">
               Get to know me<span className="text-primary-500">.</span>
             </h2>
@@ -96,14 +96,14 @@ const About = () => {
 
             {/* Text Column */}
             <motion.div variants={itemVariants} className="flex flex-col justify-center space-y-4">
-              <h1 className="text-3xl md:text-4xl font-bold">
+              <h3 className="text-3xl md:text-4xl font-bold">
                 Washington DC Web Developer | React &amp; React Native Expert
-              </h1>
+              </h3>
               <h2 className="text-xl md:text-2xl font-semibold">
               I'm a <span className="gradient-text">passionate developer</span> creating amazing digital experiences
               </h2>
               <p className="text-gray-300 text-base md:text-lg leading-relaxed">
-                Hi, I’m Robert Baer, founder of <span className="font-semibold text-primary-400">DCMadeMedia</span>. Based in Washington DC, I specialize in building high-performance web and mobile applications with React and React Native for political campaigns, NGOs, and associations.
+                Hi, I'm Robert Baer, founder of <span className="font-semibold text-primary-400">DCMadeMedia</span>. Based in Washington DC, I specialize in building high-performance web and mobile applications with React and React Native for political campaigns, NGOs, and associations.
               </p>
               <h4 className="text-xl md:text-2xl font-semibold">
                 My Expertise

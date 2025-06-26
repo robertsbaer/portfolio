@@ -65,13 +65,13 @@ const Hero = () => {
                 <span className="inline-block w-10 h-[2px] bg-primary-500 mr-3"></span>
                 Hello, I'm
               </p>
-              <h1 className="text-4xl md:text-6xl font-bold mb-4">
+              <h2 className="text-4xl md:text-6xl font-bold mb-4">
                 Robert Baer
                 <span className="text-primary-500">.</span>
-              </h1>
-              <h2 className="text-2xl md:text-3xl text-gray-300 mb-6">
-                <span className="gradient-text font-semibold">React</span> & <span className="gradient-text font-semibold">React Native</span> Developer
               </h2>
+              <h1 className="text-2xl md:text-3xl text-gray-300 mb-6">
+                <span className="gradient-text font-semibold">React</span> & <span className="gradient-text font-semibold">React Native</span> Developer
+              </h1>
               <p className="text-gray-400 text-lg mb-8 max-w-lg">
                 I build exceptional digital experiences that are fast, accessible, and visually appealing. Specializing in both web and mobile development.
               </p>
