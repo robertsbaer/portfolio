@@ -2,6 +2,7 @@ import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react'
 import { visualizer } from 'rollup-plugin-visualizer'
 import { ViteImageOptimizer } from 'vite-plugin-image-optimizer'
+import ViteSitemap from 'vite-plugin-sitemap';
 
 // Determine if we're in development mode
 const isDev = process.env.NODE_ENV === 'development'
@@ -28,6 +29,10 @@ export default defineConfig({
       open: false,
       gzipSize: true,
       brotliSize: true
+    }),
+    ViteSitemap({ 
+      hostname: 'https://dcmademedia.com',
+      generateRobotsTxt: true, // Optional: will generate robots.txt
     }),
   ],
   // Set the base URL appropriately for development vs production

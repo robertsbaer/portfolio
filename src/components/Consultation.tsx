@@ -1,4 +1,4 @@
-import React, { useState, useRef, lazy, Suspense } from "react";
+import React, { useState, useRef, lazy, Suspense, useEffect } from "react";
 import { useInView } from "react-intersection-observer";
 import { useNavigate } from "react-router-dom";
 import {
@@ -49,6 +49,15 @@ const Consultation = () => {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitSuccess, setSubmitSuccess] = useState(false);
   const [submitError, setSubmitError] = useState("");
+
+  // Add to the top of your Consultation component
+useEffect(() => {
+  document.title = 'Free Consultation | DCMadeMedia';
+  const metaDescription = document.querySelector('meta[name="description"]');
+  if (metaDescription) {
+    metaDescription.setAttribute('content', 'Schedule a free consultation to discuss your web development project and get expert advice.');
+  }
+}, []);
 
   const handleChange = (
     e: React.ChangeEvent<

@@ -1,9 +1,19 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { useNavigate } from 'react-router-dom';
 import { CheckCircle, Zap, Rocket, Star, ArrowRight, Code, Smartphone, Globe, ArrowLeft } from 'lucide-react';
 
 const MVPServices = () => {
+
+  // Add to the top of your MVPServices component
+useEffect(() => {
+  document.title = 'MVP Development Services | DCMadeMedia';
+  const metaDescription = document.querySelector('meta[name="description"]');
+  if (metaDescription) {
+    metaDescription.setAttribute('content', 'Professional MVP development services to bring your startup idea to life quickly and efficiently.');
+  }
+}, []);
+
   const navigate = useNavigate();
 
   const handleConsultationClick = () => {
