@@ -35,7 +35,7 @@ const Projects = () => {
         "A web app that visualizes data from the popular YouTube series 'Hot Ones', using React and Vite for a fast and interactive user experience.",
       image: hotones,
       tags: ["React", "Vite", "Data Visualization"],
-      liveUrl: "https://robertsbaer.github.io/hot-ones-data/",
+      liveUrl: "https://hotones-data.com",
       githubUrl: "https://github.com/robertsbaer/hot-ones-data",
       type: "website"
     },
