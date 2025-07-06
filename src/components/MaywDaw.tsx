@@ -165,12 +165,12 @@ const MaywDaw = () => {
             <div className="flex flex-col md:flex-row gap-4 justify-center items-center text-sm text-gray-400">
               <div className="flex items-center gap-2">
                 <span className="font-semibold">Effective Date:</span>
-                <span>January 1, 2024</span>
+                <span>July 6, 2025</span>
               </div>
               <div className="hidden md:block w-1 h-1 bg-gray-400 rounded-full"></div>
               <div className="flex items-center gap-2">
                 <span className="font-semibold">Last Updated:</span>
-                <span>January 1, 2024</span>
+                <span>July 6, 2025</span>
               </div>
             </div>
           </motion.div>
