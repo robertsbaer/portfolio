@@ -1,28 +1,27 @@
-import React, { useEffect, lazy, Suspense } from 'react';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import React, { useEffect, lazy, Suspense } from "react";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 // Fix import order - move useInView import up
-import { useInView } from 'react-intersection-observer';
-import Navbar from './components/Navbar';
-import Footer from './components/Footer';
-import Cursor from './components/Cursor';
-import './styles/blog.css';
-
+import { useInView } from "react-intersection-observer";
+import Navbar from "./components/Navbar";
+import Footer from "./components/Footer";
+import Cursor from "./components/Cursor";
+import "./styles/blog.css";
 
 // Lazy load components
-const Hero = lazy(() => import('./components/Hero'));
-const About = lazy(() => import('./components/About'));
-const Projects = lazy(() => import('./components/Projects'));
-const Experience = lazy(() => import('./components/Experience'));
-const Contact = lazy(() => import('./components/Contact'));
-const Blog = lazy(() => import('./components/Blog'));
-const BlogPost = lazy(() => import('./components/BlogPost'));
-const MVPServices = lazy(() => import('./components/MVPServices'));
-const Consultation = lazy(() => import('./components/Consultation'));
+const Hero = lazy(() => import("./components/Hero"));
+const About = lazy(() => import("./components/About"));
+const Projects = lazy(() => import("./components/Projects"));
+const Experience = lazy(() => import("./components/Experience"));
+const Contact = lazy(() => import("./components/Contact"));
+const Blog = lazy(() => import("./components/Blog"));
+const BlogPost = lazy(() => import("./components/BlogPost"));
+const MVPServices = lazy(() => import("./components/MVPServices"));
+const Consultation = lazy(() => import("./components/Consultation"));
 // import CommunityPantry from './components/CommunityPantry'; // Remove direct import if only used as a route
-const CommunityPantryPage = lazy(() => import('./components/CommunityPantry')); // Lazy load it
-import Brands from './components/Brands';
-const NotFound = lazy(() => import('./components/NotFound'));
-
+const CommunityPantryPage = lazy(() => import("./components/CommunityPantry")); // Lazy load it
+const MaywDaw = lazy(() => import("./components/MaywDaw"));
+import Brands from "./components/Brands";
+const NotFound = lazy(() => import("./components/NotFound"));
 
 // Loading component
 const Loading = () => (
@@ -58,15 +57,15 @@ class ErrorBoundary extends React.Component<
 function HomePage() {
   useEffect(() => {
     // Smooth scroll for anchor links
-    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-      anchor.addEventListener('click', (e) => {
+    document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
+      anchor.addEventListener("click", (e) => {
         e.preventDefault();
-        const targetId = (e.target as HTMLAnchorElement).getAttribute('href');
+        const targetId = (e.target as HTMLAnchorElement).getAttribute("href");
         if (targetId) {
           const targetElement = document.querySelector(targetId);
           if (targetElement) {
             targetElement.scrollIntoView({
-              behavior: 'smooth'
+              behavior: "smooth",
             });
           }
         }
@@ -78,7 +77,7 @@ function HomePage() {
   // Fix intersection observer usage
   const { ref, inView } = useInView({
     triggerOnce: true,
-    rootMargin: '200px 0px',
+    rootMargin: "200px 0px",
     threshold: 0.1,
   });
 
@@ -88,7 +87,11 @@ function HomePage() {
       <Cursor />
       <Navbar />
       <main>
-        <ErrorBoundary fallback={<div className="text-red-500 p-8">Error loading content</div>}>
+        <ErrorBoundary
+          fallback={
+            <div className="text-red-500 p-8">Error loading content</div>
+          }
+        >
           <Suspense fallback={<Loading />}>
             <Hero />
             <About />
@@ -113,9 +116,16 @@ function App() {
   // Easter Egg: Konami Code
   useEffect(() => {
     const konamiCode = [
-      "ArrowUp", "ArrowUp", "ArrowDown", "ArrowDown",
-      "ArrowLeft", "ArrowRight", "ArrowLeft", "ArrowRight",
-      "b", "a"
+      "ArrowUp",
+      "ArrowUp",
+      "ArrowDown",
+      "ArrowDown",
+      "ArrowLeft",
+      "ArrowRight",
+      "ArrowLeft",
+      "ArrowRight",
+      "b",
+      "a",
     ];
     let konamiIndex = 0;
     function onKeyDown(e: KeyboardEvent) {
@@ -136,7 +146,7 @@ function App() {
   useEffect(() => {
     const rainCode = ["r", "a", "i", "n"];
     let rainIndex = 0;
-  
+
     function createEmojiRain() {
       const emojis = ["🍕", "🌱", "💻", "🎉", "🚀"];
       for (let i = 0; i < 40; i++) {
@@ -150,32 +160,32 @@ function App() {
         emoji.style.transform = `rotate(${Math.random() * 360}deg)`;
         emoji.style.pointerEvents = "none";
         emoji.style.zIndex = "9999";
-  
+
         document.body.appendChild(emoji);
-  
+
         let top = -32;
         let rotation = Math.random() * 360;
         const fallSpeed = 2 + Math.random() * 3;
         const rotateSpeed = 1 + Math.random();
-  
+
         function animate() {
           top += fallSpeed;
           rotation += rotateSpeed;
           emoji.style.top = `${top}px`;
           emoji.style.transform = `rotate(${rotation}deg)`;
           emoji.style.opacity = `${Math.max(0, 1 - top / window.innerHeight)}`;
-          
+
           if (top < window.innerHeight) {
             requestAnimationFrame(animate);
           } else {
             emoji.remove();
           }
         }
-  
+
         requestAnimationFrame(animate);
       }
     }
-  
+
     function onKeyDown(e: KeyboardEvent) {
       if (e.key.toLowerCase() === rainCode[rainIndex]) {
         rainIndex++;
@@ -187,14 +197,18 @@ function App() {
         rainIndex = 0;
       }
     }
-  
+
     window.addEventListener("keydown", onKeyDown);
     return () => window.removeEventListener("keydown", onKeyDown);
   }, []);
-  
+
   return (
     <Router>
-      <ErrorBoundary fallback={<div className="text-red-500 p-8">App Error - Please refresh</div>}>
+      <ErrorBoundary
+        fallback={
+          <div className="text-red-500 p-8">App Error - Please refresh</div>
+        }
+      >
         <Suspense fallback={<Loading />}>
           <Routes>
             <Route path="" element={<HomePage />} />
@@ -203,6 +217,7 @@ function App() {
             <Route path="mvp-services" element={<MVPServices />} />
             <Route path="consultation" element={<Consultation />} />
             <Route path="community-pantry" element={<CommunityPantryPage />} />
+            <Route path="may-w-daw" element={<MaywDaw />} />
             {/* Add this catch-all route at the end */}
             <Route path="*" element={<NotFound />} />
           </Routes>

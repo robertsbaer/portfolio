@@ -1,84 +1,255 @@
-import React, { useState } from 'react';
-import Navbar from './Navbar';
-import Footer from './Footer';
-import Cursor from './Cursor';
+import React, { useEffect } from "react";
 import { motion } from "framer-motion";
+import { useInView } from "react-intersection-observer";
+import { Heart, Users, MapPin, Shield, FileText, Globe } from "lucide-react";
+
+interface SubSection {
+  subtitle: string;
+  items: string[];
+}
+
+interface Section {
+  icon: React.ReactNode;
+  title: string;
+  content: string | string[] | SubSection[];
+}
 
 const CommunityPantry = () => {
-  const [activeTab, setActiveTab] = useState('about');
-  
+  const [ref, inView] = useInView({
+    triggerOnce: false,
+    threshold: 0.1,
+  });
+
+  useEffect(() => {
+    document.title = "Community Pantry - Food Sharing App | DCMadeMedia";
+    const metaDescription = document.querySelector('meta[name="description"]');
+    if (metaDescription) {
+      metaDescription.setAttribute(
+        "content",
+        "Community Pantry app by DCMadeMedia. Connect with your community to share food resources and reduce waste. Learn about our privacy policy and beta program."
+      );
+    }
+  }, []);
+
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.1,
+      },
+    },
+  };
+
+  const itemVariants = {
+    hidden: { y: 20, opacity: 0 },
+    visible: {
+      y: 0,
+      opacity: 1,
+      transition: { duration: 0.5 },
+    },
+  };
+
+  const sections: Section[] = [
+    {
+      icon: <Heart className="w-6 h-6" />,
+      title: "About Community Pantry",
+      content: `Welcome to the Community Pantry project - a special initiative designed to connect those with extra food resources to those in need within our local community. Our app allows users to list excess food items, browse available items in their neighborhood, arrange safe pickup or delivery, and track community impact through donation metrics.`
+    },
+    {
+      icon: <Users className="w-6 h-6" />,
+      title: "How It Works",
+      content: [
+        "List excess food items they're willing to donate",
+        "Browse available items in their neighborhood", 
+        "Arrange safe pickup or delivery of items",
+        "Track community impact through donation metrics"
+      ]
+    },
+    {
+      icon: <MapPin className="w-6 h-6" />,
+      title: "Project Status & Future Plans",
+      content: [
+        {
+          subtitle: "Current Status",
+          items: [
+            "Project is completed and fully functional",
+            "Looking for beta testers in the DC area",
+            "Early access program available"
+          ]
+        },
+        {
+          subtitle: "Next Phase Development",
+          items: [
+            "Eco-friendly marketplace for sustainable products",
+            "Carbon footprint tracking for food donations",
+            "Community sustainability challenges and rewards",
+            "Partnerships with local environmental organizations"
+          ]
+        }
+      ]
+    },
+    {
+      icon: <Shield className="w-6 h-6" />,
+      title: "Privacy & Data Protection",
+      content: [
+        {
+          subtitle: "Information We Collect",
+          items: [
+            "Name and email address for account creation",
+            "Data collected solely for authentication and account access",
+            "No marketing, analytics, or secondary data usage"
+          ]
+        },
+        {
+          subtitle: "Your Rights (GDPR Compliant)",
+          items: [
+            "Access the personal data we hold about you",
+            "Request correction of incorrect or incomplete data",
+            "Request deletion of your data (right to be forgotten)",
+            "Object to or restrict certain types of data processing"
+          ]
+        }
+      ]
+    },
+    {
+      icon: <FileText className="w-6 h-6" />,
+      title: "Data Storage & Security",
+      content: `Your data is securely stored using Supabase, our third-party backend service provider. We implement standard security measures to protect your information, including secure login protocols. We do not share your personal data with third parties.`
+    },
+    {
+      icon: <Globe className="w-6 h-6" />,
+      title: "Contact Information",
+      content: `For questions about our privacy policy or to exercise your data protection rights, please contact us at robertsbaer@yahoo.com. Community Pantry is not intended for children under the age of 16.`
+    }
+  ];
+
   return (
-    <div className="relative">
-      <div className="noise-overlay"></div>
-      <Cursor />
-      <Navbar />
-      <main className="container mx-auto px-4 py-16 max-w-4xl">
+    <div className="min-h-screen bg-dark-900 text-white">
+      {/* Hero Section */}
+      <section className="py-20 relative overflow-hidden">
+        <div className="absolute inset-0 grid-background z-0"></div>
+        
+        {/* Animated background elements */}
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6 }}
-          className="bg-gray-900 rounded-xl p-8 shadow-xl"
-        >
-          <h1 className="text-4xl md:text-5xl font-bold mb-8 text-white">Community Pantry</h1>
-          
-          {/* Tab navigation */}
-          <div className="flex border-b border-gray-700 mb-8">
-            <button 
-              className={`px-4 py-2 font-medium ${activeTab === 'about' ? 'text-primary-500 border-b-2 border-primary-500' : 'text-gray-400 hover:text-gray-300'}`}
-              onClick={() => setActiveTab('about')}
+          className="absolute -right-20 top-20 w-80 h-80 rounded-full bg-primary-500/10 blur-3xl"
+          animate={{
+            x: [0, -30, 0],
+            y: [0, 50, 0],
+          }}
+          transition={{
+            duration: 20,
+            repeat: Infinity,
+            repeatType: "reverse",
+          }}
+        />
+
+        <div className="container mx-auto px-4 md:px-6 relative z-10">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8 }}
+            className="text-center max-w-4xl mx-auto"
+          >
+            <h1 className="text-4xl md:text-6xl font-bold mb-6">
+              Community Pantry
+              <span className="text-primary-500">.</span>
+            </h1>
+            <h2 className="text-xl md:text-2xl text-gray-300 mb-8">
+              Food Sharing Community App
+            </h2>
+            <div className="flex flex-col md:flex-row gap-4 justify-center items-center text-sm text-gray-400">
+              <div className="flex items-center gap-2">
+                <span className="font-semibold">Status:</span>
+                <span>Beta Testing Phase</span>
+              </div>
+              <div className="hidden md:block w-1 h-1 bg-gray-400 rounded-full"></div>
+              <div className="flex items-center gap-2">
+                <span className="font-semibold">Location:</span>
+                <span>Washington DC Area</span>
+              </div>
+            </div>
+          </motion.div>
+        </div>
+      </section>
+
+      {/* Content Section */}
+      <section className="py-20">
+        <div className="container mx-auto px-4 md:px-6">
+          <motion.div
+            ref={ref}
+            initial="hidden"
+            animate={inView ? "visible" : "hidden"}
+            variants={containerVariants}
+            className="max-w-4xl mx-auto space-y-12"
+          >
+            {sections.map((section, index) => (
+              <motion.div
+                key={index}
+                variants={itemVariants}
+                className="bg-dark-800/50 backdrop-blur-sm rounded-lg p-8 border border-gray-800"
+              >
+                <div className="flex items-center gap-4 mb-6">
+                  <div className="p-3 bg-primary-500/20 rounded-lg text-primary-400">
+                    {section.icon}
+                  </div>
+                  <h2 className="text-2xl md:text-3xl font-bold">
+                    {index + 1}. {section.title}
+                  </h2>
+                </div>
+                
+                {typeof section.content === 'string' ? (
+                  <p className="text-gray-300 leading-relaxed">
+                    {section.content}
+                  </p>
+                ) : Array.isArray(section.content) && typeof section.content[0] === 'string' ? (
+                  <ul className="space-y-3">
+                    {(section.content as string[]).map((item, itemIndex) => (
+                      <li key={itemIndex} className="flex items-start gap-3 text-gray-300">
+                        <span className="w-2 h-2 bg-primary-500 rounded-full mt-2 flex-shrink-0"></span>
+                        <span>{item}</span>
+                      </li>
+                    ))}
+                  </ul>
+                ) : (
+                  <div className="space-y-6">
+                    {(section.content as SubSection[]).map((subsection, subIndex) => (
+                      <div key={subIndex}>
+                        <h3 className="text-xl font-semibold mb-3 text-primary-400">
+                          {subsection.subtitle}
+                        </h3>
+                        <ul className="space-y-2">
+                          {subsection.items.map((item: string, itemIndex: number) => (
+                            <li key={itemIndex} className="flex items-start gap-3 text-gray-300">
+                              <span className="w-2 h-2 bg-primary-500 rounded-full mt-2 flex-shrink-0"></span>
+                              <span>{item}</span>
+                            </li>
+                          ))}
+                        </ul>
+                      </div>
+                    ))}
+                  </div>
+                )}
+              </motion.div>
+            ))}
+
+            {/* Beta Signup Call to Action */}
+            <motion.div 
+              variants={itemVariants} 
+              className="text-center bg-gradient-to-r from-primary-500/20 to-secondary-500/20 rounded-lg p-8 border border-primary-500/30"
             >
-              About
-            </button>
-            <button 
-              className={`px-4 py-2 font-medium ${activeTab === 'privacy' ? 'text-primary-500 border-b-2 border-primary-500' : 'text-gray-400 hover:text-gray-300'}`}
-              onClick={() => setActiveTab('privacy')}
-            >
-              Privacy Policy
-            </button>
-          </div>
-          
-          {activeTab === 'about' && (
-            <div className="prose prose-lg prose-invert max-w-none">
+              <h3 className="text-2xl font-bold mb-4">Join Our Beta Program</h3>
               <p className="text-gray-300 mb-6">
-                Welcome to the Community Pantry project - a special initiative designed to connect 
-                those with extra food resources to those in need within our local community.
+                We're looking for beta testers in the DC area. Be part of our initial launch and help build a stronger community.
               </p>
-              
-              <h2 className="text-2xl font-bold mt-8 mb-4 text-white">How It Works</h2>
-              <p className="text-gray-300 mb-6">
-                Our app allows users to:
-              </p>
-              <ul className="list-disc pl-6 text-gray-300 mb-8">
-                <li className="mb-2">List excess food items they're willing to donate</li>
-                <li className="mb-2">Browse available items in their neighborhood</li>
-                <li className="mb-2">Arrange safe pickup or delivery of items</li>
-                <li className="mb-2">Track community impact through donation metrics</li>
-              </ul>
-              
-              <h2 className="text-2xl font-bold mt-8 mb-4 text-white">Project Status</h2>
-              <p className="text-gray-300 mb-6">
-                This project is completed and fully functional! Our next phase of development includes:
-              </p>
-              <ul className="list-disc pl-6 text-gray-300 mb-8">
-                <li className="mb-2">Eco-friendly marketplace for sustainable products</li>
-                <li className="mb-2">Carbon footprint tracking for food donations</li>
-                <li className="mb-2">Community sustainability challenges and rewards</li>
-                <li className="mb-2">Partnerships with local environmental organizations</li>
-              </ul>
-              
-              <div className="bg-gray-800 p-6 rounded-lg mt-8">
-                <h3 className="text-xl font-bold mb-4 text-white">Interested in Early Access?</h3>
-                <p className="text-gray-300 mb-4">
-                  We're looking for beta testers in the DC area. If you'd like to be part of our 
-                  initial launch, please fill out the form below.
-                </p>
-                <form className="mt-6 space-y-4">
+              <div className="bg-dark-800/50 backdrop-blur-sm rounded-lg p-6 max-w-md mx-auto">
+                <form className="space-y-4">
                   <div>
                     <label htmlFor="name" className="block text-sm font-medium text-gray-300 mb-1">Name</label>
                     <input 
                       type="text" 
                       id="name" 
-                      className="w-full px-4 py-2 rounded bg-gray-700 text-white focus:outline-none focus:ring-2 focus:ring-blue-500"
+                      className="w-full px-4 py-2 rounded bg-dark-700 text-white border border-gray-600 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-transparent"
                     />
                   </div>
                   <div>
@@ -86,7 +257,7 @@ const CommunityPantry = () => {
                     <input 
                       type="email" 
                       id="email" 
-                      className="w-full px-4 py-2 rounded bg-gray-700 text-white focus:outline-none focus:ring-2 focus:ring-blue-500"
+                      className="w-full px-4 py-2 rounded bg-dark-700 text-white border border-gray-600 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-transparent"
                     />
                   </div>
                   <div>
@@ -94,14 +265,14 @@ const CommunityPantry = () => {
                     <input 
                       type="text" 
                       id="zip" 
-                      className="w-full px-4 py-2 rounded bg-gray-700 text-white focus:outline-none focus:ring-2 focus:ring-blue-500"
+                      className="w-full px-4 py-2 rounded bg-dark-700 text-white border border-gray-600 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-transparent"
                     />
                   </div>
                   <div>
                     <label htmlFor="interest" className="block text-sm font-medium text-gray-300 mb-1">I'm interested in:</label>
                     <select 
                       id="interest" 
-                      className="w-full px-4 py-2 rounded bg-gray-700 text-white focus:outline-none focus:ring-2 focus:ring-blue-500"
+                      className="w-full px-4 py-2 rounded bg-dark-700 text-white border border-gray-600 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-transparent"
                     >
                       <option value="donating">Donating Food</option>
                       <option value="receiving">Receiving Food</option>
@@ -111,115 +282,16 @@ const CommunityPantry = () => {
                   </div>
                   <button 
                     type="submit" 
-                    className="w-full px-6 py-3 bg-blue-600 text-white rounded hover:bg-blue-500 transition-colors font-medium"
+                    className="w-full btn btn-primary py-3 px-6 hover-element"
                   >
                     Join the Waitlist
                   </button>
                 </form>
               </div>
-            </div>
-          )}
-          
-          {activeTab === 'privacy' && (
-            <div className="prose prose-lg prose-invert max-w-none">
-              <h2 className="text-3xl font-bold mb-6 text-white">Privacy Policy for Community Pantry</h2>
-              <p className="text-gray-400 italic mb-6">Last updated: April 10, 2025</p>
-              
-              <p className="text-gray-300 mb-6">
-                Community Pantry ("we", "our", or "us") is committed to protecting your privacy. 
-                This Privacy Policy explains how we collect, use, and protect your personal data 
-                when you use our iOS application.
-              </p>
-              
-              <h3 className="text-2xl font-bold mt-8 mb-4 text-white">1. Information We Collect</h3>
-              <p className="text-gray-300 mb-4">
-                We collect the following personal data during the sign-in process:
-              </p>
-              <ul className="list-disc pl-6 text-gray-300 mb-6">
-                <li className="mb-2"><strong>Name</strong></li>
-                <li className="mb-2"><strong>Email address</strong></li>
-              </ul>
-              <p className="text-gray-300 mb-6">
-                This information is collected solely for the purpose of creating and managing your 
-                user account within the Community Pantry app.
-              </p>
-              
-              <h3 className="text-2xl font-bold mt-8 mb-4 text-white">2. How We Use Your Information</h3>
-              <p className="text-gray-300 mb-4">
-                We use your personal information exclusively for:
-              </p>
-              <ul className="list-disc pl-6 text-gray-300 mb-6">
-                <li className="mb-2"><strong>Authentication and account access</strong></li>
-              </ul>
-              <p className="text-gray-300 mb-6">
-                We do not use your data for marketing, analytics, or any other secondary purposes.
-              </p>
-              
-              <h3 className="text-2xl font-bold mt-8 mb-4 text-white">3. Legal Basis for Processing</h3>
-              <p className="text-gray-300 mb-4">
-                Under the General Data Protection Regulation (GDPR), we process your data based on:
-              </p>
-              <ul className="list-disc pl-6 text-gray-300 mb-6">
-                <li className="mb-2">
-                  <strong>Contractual necessity</strong>: We need your name and email to provide 
-                  access to the Community Pantry app and its features.
-                </li>
-              </ul>
-              
-              <h3 className="text-2xl font-bold mt-8 mb-4 text-white">4. Data Storage and Security</h3>
-              <p className="text-gray-300 mb-6">
-                Your data is securely stored using <strong>Supabase</strong>, our third-party 
-                backend service provider. We implement standard security measures to protect your 
-                information, including secure login protocols.
-              </p>
-              
-              <h3 className="text-2xl font-bold mt-8 mb-4 text-white">5. Sharing of Information</h3>
-              <p className="text-gray-300 mb-6">
-                We do <strong>not</strong> share your personal data with third parties.
-              </p>
-              
-              <h3 className="text-2xl font-bold mt-8 mb-4 text-white">6. Your Data Protection Rights</h3>
-              <p className="text-gray-300 mb-4">
-                Under GDPR, you have the right to:
-              </p>
-              <ul className="list-disc pl-6 text-gray-300 mb-6">
-                <li className="mb-2">Access the personal data we hold about you</li>
-                <li className="mb-2">Request correction of incorrect or incomplete data</li>
-                <li className="mb-2">Request deletion of your data ("right to be forgotten")</li>
-                <li className="mb-2">Object to or restrict certain types of data processing</li>
-              </ul>
-              <p className="text-gray-300 mb-6">
-                To exercise any of these rights, please contact us at:
-              </p>
-              <p className="text-gray-300 mb-6">
-                📧 <strong>robertsbaer@yahoo.com</strong>
-              </p>
-              
-              <h3 className="text-2xl font-bold mt-8 mb-4 text-white">7. Children's Privacy</h3>
-              <p className="text-gray-300 mb-6">
-                Community Pantry is not intended for children under the age of 16, and we do not 
-                knowingly collect personal data from children.
-              </p>
-              
-              <h3 className="text-2xl font-bold mt-8 mb-4 text-white">8. Changes to This Policy</h3>
-              <p className="text-gray-300 mb-6">
-                We may update this Privacy Policy from time to time. If we make significant changes, 
-                we recommend checking the app or the App Store listing for the latest version of this policy.
-              </p>
-              
-              <h3 className="text-2xl font-bold mt-8 mb-4 text-white">9. Contact Us</h3>
-              <p className="text-gray-300 mb-4">
-                If you have any questions or concerns about this Privacy Policy or your data, please contact:
-              </p>
-              <p className="text-gray-300 mb-6">
-                <strong>Robert Baer</strong><br />
-                📧 <strong>robertsbaer@yahoo.com</strong>
-              </p>
-            </div>
-          )}
-        </motion.div>
-      </main>
-      <Footer />
+            </motion.div>
+          </motion.div>
+        </div>
+      </section>
     </div>
   );
 };
