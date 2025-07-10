@@ -11,6 +11,8 @@ import letersets from "../assets/letrsets.webp";
 import orangemantariff from "../assets/orangemantariff.png";
 import gulfofmexico from "../assets/gulfofmexico.png";
 import clipboard from "../assets/clipboard.png";
+import maywdaw from "../assets/maywdaw.png";
+import playstoretest from "../assets/playstoretest.png";
 
 const Projects = () => {
   const [ref, inView] = useInView({
@@ -27,7 +29,7 @@ const Projects = () => {
       tags: ["React", "Vite", "Political Campaign", "Responsive Design"],
       liveUrl: "https://robertsbaer.github.io/political-campaign/",
       githubUrl: "https://github.com/robertsbaer/political-campaign",
-      type: "website"
+      type: "website",
     },
     {
       title: "Hot Ones Data Viz",
@@ -37,7 +39,26 @@ const Projects = () => {
       tags: ["React", "Vite", "Data Visualization"],
       liveUrl: "https://hotones-data.com",
       githubUrl: "https://github.com/robertsbaer/hot-ones-data",
-      type: "website"
+      type: "website",
+    },
+    {
+      title: "Play Store Test",
+      description: "A web app that allows android developer to finder testers",
+      image: playstoretest,
+      tags: ["React", "Vite", "Development"],
+      liveUrl: "https://playstoretest.com/",
+      githubUrl: "https://github.com/robertsbaer/",
+      type: "website",
+    },
+    {
+      title: "May w Daw",
+      description:
+        "A web app that allows residents of Beirut to share the status of water and electricity in their sector.",
+      image: maywdaw,
+      tags: ["React", "Vite", "Social"],
+      liveUrl: "https://apps.apple.com/us/app/may-w-daw/id6748283609",
+      githubUrl: "https://github.com/robertsbaer/may-w-daw",
+      type: "app",
     },
     {
       title: "Crush'd",
@@ -47,7 +68,7 @@ const Projects = () => {
       tags: ["React Native", "Expo", "Food Challenge"],
       liveUrl: "",
       githubUrl: "https://github.com/robertsbaer",
-      type: "app"
+      type: "app",
     },
     {
       title: "Polling App",
@@ -57,66 +78,77 @@ const Projects = () => {
       tags: ["React Native", "Polling", "UI/UX"],
       liveUrl: "",
       githubUrl: "https://github.com/robertsbaer",
-      type: "app"
+      type: "app",
     },
     {
       title: "Community Pantry",
       description:
-      "Community Pantry is a sustainable food-sharing platform that connects neighbors with excess food to those in need.",
+        "Community Pantry is a sustainable food-sharing platform that connects neighbors with excess food to those in need.",
       image: communityPantry,
       tags: ["React Native", "Food", "Social"],
       liveUrl: "https://apps.apple.com/us/app/community-pantry/id6744461115",
       githubUrl: "https://github.com/robertsbaer",
-      type: "app"
+      type: "app",
     },
     // Add more projects here
     {
       title: "Letrsets",
-      description: "Letrsets is a web game where users find words using sets of letters. Available in French, Spanish, English, portuguese, and Turkish.",
+      description:
+        "Letrsets is a web game where users find words using sets of letters. Available in French, Spanish, English, portuguese, and Turkish.",
       image: letersets,
       tags: ["React", "Game", "UI/UX"],
       liveUrl: "https://letrsets.com/",
       githubUrl: "https://github.com/robertsbaer/letrsets",
-      type: "website"
+      type: "website",
     },
     {
       title: "Orange Man Tariff",
-      description: "Orange Man Tariff displays the cost of goods with the tariff on Amazon",
+      description:
+        "Orange Man Tariff displays the cost of goods with the tariff on Amazon",
       image: orangemantariff,
       tags: ["Chrome extension", "Amazon"],
-      liveUrl: "https://chromewebstore.google.com/detail/orange-man-tariff/oolaebalghjpahklfggliaoafgejhlbm",
+      liveUrl:
+        "https://chromewebstore.google.com/detail/orange-man-tariff/oolaebalghjpahklfggliaoafgejhlbm",
       githubUrl: "https://github.com/robertsbaer/OrangeManTariff",
-      type: "Chrome extension"
+      type: "Chrome extension",
     },
     {
       title: "Gulf Of Mexico",
-      description: "Chrome extension for Google Maps that corrects altered names for the 'Gulf of Mexico' back to its historically recognized name in real-time.",
+      description:
+        "Chrome extension for Google Maps that corrects altered names for the 'Gulf of Mexico' back to its historically recognized name in real-time.",
       image: gulfofmexico,
       tags: ["Chrome extension", "Google Maps", "Historical Accuracy"],
-      liveUrl: "https://chromewebstore.google.com/detail/gulf-of-mexico/iimjcfobpghafhjkbjflpnlfmfiggegg",
+      liveUrl:
+        "https://chromewebstore.google.com/detail/gulf-of-mexico/iimjcfobpghafhjkbjflpnlfmfiggegg",
       githubUrl: "https://github.com/robertsbaer/Gulf-Of-Mexico",
-      type: "Chrome extension"
+      type: "Chrome extension",
     },
     {
       title: "Mini Clipboard Manager",
-      description: "Chrome extension that allows users to easily copy and paste text, images, and URLs from the web to their clipboard.",
+      description:
+        "Chrome extension that allows users to easily copy and paste text, images, and URLs from the web to their clipboard.",
       image: clipboard,
       tags: ["Chrome extension", "Clipboard", "UI/UX"],
-      liveUrl: "https://chromewebstore.google.com/detail/mini-clipboard-manager/bjnhcllpmobjnpcmmhmjnmmfgfphbchj",
+      liveUrl:
+        "https://chromewebstore.google.com/detail/mini-clipboard-manager/bjnhcllpmobjnpcmmhmjnmmfgfphbchj",
       githubUrl: "https://github.com/robertsbaer/mini-clipboard-manager",
-      type: "Chrome extension"
-    }
+      type: "Chrome extension",
+    },
   ];
 
-  const [selectedType, setSelectedType] = useState<string>('All'); // State for selected type
+  const [selectedType, setSelectedType] = useState<string>("All"); // State for selected type
 
   // Get unique project types, including "All"
-  const projectTypes = ['All', ...Array.from(new Set(projects.map(p => p.type)))];
+  const projectTypes = [
+    "All",
+    ...Array.from(new Set(projects.map((p) => p.type))),
+  ];
 
   // Filter projects based on selected type
-  const filteredProjects = selectedType === 'All'
-    ? projects
-    : projects.filter(project => project.type === selectedType);
+  const filteredProjects =
+    selectedType === "All"
+      ? projects
+      : projects.filter((project) => project.type === selectedType);
 
   const containerVariants = {
     hidden: { opacity: 0 },
@@ -184,9 +216,10 @@ const Projects = () => {
                 key={type}
                 onClick={() => setSelectedType(type)}
                 className={`px-4 py-2 rounded-full text-sm font-medium transition-colors duration-300 hover-element
-                  ${selectedType === type
-                    ? 'bg-primary-500 text-white shadow-lg'
-                    : 'bg-gray-800 text-gray-300 hover:bg-gray-700 hover:text-white'
+                  ${
+                    selectedType === type
+                      ? "bg-primary-500 text-white shadow-lg"
+                      : "bg-gray-800 text-gray-300 hover:bg-gray-700 hover:text-white"
                   }`}
               >
                 {type}
@@ -207,8 +240,8 @@ const Projects = () => {
                   alt={project.title}
                   className="w-full h-80 object-cover transition-transform duration-300 group-hover:scale-105"
                   loading="lazy"
-                  width="800"  // Add explicit width attribute
-                  height="600"  // Add explicit height attribute
+                  width="800" // Add explicit width attribute
+                  height="600" // Add explicit height attribute
                 />
                 {/* Project title always visible at the bottom */}
                 <div className="absolute bottom-0 left-0 right-0 p-4 bg-gradient-to-t from-black/80 to-transparent">
@@ -216,7 +249,7 @@ const Projects = () => {
                     {project.title}
                   </h3>
                 </div>
-                
+
                 {/* Full details on hover */}
                 <div className="absolute inset-0 flex flex-col justify-center items-center p-6 bg-black/70 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
                   <h4 className="text-xl font-bold mb-3 text-white drop-shadow-lg">
