@@ -1,6 +1,4 @@
 import React, { useEffect } from "react";
-import { motion } from "framer-motion";
-import { useInView } from "react-intersection-observer";
 import { Shield, Lock, Eye, FileText, Users, Globe } from "lucide-react";
 
 interface SubSection {
@@ -15,11 +13,6 @@ interface Section {
 }
 
 const MaywDaw = () => {
-  const [ref, inView] = useInView({
-    triggerOnce: false,
-    threshold: 0.1,
-  });
-
   useEffect(() => {
     document.title = "May w Daw - Privacy Policy | DCMadeMedia";
     const metaDescription = document.querySelector('meta[name="description"]');
@@ -31,24 +24,7 @@ const MaywDaw = () => {
     }
   }, []);
 
-  const containerVariants = {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: {
-        staggerChildren: 0.1,
-      },
-    },
-  };
 
-  const itemVariants = {
-    hidden: { y: 20, opacity: 0 },
-    visible: {
-      y: 0,
-      opacity: 1,
-      transition: { duration: 0.5 },
-    },
-  };
 
   const sections: Section[] = [
     {
@@ -134,25 +110,10 @@ const MaywDaw = () => {
       <section className="py-20 relative overflow-hidden">
         <div className="absolute inset-0 grid-background z-0"></div>
 
-        {/* Animated background elements */}
-        <motion.div
-          className="absolute -right-20 top-20 w-80 h-80 rounded-full bg-primary-500/10 blur-3xl"
-          animate={{
-            x: [0, -30, 0],
-            y: [0, 50, 0],
-          }}
-          transition={{
-            duration: 20,
-            repeat: Infinity,
-            repeatType: "reverse",
-          }}
-        />
-
+        {/* Remove Animated background elements */}
         <div className="container mx-auto px-4 md:px-6 relative z-10">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
+          <div
+            // Remove motion.div and its props
             className="text-center max-w-4xl mx-auto"
           >
             <h1 className="text-4xl md:text-6xl font-bold mb-6">
@@ -173,24 +134,21 @@ const MaywDaw = () => {
                 <span>July 6, 2025</span>
               </div>
             </div>
-          </motion.div>
+          </div>
         </div>
       </section>
 
       {/* Content Section */}
       <section className="py-20">
         <div className="container mx-auto px-4 md:px-6">
-          <motion.div
-            ref={ref}
-            initial="hidden"
-            animate={inView ? "visible" : "hidden"}
-            variants={containerVariants}
+          <div
+            // Remove motion.div, ref, initial, animate, variants
             className="max-w-4xl mx-auto space-y-12"
           >
             {sections.map((section, index) => (
-              <motion.div
+              <div
                 key={index}
-                variants={itemVariants}
+                // Remove variants
                 className="bg-dark-800/50 backdrop-blur-sm rounded-lg p-8 border border-gray-800"
               >
                 <div className="flex items-center gap-4 mb-6">
@@ -245,12 +203,11 @@ const MaywDaw = () => {
                     )}
                   </div>
                 )}
-              </motion.div>
+              </div>
             ))}
 
             {/* Additional Sections */}
-            <motion.div
-              variants={itemVariants}
+            <div
               className="bg-dark-800/50 backdrop-blur-sm rounded-lg p-8 border border-gray-800"
             >
               <h2 className="text-2xl md:text-3xl font-bold mb-6">
@@ -282,10 +239,9 @@ const MaywDaw = () => {
                   <span>You can request deletion of your data at any time</span>
                 </li>
               </ul>
-            </motion.div>
+            </div>
 
-            <motion.div
-              variants={itemVariants}
+            <div
               className="bg-dark-800/50 backdrop-blur-sm rounded-lg p-8 border border-gray-800"
             >
               <h2 className="text-2xl md:text-3xl font-bold mb-6">
@@ -297,10 +253,9 @@ const MaywDaw = () => {
                 under 13. If you are a parent or guardian and believe your child
                 has provided us with personal information, please contact us.
               </p>
-            </motion.div>
+            </div>
 
-            <motion.div
-              variants={itemVariants}
+            <div
               className="bg-dark-800/50 backdrop-blur-sm rounded-lg p-8 border border-gray-800"
             >
               <h2 className="text-2xl md:text-3xl font-bold mb-6">
@@ -326,11 +281,10 @@ const MaywDaw = () => {
                   </span>
                 </li>
               </ul>
-            </motion.div>
+            </div>
 
             {/* Call to Action */}
-            <motion.div
-              variants={itemVariants}
+            <div
               className="text-center bg-gradient-to-r from-primary-500/20 to-secondary-500/20 rounded-lg p-8 border border-primary-500/30"
             >
               <h3 className="text-2xl font-bold mb-4">
@@ -346,8 +300,8 @@ const MaywDaw = () => {
               >
                 Contact DCMadeMedia
               </a>
-            </motion.div>
-          </motion.div>
+            </div>
+          </div>
         </div>
       </section>
     </div>
