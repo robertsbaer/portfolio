@@ -5,10 +5,9 @@
   X-Frame-Options: DENY
   Expires: Thu, 31 Dec 2037 23:55:55 GMT
 
-https://dcmademedia.com/*
-  Cache-Control: no-store, max-age=0
-  Permissions-Policy: interest-cohort=()
-  Redirect: 301 https://dcmademedia.com/:splat
+/*
+  /index.html
+  200
 
 /assets/*
   Cache-Control: public, max-age=31536000, immutable
