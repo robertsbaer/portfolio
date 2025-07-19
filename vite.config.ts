@@ -1,11 +1,11 @@
-import { defineConfig } from 'vite'
-import react from '@vitejs/plugin-react'
-import { visualizer } from 'rollup-plugin-visualizer'
-import { ViteImageOptimizer } from 'vite-plugin-image-optimizer'
-import ViteSitemap from 'vite-plugin-sitemap';
+import { defineConfig } from "vite";
+import react from "@vitejs/plugin-react";
+import { visualizer } from "rollup-plugin-visualizer";
+import { ViteImageOptimizer } from "vite-plugin-image-optimizer";
+import ViteSitemap from "vite-plugin-sitemap";
 
 // Determine if we're in development mode
-const isDev = process.env.NODE_ENV === 'development'
+const isDev = process.env.NODE_ENV === "development";
 
 export default defineConfig({
   plugins: [
@@ -25,31 +25,31 @@ export default defineConfig({
       },
     }),
     visualizer({
-      filename: 'stats.html',
+      filename: "stats.html",
       open: false,
       gzipSize: true,
-      brotliSize: true
+      brotliSize: true,
     }),
-    ViteSitemap({ 
-      hostname: 'https://dcmademedia.com',
+    ViteSitemap({
+      hostname: "https://dcmademedia.com",
       generateRobotsTxt: true, // Optional: will generate robots.txt
     }),
   ],
   // Set the base URL appropriately for development vs production
-  base: isDev ? '/' : 'https://dcmademedia.com/',
+  base: isDev ? "/" : "https://dcmademedia.com/",
   build: {
     rollupOptions: {
       output: {
         manualChunks: {
-          'react-core': ['react', 'react-dom', 'react/jsx-runtime'],
-          'router': ['react-router-dom'],
-          'framer-motion': ['framer-motion'],
-          'lucide': ['lucide-react']
+          "react-core": ["react", "react-dom", "react/jsx-runtime"],
+          router: ["react-router-dom"],
+          "framer-motion": ["framer-motion"],
+          lucide: ["lucide-react"],
         },
       },
     },
     chunkSizeWarningLimit: 1000,
-    minify: 'terser',
+    minify: "terser",
     terserOptions: {
       compress: {
         drop_console: true,
@@ -61,19 +61,21 @@ export default defineConfig({
   },
   css: {
     modules: {
-      localsConvention: 'camelCaseOnly',
+      localsConvention: "camelCaseOnly",
     },
     devSourcemap: true,
   },
   server: {
     open: false,
     // Use different headers for development
-    headers: isDev ? {
-      // Less aggressive caching for development
-      'Cache-Control': 'no-cache, no-store, must-revalidate'
-    } : {
-      // Production caching
-      'Cache-Control': 'public, max-age=31536000, immutable'
-    }
+    headers: isDev
+      ? {
+          // Less aggressive caching for development
+          "Cache-Control": "no-cache, no-store, must-revalidate",
+        }
+      : {
+          // Production caching
+          "Cache-Control": "public, max-age=31536000, immutable",
+        },
   },
 });

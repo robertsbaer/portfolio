@@ -218,6 +218,8 @@ function App() {
             <Route path="consultation" element={<Consultation />} />
             <Route path="community-pantry" element={<CommunityPantryPage />} />
             <Route path="may-w-daw" element={<MaywDaw />} />
+            {/* Add privacy-policy route for Google Play Console */}
+            <Route path="privacy-policy" element={<MaywDaw />} />
             {/* Add this catch-all route at the end */}
             <Route path="*" element={<NotFound />} />
           </Routes>

@@ -1,13 +1,11 @@
+# SPA fallback rule - must be first
+/*    /index.html   200
+
+# Security headers
 /*
   Strict-Transport-Security: max-age=31536000; includeSubDomains; preload
-  Cache-Control: public, max-age=31536000, immutable
   X-Content-Type-Options: nosniff
   X-Frame-Options: DENY
-  Expires: Thu, 31 Dec 2037 23:55:55 GMT
-
-/*
-  /index.html
-  200
 
 /assets/*
   Cache-Control: public, max-age=31536000, immutable

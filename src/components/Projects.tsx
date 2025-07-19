@@ -6,7 +6,7 @@ import crushItLogo from "../assets/crushitlogo.webp";
 import poll24 from "../assets/poll24.webp";
 import hotones from "../assets/hotones.webp";
 import obamabarack from "../assets/obamabarack.webp";
-import communityPantry from "../assets/communitypantry.png";
+import communityPantry from "../assets/communityPantry.png";
 import letersets from "../assets/letrsets.webp";
 import orangemantariff from "../assets/orangemantariff.png";
 import gulfofmexico from "../assets/gulfofmexico.png";
