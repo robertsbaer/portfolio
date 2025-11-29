@@ -20,7 +20,6 @@ const Consultation = lazy(() => import("./components/Consultation"));
 // import CommunityPantry from './components/CommunityPantry'; // Remove direct import if only used as a route
 const CommunityPantryPage = lazy(() => import("./components/CommunityPantry")); // Lazy load it
 const MaywDaw = lazy(() => import("./components/MaywDaw"));
-import Brands from "./components/Brands";
 const NotFound = lazy(() => import("./components/NotFound"));
 
 // Loading component
@@ -100,7 +99,6 @@ function HomePage() {
             <div ref={ref} className="min-h-[100vh]">
               {inView && <Experience />}
             </div>
-            <Brands />
             <Contact />
           </Suspense>
         </ErrorBoundary>
