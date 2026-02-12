@@ -1,4 +1,4 @@
-import { Helmet } from 'react-helmet-async';
+import { Helmet } from "react-helmet-async";
 
 interface SeoProps {
   title: string;
@@ -8,7 +8,13 @@ interface SeoProps {
   schemaMarkup?: object;
 }
 
-const Seo = ({ title, description, canonical, image, schemaMarkup }: SeoProps) => (
+const Seo = ({
+  title,
+  description,
+  canonical,
+  image,
+  schemaMarkup,
+}: SeoProps) => (
   <Helmet>
     <title>{title}</title>
     <meta name="description" content={description} />
@@ -29,9 +35,7 @@ const Seo = ({ title, description, canonical, image, schemaMarkup }: SeoProps) =
 
     {/* Structured Data (Schema Markup) */}
     {schemaMarkup && (
-      <script type="application/ld+json">
-        {JSON.stringify(schemaMarkup)}
-      </script>
+      <script type="application/ld+json">{JSON.stringify(schemaMarkup)}</script>
     )}
   </Helmet>
 );

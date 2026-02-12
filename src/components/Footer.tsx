@@ -9,7 +9,7 @@ const Footer = () => {
 
   const handleNavClick = (
     e: React.MouseEvent<HTMLAnchorElement>,
-    href: string
+    href: string,
   ) => {
     e.preventDefault();
 
@@ -45,7 +45,7 @@ const Footer = () => {
     },
     {
       icon: <Linkedin className="w-5 h-5" />,
-      href: "https://linkedin.com/in/robert-baer",
+      href: "https://www.linkedin.com/in/robert-baer-3849163b0/",
       label: "LinkedIn",
     },
     // {

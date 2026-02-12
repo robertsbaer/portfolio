@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect } from "react";
 import { Menu, X, Github, Linkedin, Twitter } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import { useLocation, useNavigate } from "react-router-dom";
@@ -26,7 +26,7 @@ const Navbar = () => {
   // Add proper TypeScript type annotations
   const handleNavClick = (
     e: React.MouseEvent<HTMLAnchorElement>,
-    href: string
+    href: string,
   ) => {
     e.preventDefault();
 
@@ -81,7 +81,7 @@ const Navbar = () => {
     },
     {
       icon: <Linkedin className="w-5 h-5" />,
-      href: "https://linkedin.com/in/robert-baer",
+      href: "https://www.linkedin.com/in/robert-baer-3849163b0/",
       label: "LinkedIn",
     },
   ];

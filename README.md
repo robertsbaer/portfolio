@@ -11,7 +11,7 @@ With over 10 years of experience in web and mobile development, I create high-pe
 - **Location:** Washington, DC
 - **Website:** [dcmademedia.com](https://dcmademedia.com)
 - **GitHub:** [robertsbaer](https://github.com/robertsbaer)
-- **LinkedIn:** [robert-baer](https://linkedin.com/in/robert-baer)
+- **LinkedIn:** [robert-baer](https://www.linkedin.com/in/robert-baer-3849163b0/)
 
 ---
 
