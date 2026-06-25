@@ -13,6 +13,7 @@ import gulfofmexico from "../assets/gulfofmexico.png";
 import clipboard from "../assets/clipboard.png";
 import maywdaw from "../assets/maywdaw.png";
 import playstoretest from "../assets/playstoretest.png";
+import bloom from "../assets/bloom.webp";
 
 const Projects = () => {
   const [ref, inView] = useInView({
@@ -21,6 +22,15 @@ const Projects = () => {
   });
 
   const projects = [
+    {
+      title: "Bloom 5.5",
+      description:
+        "A full e-commerce website for a lotion, beard, and body product company. Built with a modern tech stack to provide a seamless shopping experience.",
+      image: bloom,
+      tags: ["E-commerce", "React", "Shopping"],
+      liveUrl: "https://mybloom55.com",
+      type: "website",
+    },
     {
       title: "Obama Campaign Site",
       description:
@@ -280,15 +290,17 @@ const Projects = () => {
                         <ExternalLink className="w-5 h-5" />
                       </a>
                     )}
-                    <a
-                      href={project.githubUrl}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="text-white bg-gray-700 hover:bg-gray-600 p-2 rounded-full transition-colors duration-300"
-                      aria-label={`View GitHub repository for ${project.title}`}
-                    >
-                      <Github className="w-5 h-5" />
-                    </a>
+                    {project.githubUrl && (
+                      <a
+                        href={project.githubUrl}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="text-white bg-gray-700 hover:bg-gray-600 p-2 rounded-full transition-colors duration-300"
+                        aria-label={`View GitHub repository for ${project.title}`}
+                      >
+                        <Github className="w-5 h-5" />
+                      </a>
+                    )}
                   </div>
                 </div>
               </motion.div>
