@@ -1,10 +1,12 @@
 import React, { useEffect, lazy, Suspense } from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 // Fix import order - move useInView import up
+import { useTranslation } from "react-i18next";
 import { useInView } from "react-intersection-observer";
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
 import Cursor from "./components/Cursor";
+import Seo from "./components/Seo"; // Corrected import
 import "./styles/blog.css";
 
 // Lazy load components
@@ -55,6 +57,7 @@ class ErrorBoundary extends React.Component<
 }
 
 function HomePage() {
+  const { t } = useTranslation();
   useEffect(() => {
     // Smooth scroll for anchor links
     document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
@@ -83,6 +86,13 @@ function HomePage() {
 
   return (
     <div className="relative">
+      <Seo
+        title={t("seo_title")}
+        description={t("seo_description")}
+        keywords={t("seo_keywords")}
+        canonical="https://dcmademedia.com/"
+        image="https://dcmademedia.com/dcmademedia.png"
+      />
       <div className="noise-overlay"></div>
       <Cursor />
       <Navbar />

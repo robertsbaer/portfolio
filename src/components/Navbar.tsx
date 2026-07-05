@@ -1,10 +1,13 @@
-import React, { useState, useEffect } from 'react';
-import { Menu, X, Github, Linkedin, Twitter } from "lucide-react";
+import React, { useState, useEffect } from "react";
+import { useTranslation } from "react-i18next";
+import { Menu, X, Github, Linkedin, Twitter, Languages } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import { useLocation, useNavigate } from "react-router-dom";
 
 const Navbar = () => {
+  const { t, i18n } = useTranslation();
   const [isOpen, setIsOpen] = useState(false);
+  const [isLangOpen, setIsLangOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const location = useLocation();
   const navigate = useNavigate();
@@ -26,7 +29,7 @@ const Navbar = () => {
   // Add proper TypeScript type annotations
   const handleNavClick = (
     e: React.MouseEvent<HTMLAnchorElement>,
-    href: string
+    href: string,
   ) => {
     e.preventDefault();
 
@@ -64,13 +67,13 @@ const Navbar = () => {
   };
 
   const navLinks = [
-    { name: "Home", href: "#home" },
-    { name: "About", href: "#about" },
-    { name: "Projects", href: "#projects" },
-    { name: "Experience", href: "#experience" },
-    { name: "MVP Services", href: "/mvp-services" },
-    { name: "Contact", href: "#contact" },
-    { name: "Blog", href: "/blog" },
+    { name: t("home"), href: "#home" },
+    { name: t("about"), href: "#about" },
+    { name: t("projects"), href: "#projects" },
+    { name: t("experience"), href: "#experience" },
+    { name: t("mvp_services"), href: "/mvp-services" },
+    { name: t("contact"), href: "#contact" },
+    { name: t("blog"), href: "/blog" },
   ];
 
   const socialLinks = [
@@ -140,6 +143,43 @@ const Navbar = () => {
                 </a>
               ))}
             </div>
+            <div className="relative">
+              <button
+                onClick={() => setIsLangOpen(!isLangOpen)}
+                className="text-gray-400 hover:text-primary-500 transition-colors duration-300 hover-element"
+              >
+                <Languages className="w-6 h-6" />
+              </button>
+              <AnimatePresence>
+                {isLangOpen && (
+                  <motion.div
+                    initial={{ opacity: 0, y: -10 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    exit={{ opacity: 0, y: -10 }}
+                    className="absolute right-0 mt-2 w-48 bg-gray-800 rounded-md shadow-lg"
+                  >
+                    <button
+                      onClick={() => {
+                        i18n.changeLanguage("en");
+                        setIsLangOpen(false);
+                      }}
+                      className="block w-full text-left px-4 py-2 text-sm text-gray-300 hover:bg-gray-700"
+                    >
+                      English
+                    </button>
+                    <button
+                      onClick={() => {
+                        i18n.changeLanguage("fr");
+                        setIsLangOpen(false);
+                      }}
+                      className="block w-full text-left px-4 py-2 text-sm text-gray-300 hover:bg-gray-700"
+                    >
+                      French
+                    </button>
+                  </motion.div>
+                )}
+              </AnimatePresence>
+            </div>
           </nav>
 
           {/* Mobile Menu Button */}
@@ -190,6 +230,43 @@ const Navbar = () => {
                     {link.icon}
                   </a>
                 ))}
+                <div className="relative">
+                  <button
+                    onClick={() => setIsLangOpen(!isLangOpen)}
+                    className="text-gray-400 hover:text-primary-500 transition-colors duration-300 hover-element"
+                  >
+                    <Languages className="w-6 h-6" />
+                  </button>
+                  <AnimatePresence>
+                    {isLangOpen && (
+                      <motion.div
+                        initial={{ opacity: 0, y: 10 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        exit={{ opacity: 0, y: 10 }}
+                        className="absolute left-0 mt-2 w-48 bg-gray-800 rounded-md shadow-lg"
+                      >
+                        <button
+                          onClick={() => {
+                            i18n.changeLanguage("en");
+                            setIsLangOpen(false);
+                          }}
+                          className="block w-full text-left px-4 py-2 text-sm text-gray-300 hover:bg-gray-700"
+                        >
+                          English
+                        </button>
+                        <button
+                          onClick={() => {
+                            i18n.changeLanguage("fr");
+                            setIsLangOpen(false);
+                          }}
+                          className="block w-full text-left px-4 py-2 text-sm text-gray-300 hover:bg-gray-700"
+                        >
+                          French
+                        </button>
+                      </motion.div>
+                    )}
+                  </AnimatePresence>
+                </div>
               </div>
             </div>
           </motion.div>

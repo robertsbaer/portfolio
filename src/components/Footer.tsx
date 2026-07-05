@@ -1,7 +1,9 @@
 import { Github, Linkedin, Twitter, Heart, Facebook } from "lucide-react";
 import { useLocation, useNavigate } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 
 const Footer = () => {
+  const { t } = useTranslation();
   const currentYear = new Date().getFullYear();
   const location = useLocation();
   const navigate = useNavigate();
@@ -9,7 +11,7 @@ const Footer = () => {
 
   const handleNavClick = (
     e: React.MouseEvent<HTMLAnchorElement>,
-    href: string
+    href: string,
   ) => {
     e.preventDefault();
 
@@ -67,9 +69,7 @@ const Footer = () => {
             >
               Robert<span className="text-white">.</span>
             </a>
-            <p className="text-gray-400 mt-2">
-              Building exceptional digital experiences.
-            </p>
+            <p className="text-gray-400 mt-2">{t("footer_subtitle")}</p>
           </div>
 
           <div className="flex space-x-6 mb-6 md:mb-0">
@@ -95,28 +95,28 @@ const Footer = () => {
             className="text-gray-400 hover:text-primary-500 transition-colors duration-300 px-3 py-2"
             onClick={(e) => handleNavClick(e, "#about")}
           >
-            About
+            {t("about")}
           </a>
           <a
             href="#projects"
             className="text-gray-400 hover:text-primary-500 transition-colors duration-300 px-3 py-2"
             onClick={(e) => handleNavClick(e, "#projects")}
           >
-            Projects
+            {t("projects")}
           </a>
           <a
             href="#experience"
             className="text-gray-400 hover:text-primary-500 transition-colors duration-300 px-3 py-2"
             onClick={(e) => handleNavClick(e, "#experience")}
           >
-            Experience
+            {t("experience")}
           </a>
           <a
             href="#contact"
             className="text-gray-400 hover:text-primary-500 transition-colors duration-300 px-3 py-2"
             onClick={(e) => handleNavClick(e, "#contact")}
           >
-            Contact
+            {t("contact")}
           </a>
           <a
             href="/blog"
@@ -124,18 +124,18 @@ const Footer = () => {
             onClick={(e) => handleNavClick(e, "/blog")}
             aria-label="Read our web development blog"
           >
-            Blog
+            {t("blog")}
           </a>
         </div>
 
         <div className="border-t border-gray-800 mt-8 pt-8 flex flex-col md:flex-row justify-between items-center">
           <p className="text-gray-400 text-sm mb-4 md:mb-0">
-            &copy; {currentYear} Robert Baer. All rights reserved.
+            {t("footer_copyright", { year: currentYear })}
           </p>
 
           <p className="text-gray-400 text-sm flex items-center">
-            Made with <Heart className="w-4 h-4 text-red-500 mx-1" /> using
-            React
+            {t("footer_made_with")}{" "}
+            <Heart className="w-4 h-4 text-red-500 mx-1" /> {t("footer_react")}
           </p>
         </div>
       </div>

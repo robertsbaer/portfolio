@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { motion } from "framer-motion";
 import { useInView } from "react-intersection-observer";
+import { useTranslation } from "react-i18next";
 import { ExternalLink, Github } from "lucide-react";
 import crushItLogo from "../assets/crushitlogo.webp";
 import poll24 from "../assets/poll24.webp";
@@ -16,6 +17,7 @@ import playstoretest from "../assets/playstoretest.png";
 import bloom from "../assets/bloom.webp";
 
 const Projects = () => {
+  const { t } = useTranslation();
   const [ref, inView] = useInView({
     triggerOnce: false,
     threshold: 0.1,
@@ -204,15 +206,15 @@ const Projects = () => {
           <motion.div variants={itemVariants} className="text-center mb-16">
             <p className="text-primary-400 font-medium mb-4 flex items-center justify-center">
               <span className="inline-block w-10 h-[2px] bg-primary-500 mr-3"></span>
-              My Work
+              {t("my_work")}
               <span className="inline-block w-10 h-[2px] bg-primary-500 ml-3"></span>
             </p>
             <h2 className="text-3xl md:text-4xl font-bold mb-6">
-              Featured Projects<span className="text-primary-500">.</span>
+              {t("featured_projects")}
+              <span className="text-primary-500">.</span>
             </h2>
             <p className="text-gray-400 max-w-2xl mx-auto">
-              Here are some of my recent projects that showcase my skills and
-              expertise in React and React Native development.
+              {t("projects_description")}
             </p>
           </motion.div>
 

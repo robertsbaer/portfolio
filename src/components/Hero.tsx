@@ -1,9 +1,11 @@
-import { motion } from 'framer-motion';
-import { Code, Smartphone, ArrowDown } from 'lucide-react';
-import { useEffect } from 'react';
+import { motion } from "framer-motion";
+import { Code, Smartphone, ArrowDown } from "lucide-react";
+import { useEffect } from "react";
+import { useTranslation } from "react-i18next";
 
 // Add near the top of your Hero component
 const Hero = () => {
+  const { t } = useTranslation();
   // Add this useEffect for image preloading
   useEffect(() => {
     // Preload hero background images if you have any
@@ -12,43 +14,46 @@ const Hero = () => {
       img.src = src;
     };
     // Use relative paths instead of absolute paths starting with /src
-    preloadImage('./assets/crushitlogo.webp');
-    preloadImage('./assets/headshot.webp');
-    preloadImage('./assets/hotones.webp');
-    preloadImage('./assets/obamabarack.webp');
-    preloadImage('./assets/poll24.webp');
+    preloadImage("./assets/crushitlogo.webp");
+    preloadImage("./assets/headshot.webp");
+    preloadImage("./assets/hotones.webp");
+    preloadImage("./assets/obamabarack.webp");
+    preloadImage("./assets/poll24.webp");
   }, []);
 
   return (
-    <section id="home" className="relative min-h-screen flex items-center pt-20 overflow-hidden">
+    <section
+      id="home"
+      className="relative min-h-screen flex items-center pt-20 overflow-hidden"
+    >
       <div className="absolute inset-0 grid-background z-0"></div>
-      
+
       {/* Animated background elements */}
       <div className="absolute inset-0 overflow-hidden">
-        <motion.div 
+        <motion.div
           className="absolute top-1/4 left-1/4 w-64 h-64 rounded-full bg-primary-500/20 blur-3xl"
-          animate={{ 
-            x: [0, 50, 0], 
+          animate={{
+            x: [0, 50, 0],
             y: [0, 30, 0],
-            scale: [1, 1.2, 1]
+            scale: [1, 1.2, 1],
           }}
-          transition={{ 
-            duration: 15, 
+          transition={{
+            duration: 15,
             repeat: Infinity,
-            repeatType: "reverse" 
+            repeatType: "reverse",
           }}
         />
-        <motion.div 
+        <motion.div
           className="absolute bottom-1/3 right-1/4 w-72 h-72 rounded-full bg-secondary-500/20 blur-3xl"
-          animate={{ 
-            x: [0, -70, 0], 
+          animate={{
+            x: [0, -70, 0],
             y: [0, 50, 0],
-            scale: [1, 1.3, 1]
+            scale: [1, 1.3, 1],
           }}
-          transition={{ 
-            duration: 18, 
+          transition={{
+            duration: 18,
             repeat: Infinity,
-            repeatType: "reverse" 
+            repeatType: "reverse",
           }}
         />
       </div>
@@ -63,25 +68,35 @@ const Hero = () => {
             >
               <p className="text-primary-400 font-medium mb-4 flex items-center">
                 <span className="inline-block w-10 h-[2px] bg-primary-500 mr-3"></span>
-                Hello, I'm
+                {t("hero_greeting")}
               </p>
               <h2 className="text-4xl md:text-6xl font-bold mb-4">
                 Robert Baer
                 <span className="text-primary-500">.</span>
               </h2>
               <h1 className="text-2xl md:text-3xl text-gray-300 mb-6">
-                <span className="gradient-text font-semibold">React</span> & <span className="gradient-text font-semibold">React Native</span> Developer
+                <span className="gradient-text font-semibold">
+                  {t("hero_react")}
+                </span>{" "}
+                {t("hero_and")}{" "}
+                <span className="gradient-text font-semibold">
+                  {t("hero_react_native")}
+                </span>{" "}
+                {t("hero_developer")}
               </h1>
               <p className="text-gray-400 text-lg mb-8 max-w-lg">
-                I build exceptional digital experiences that are fast, accessible, and visually appealing. Specializing in both web and mobile development.
+                {t("hero_description")}
               </p>
               <div className="flex flex-wrap gap-4">
-                <a href="#projects" className="btn btn-primary hover-element flex items-center">
-                  View My Work
+                <a
+                  href="#projects"
+                  className="btn btn-primary hover-element flex items-center"
+                >
+                  {t("hero_view_work")}
                   <ArrowDown className="ml-2 w-4 h-4" />
                 </a>
                 <a href="#contact" className="btn btn-secondary hover-element">
-                  Get In Touch
+                  {t("hero_get_in_touch")}
                 </a>
               </div>
             </motion.div>
@@ -106,7 +121,7 @@ const Hero = () => {
                       <Smartphone className="w-8 h-8 text-white" />
                     </div>
                   </div>
-                  
+
                   <div className="flex justify-between items-center mb-4">
                     <div className="flex space-x-2">
                       <div className="w-3 h-3 rounded-full bg-red-500"></div>
@@ -115,37 +130,64 @@ const Hero = () => {
                     </div>
                     <div className="text-xs text-gray-500">App.tsx</div>
                   </div>
-                  
+
                   <pre className="text-sm font-mono overflow-x-auto">
                     <code className="language-jsx">
-                      <div><span className="text-pink-400">import</span> <span className="text-blue-400">React</span> <span className="text-pink-400">from</span> <span className="text-green-400">'react'</span>;</div>
-                      <div className="mt-2"><span className="text-pink-400">const</span> <span className="text-yellow-400">App</span> = () =&gt; {'{'}</div>
-                      <div className="ml-4"><span className="text-pink-400">return</span> (</div>
-                      <div className="ml-8">&lt;<span className="text-blue-400">div</span> <span className="text-purple-400">className</span>=<span className="text-green-400">"app"</span>&gt;</div>
-                      <div className="ml-12">&lt;<span className="text-blue-400">h1</span>&gt;Hello World!&lt;/<span className="text-blue-400">h1</span>&gt;</div>
-                      <div className="ml-8">&lt;/<span className="text-blue-400">div</span>&gt;</div>
+                      <div>
+                        <span className="text-pink-400">import</span>{" "}
+                        <span className="text-blue-400">React</span>{" "}
+                        <span className="text-pink-400">from</span>{" "}
+                        <span className="text-green-400">'react'</span>;
+                      </div>
+                      <div className="mt-2">
+                        <span className="text-pink-400">const</span>{" "}
+                        <span className="text-yellow-400">App</span> = () =&gt;{" "}
+                        {"{"}
+                      </div>
+                      <div className="ml-4">
+                        <span className="text-pink-400">return</span> (
+                      </div>
+                      <div className="ml-8">
+                        &lt;<span className="text-blue-400">div</span>{" "}
+                        <span className="text-purple-400">className</span>=
+                        <span className="text-green-400">"app"</span>&gt;
+                      </div>
+                      <div className="ml-12">
+                        &lt;<span className="text-blue-400">h1</span>&gt;Hello
+                        World!&lt;/<span className="text-blue-400">h1</span>&gt;
+                      </div>
+                      <div className="ml-8">
+                        &lt;/<span className="text-blue-400">div</span>&gt;
+                      </div>
                       <div className="ml-4">);</div>
-                      <div>{'}'}</div>
-                      <div className="mt-2"><span className="text-pink-400">export</span> <span className="text-pink-400">default</span> <span className="text-yellow-400">App</span>;</div>
+                      <div>{"}"}</div>
+                      <div className="mt-2">
+                        <span className="text-pink-400">export</span>{" "}
+                        <span className="text-pink-400">default</span>{" "}
+                        <span className="text-yellow-400">App</span>;
+                      </div>
                     </code>
                   </pre>
                 </div>
               </div>
-              
+
               {/* Decorative elements */}
               <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-64 h-64 rounded-full border-2 border-dashed border-primary-500/30 animate-spin-slow"></div>
               <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-80 h-80 rounded-full border-2 border-dashed border-secondary-500/20 animate-spin-slow"></div>
             </motion.div>
           </div>
         </div>
-        
-        <motion.div 
+
+        <motion.div
           className="absolute bottom-10 left-1/2 transform -translate-x-1/2"
           animate={{ y: [0, 10, 0] }}
           transition={{ duration: 1.5, repeat: Infinity }}
         >
-          <a href="#about" className="flex flex-col items-center text-gray-400 hover:text-primary-400 transition-colors duration-300 hover-element">
-            <span className="text-sm mb-2">Scroll Down</span>
+          <a
+            href="#about"
+            className="flex flex-col items-center text-gray-400 hover:text-primary-400 transition-colors duration-300 hover-element"
+          >
+            <span className="text-sm mb-2">{t("hero_scroll_down")}</span>
             <ArrowDown className="w-5 h-5" />
           </a>
         </motion.div>
