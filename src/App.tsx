@@ -6,7 +6,8 @@ import { useInView } from "react-intersection-observer";
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
 import Cursor from "./components/Cursor";
-import Seo from "./components/Seo"; // Corrected import
+import Page from "./components/Page";
+import { meta } from "./meta";
 import "./styles/blog.css";
 
 // Lazy load components
@@ -21,6 +22,9 @@ const MVPServices = lazy(() => import("./components/MVPServices"));
 const Consultation = lazy(() => import("./components/Consultation"));
 // import CommunityPantry from './components/CommunityPantry'; // Remove direct import if only used as a route
 const CommunityPantryPage = lazy(() => import("./components/CommunityPantry")); // Lazy load it
+const WebsiteDevelopment = lazy(
+  () => import("./components/services/WebsiteDevelopment"),
+);
 const MaywDaw = lazy(() => import("./components/MaywDaw"));
 import Brands from "./components/Brands";
 const NotFound = lazy(() => import("./components/NotFound"));
@@ -86,13 +90,6 @@ function HomePage() {
 
   return (
     <div className="relative">
-      <Seo
-        title={t("seo_title")}
-        description={t("seo_description")}
-        keywords={t("seo_keywords")}
-        canonical="https://dcmademedia.com/"
-        image="https://dcmademedia.com/dcmademedia.png"
-      />
       <div className="noise-overlay"></div>
       <Cursor />
       <Navbar />
@@ -221,11 +218,26 @@ function App() {
       >
         <Suspense fallback={<Loading />}>
           <Routes>
-            <Route path="" element={<HomePage />} />
+            <Route
+              path=""
+              element={
+                <Page {...meta.home}>
+                  <HomePage />
+                </Page>
+              }
+            />
             <Route path="blog" element={<Blog />} />
             <Route path="blog/:slug" element={<BlogPost />} />
             <Route path="mvp-services" element={<MVPServices />} />
             <Route path="consultation" element={<Consultation />} />
+            <Route
+              path="website-development"
+              element={
+                <Page {...meta.websiteDevelopment}>
+                  <WebsiteDevelopment />
+                </Page>
+              }
+            />
             <Route path="community-pantry" element={<CommunityPantryPage />} />
             <Route path="may-w-daw" element={<MaywDaw />} />
             {/* Add privacy-policy route for Google Play Console */}

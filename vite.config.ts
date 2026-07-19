@@ -3,6 +3,7 @@ import react from "@vitejs/plugin-react";
 import { visualizer } from "rollup-plugin-visualizer";
 import { ViteImageOptimizer } from "vite-plugin-image-optimizer";
 import ViteSitemap from "vite-plugin-sitemap";
+import Prerender from "vite-plugin-prerender";
 
 // Determine if we're in development mode
 const isDev = process.env.NODE_ENV === "development";
@@ -33,6 +34,20 @@ export default defineConfig({
     ViteSitemap({
       hostname: "https://dcmademedia.com",
       generateRobotsTxt: true, // Optional: will generate robots.txt
+      robots: [
+        {
+          userAgent: "*",
+          allow: "/",
+        },
+      ],
+      i18n: {
+        languages: ["en", "fr"],
+        defaultLanguage: "en",
+      },
+    }),
+    Prerender({
+      staticDir: "dist",
+      routes: ["/", "/mvp-services", "/consultation"],
     }),
   ],
   // Set the base URL appropriately for development vs production

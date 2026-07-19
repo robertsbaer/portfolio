@@ -65,5 +65,8 @@
   "footer_subtitle": "Créer des expériences numériques exceptionnelles.",
   "footer_copyright": "© {{year}} Robert Baer. Tous droits réservés.",
   "footer_made_with": "Fait avec",
-  "footer_react": "en utilisant React"
+  "footer_react": "en utilisant React",
+  "website_development_title": "Développement de sites Web",
+  "website_development_description": "Je crée des sites web personnalisés, rapides, réactifs et faciles à utiliser. Je me spécialise en React et React Native, mais je peux travailler avec n'importe quelle technologie pour répondre à vos besoins.",
+  "website_development_keywords": "développement de sites web, développeur web, développeur react, développeur react native, sites web personnalisés"
 }

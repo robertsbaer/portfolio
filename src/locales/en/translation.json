@@ -65,5 +65,8 @@
   "footer_subtitle": "Building exceptional digital experiences.",
   "footer_copyright": "© {{year}} Robert Baer. All rights reserved.",
   "footer_made_with": "Made with",
-  "footer_react": "using React"
+  "footer_react": "using React",
+  "website_development_title": "Website Development",
+  "website_development_description": "I build custom websites that are fast, responsive, and easy to use. I specialize in React and React Native, but I can work with any technology to meet your needs.",
+  "website_development_keywords": "website development, web developer, react developer, react native developer, custom websites"
 }
