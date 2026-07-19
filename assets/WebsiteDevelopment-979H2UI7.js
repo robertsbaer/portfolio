@@ -1,0 +1,1 @@
+import{j as e}from"./react-core-DwHNqR1j.js";const t=()=>e.jsx("div",{className:"container mx-auto px-4 py-16",children:e.jsx("h1",{className:"text-4xl font-bold text-center",children:"Website Development"})});export{t as default};
